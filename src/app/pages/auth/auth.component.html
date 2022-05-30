@@ -1,0 +1,9 @@
+<div class="form">
+    <div class="form-toggle" [ngClass]="{'visible': visible}" (click)="onClick(true)"></div>
+    <div class="form-panel one" [ngClass]="{'hidden': visible}">
+        <app-login></app-login>
+    </div>
+    <div class="form-panel two" [ngClass]="{'active': visible}" (click)="onClick(false)">
+        <app-register></app-register>
+    </div>
+</div>

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { UserInterface } from 'src/app/models/UserInterface';
+import { AuthServiceService } from 'src/app/servicios/auth-service.service';
 
 @Component({
   selector: 'app-sidebar',
@@ -7,9 +10,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SidebarComponent implements OnInit {
 
-  constructor() { }
+  $user!:Observable<UserInterface>;
+
+  constructor(private auth: AuthServiceService) { }
 
   ngOnInit(): void {
+    this.$user = this.auth.userObs;
   }
+
 
 }

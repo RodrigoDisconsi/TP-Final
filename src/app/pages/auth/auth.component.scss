@@ -10,7 +10,6 @@ $bold: 700;
 $ultra: 800;
 
 // Base Font
-$base-font-family: $body-font, sans-serif;
 $base-font-size: 14px;
 $base-font-weight: $regular;
 $base-line-height: 1.6em;
@@ -102,90 +101,6 @@ $gutters: 24px;
     &:last-child {
       margin: 0;
     }
-
-    label {
-      display: block;
-      margin: 0 0 10px;
-      color: $gray;
-      font-size: 12px;
-      font-weight: $semibold;
-      line-height: 1;
-      text-transform: uppercase;
-      letter-spacing: .2em;
-
-      .two & {
-        color: $white;
-      }
-    }
-
-    input {
-      outline: none;
-      display: block;
-      background: rgba($black, 0.1);
-      width: 100%;
-      border: 0;
-      border-radius: 4px;
-      box-sizing: border-box;
-      padding: 12px 20px;
-      color: $gray;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: $semibold;
-      line-height: inherit;
-      transition: 0.3s ease;
-
-      &:focus {
-        color: $dark-gray;
-      }
-
-      .two & {
-        color: $white;
-
-        &:focus {
-          color: $white;
-        }
-      }
-    }
-
-    button {
-      outline: none;
-      background: $accent;
-      width: 100%;
-      border: 0;
-      border-radius: 4px;
-      padding: 12px 20px;
-      color: $white;
-      font-family: inherit;
-      font-size: inherit;
-      font-weight: $semibold;
-      line-height: inherit;
-      text-transform: uppercase;
-      cursor: pointer;
-
-      .two & {
-        background: $white;
-        color: $accent;
-      }
-    }
-
-    .form-remember {
-      font-size: 12px;
-      font-weight: $regular;
-      letter-spacing: 0;
-      text-transform: none;
-
-      input[type='checkbox'] {
-        display: inline-block;
-        width: auto;
-        margin: 0 10px 0 0;
-      }
-    }
-
-    .form-recovery {
-      color: $accent;
-      font-size: 12px;
-      text-decoration: none;
-    }
   }
 
   // Panel
@@ -263,25 +178,6 @@ $gutters: 24px;
         &:after {
           opacity: 0;
         }
-      }
-    }
-  }
-
-  // Header
-  &-header {
-    margin: 0 0 40px;
-
-    h1 {
-      padding: 4px 0;
-      color: $accent;
-      font-size: 24px;
-      font-weight: $bold;
-      text-transform: uppercase;
-
-      .two & {
-        position: relative;
-        z-index: 40;
-        color: $white;
       }
     }
   }

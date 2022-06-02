@@ -45,10 +45,6 @@
                 </div>
             </div>
         <div class="form-group">
-            <label for="rol">Rol</label>
-            <input type="text" formControlName="rol" id="rol" name="rol" class="form-control form-style"/>
-        </div>
-        <div class="form-group">
             <label for="email">Email</label>
             <input type="text" formControlName="email" name="email" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('email'), 'is-valid': !isNotValidField('email') && this.f['email'].touched}" required/>
             <div class="invalid-feedback">
@@ -67,13 +63,6 @@
                 <div class="file-select-button" >Foto</div>
                 <div class="file-select-name" (click)="uploadFile()">{{archivoMsj}}</div> 
                 <input #file type="file" name="file-upload-input" id="file-upload-input" (change)="onChangeFile()">
-            </div>
-        </div>
-        <div [hidden]="this.f['rol'].value != 'paciente'" class="file-upload" style="margin-top: 1rem;">
-            <div class="file-upload-select">
-                <div class="file-select-button" >Foto</div>
-                <div class="file-select-name" (click)="uploadFile()">{{archivoMsj}}</div> 
-                <input type="file" name="file-upload-input" id="file-upload-input" (change)="onChangeFile()">
             </div>
         </div>
         <div class="form-group">

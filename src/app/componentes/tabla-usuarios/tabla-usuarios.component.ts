@@ -15,12 +15,15 @@ export class TablaUsuariosComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onClickHabilita(){
-
-  }
-
-  onClickDeshabilita(){
-    
+  onClick(estado:boolean){
+    let listToUpdate = this.listUser.filter(x => x.seleccionado == true);
+    if(listToUpdate){
+      listToUpdate.forEach(element => {
+        this.afs.updateUser(element, estado).then(x => {
+          console.info("OK");
+        });
+      });
+    }
   }
 
 }

@@ -29,5 +29,11 @@ export class FirebaseServiceService {
   getUsers(email:string){
     return this.afs.collection('users', ref => ref.where('email', '==', email) && ref.where('habilitado', '==', true)).valueChanges();
   }
+
+  updateUser(user:UserInterface, status:boolean){
+    return this.afs.collection('users').doc(user.email).update({
+      habilitado: status
+    });
+  }
   
 }

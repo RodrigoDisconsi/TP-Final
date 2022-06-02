@@ -1,6 +1,4 @@
-import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { Observable } from 'rxjs';
-declare var $:any;
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-loading',
@@ -12,7 +10,6 @@ export class LoadingComponent implements OnInit {
     
 
     ngOnInit(): void {
-      $('#loader').delay(1500).fadeOut("slow");
     }
 
     //como cargar una imagen progresivamente

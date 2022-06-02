@@ -81,19 +81,6 @@ export class CrearUsuarioComponent implements OnInit {
     this.archivoMsj = this.file.nativeElement.files[0].name;
   }
 
-  onChangeSelect(){
-    if(this.f["rol"].value == "especialista"){
-      this.regisForm.addControl("especialidad", new FormControl('', Validators.required));
-      this.regisForm.removeControl("obraSocial");
-    }
-    else if(this.f["rol"].value == "paciente"){
-      this.regisForm.addControl("obraSocial", new FormControl('', Validators.required));
-      this.regisForm.removeControl("especialidad");
-    }
-    let a = 1;
-    
-  }
-
   onCrear(){
     let user  = this.regisForm.value as UserInterface;
     this.auth.register(user.email, user.password).then((resp)=>{
@@ -101,14 +88,13 @@ export class CrearUsuarioComponent implements OnInit {
         user.habilitado = true;
         this.afs.setObj('users', user, user.email).then(x => {
           this.auth.refreshData(user);
-          this.router.navigate(['']);
           this.cargando = false;
         });
       }
     })
     .catch(e => {
-      this.errorMsj = e.message;
-      this.error = true;
+      this.errorMsj.next(e.message);
+      // this.error = true;
       this.cargando = false;
       console.info("ERROR ->", e);
     });

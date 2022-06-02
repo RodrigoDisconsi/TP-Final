@@ -8,6 +8,8 @@ export interface UserInterface {
     rol:string;
     email:string;
     password:string;
+    habilitado:boolean;
+    seleccionado:boolean;
     pathImg?:string;
     pathImg2?:string;
 }

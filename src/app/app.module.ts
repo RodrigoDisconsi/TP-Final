@@ -20,6 +20,7 @@ import { environment } from 'src/environments/environment';
 import { LoadingComponent } from './componentes/loading/loading.component';
 import { TablaUsuariosComponent } from './componentes/tabla-usuarios/tabla-usuarios.component';
 import { MasterUsuariosComponent } from './pages/master-usuarios/master-usuarios.component';
+import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { MasterUsuariosComponent } from './pages/master-usuarios/master-usuarios
     RegisterComponent,
     LoadingComponent,
     TablaUsuariosComponent,
-    MasterUsuariosComponent
+    MasterUsuariosComponent,
+    CrearUsuarioComponent
   ],
   imports: [
     BrowserModule,

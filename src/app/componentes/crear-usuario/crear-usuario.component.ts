@@ -7,11 +7,11 @@ import { AuthServiceService } from 'src/app/servicios/auth-service.service';
 import { FirebaseServiceService } from 'src/app/servicios/firebase-service.service';
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.scss']
+  selector: 'app-crear-usuario',
+  templateUrl: './crear-usuario.component.html',
+  styleUrls: ['./crear-usuario.component.scss']
 })
-export class RegisterComponent implements OnInit {
+export class CrearUsuarioComponent implements OnInit {
 
   @ViewChild('file')file!:ElementRef;
   public errorMsj = new Subject<string>();
@@ -22,10 +22,12 @@ export class RegisterComponent implements OnInit {
     apellido: ['', [Validators.required]],
     dni: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern("^[0-9]*$")]],
     edad: ['', [Validators.required, Validators.min(18), Validators.max(150)]],
-    obraSocial: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
-    rol: ['paciente', [Validators.required]]
+    rol: [{
+      value: 'administrador',
+      disabled: true
+    }]
   });
   public archivoMsj:string = "No file chosen...";
 
@@ -92,7 +94,7 @@ export class RegisterComponent implements OnInit {
     
   }
 
-  onRegister(){
+  onCrear(){
     let user  = this.regisForm.value as UserInterface;
     this.auth.register(user.email, user.password).then((resp)=>{
       if(resp){
@@ -111,5 +113,6 @@ export class RegisterComponent implements OnInit {
       console.info("ERROR ->", e);
     });
   }
+
 
 }

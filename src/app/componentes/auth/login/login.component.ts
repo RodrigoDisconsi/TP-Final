@@ -56,12 +56,15 @@ export class LoginComponent implements OnInit {
     this.error = false;
     this.auth.login(this.loginForm.value.email, this.loginForm.value.password).then((resp) => {
       if (resp) {
-        this.afs.getWithFilter('users', 'email', this.loginForm.value.email).subscribe(user => {
-          if(user){
-            let userInterface = user[0] as UserInterface;
-            this.auth.refreshData(userInterface);
-          }
-        })
+        this.afs.getUsers(this.loginForm.value.email).subscribe(user => {
+            if(user){
+              let userInterface = user[0] as UserInterface;
+              this.auth.refreshData(userInterface);
+              setTimeout(() => {
+                this.router.navigateByUrl('');
+              }, 100)
+            }
+          });
       }
     }).catch(e => {
       this.errorMsj.next(e.message);

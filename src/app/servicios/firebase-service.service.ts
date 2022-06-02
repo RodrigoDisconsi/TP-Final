@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { UserInterface } from '../models/UserInterface';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,10 @@ export class FirebaseServiceService {
 
   getWithFilter(entidad:string, campo:string, value:string){
     return this.afs.collection(entidad, ref => ref.where(campo, '==', value)).valueChanges();
+  }
+
+  getUsers(email:string){
+    return this.afs.collection('users', ref => ref.where('email', '==', email) && ref.where('habilitado', '==', true)).valueChanges();
   }
   
 }

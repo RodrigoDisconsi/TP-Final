@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, Output } from '@angular/core';
 import { UserInterface } from 'src/app/models/UserInterface';
+import { FirebaseServiceService } from 'src/app/servicios/firebase-service.service';
 
 @Component({
   selector: 'app-tabla-usuarios',
@@ -9,9 +10,17 @@ import { UserInterface } from 'src/app/models/UserInterface';
 export class TablaUsuariosComponent implements OnInit {
   @Input() listUser!:UserInterface[];
 
-  constructor() { }
+  constructor(private afs:FirebaseServiceService) { }
 
   ngOnInit(): void {
+  }
+
+  onClickHabilita(){
+
+  }
+
+  onClickDeshabilita(){
+    
   }
 
 }

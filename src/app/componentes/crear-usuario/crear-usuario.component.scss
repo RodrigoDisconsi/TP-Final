@@ -1,0 +1,139 @@
+$semibold: 500;
+$bold: 700;
+// Colors
+$black: #000000;
+$gray: rgba($black, 0.6);
+$white: #FFFFFF;
+$accent: #4285F4;
+
+.input{
+  outline: none;
+  display: block;
+  background: rgba($black, 0.1);
+  width: 100%;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: $gray;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $semibold;
+  line-height: inherit;
+  transition: 0.3s ease;
+}
+
+input{
+  outline: none;
+  display: block;
+  background: rgba($black, 0.1);
+  width: 100%;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: $gray;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $semibold;
+  line-height: inherit;
+  transition: 0.3s ease;
+}
+
+  button {
+    outline: none;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 20px;
+    background: $white;
+    color: $accent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: $semibold;
+    line-height: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+
+  }
+
+  label {
+    display: block;
+    margin: 0 0 10px;
+    color: $accent;
+    font-size: 12px;
+    font-weight: $semibold;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+
+  }
+
+  h1 {
+    padding: 4px 0;
+    position: relative;
+    z-index: 40;
+    color: $accent;
+    font-size: 24px;
+    font-weight: $bold;
+    text-transform: uppercase;
+
+  }
+
+  .file-upload .file-upload-select {
+    display: block;
+    color: #dbdbdb;
+    cursor: pointer;
+    text-align: left;
+    background: rgba($black, 0.1);
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
+  }
+  .file-upload .file-upload-select .file-select-button {
+    background: rgba($black, 0.1);
+    padding: 10px;
+    display: inline-block;
+  }
+  .file-upload .file-upload-select .file-select-name {
+    display: inline-block;
+    padding: 10px;
+  }
+  .file-upload .file-upload-select:hover{
+    background: $white;
+    color: $gray;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+
+  .file-upload .file-upload-select:hover .file-select-button {
+    background: rgba($accent, 0.5);
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+  .file-upload .file-upload-select input[type="file"] {
+    display: none;
+  }
+  
+  .is-invalid{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
+  }
+
+  .test{
+    background: rgba($accent, 0.5);
+  }
+
+//   .form-control.is-invalid, .was-validated .form-control:invalid {
+//     border-color: #dc3545;
+//     padding-right: calc(1.5em + 0.75rem);
+//     background-image: url(data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e);
+//     background-repeat: no-repeat;
+//     background-position: right calc(0.375em + 0.1875rem) center;
+//     background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
+// }

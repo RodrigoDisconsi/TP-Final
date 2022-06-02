@@ -12,7 +12,7 @@ export class LoadingComponent implements OnInit {
     
 
     ngOnInit(): void {
-      $('#loader').delay(500).fadeOut("slow");
+      $('#loader').delay(1500).fadeOut("slow");
     }
 
     //como cargar una imagen progresivamente

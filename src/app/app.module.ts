@@ -18,6 +18,8 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFirestoreModule } from '@angular/fire/compat/firestore';
 import { environment } from 'src/environments/environment';
 import { LoadingComponent } from './componentes/loading/loading.component';
+import { TablaUsuariosComponent } from './componentes/tabla-usuarios/tabla-usuarios.component';
+import { MasterUsuariosComponent } from './pages/master-usuarios/master-usuarios.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import { LoadingComponent } from './componentes/loading/loading.component';
     AuthComponent,
     LoginComponent,
     RegisterComponent,
-    LoadingComponent
+    LoadingComponent,
+    TablaUsuariosComponent,
+    MasterUsuariosComponent
   ],
   imports: [
     BrowserModule,

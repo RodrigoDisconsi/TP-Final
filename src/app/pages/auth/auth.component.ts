@@ -23,14 +23,14 @@ export class AuthComponent implements OnInit {
     if(close){      
       this.visible = false;
       $('.form').animate({
-        'height': this.heightPanelOne
-      }, 200);
+        'height': 400
+      }, 300);
     }
     else{
       this.visible = true;
       $('.form').animate({
-        'height': this.heightPanelTwo
-      }, 200);
+        'height': this.heightPanelTwo + 50
+      }, 300);
     }
   }
 }

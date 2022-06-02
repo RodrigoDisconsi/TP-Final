@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserInterface } from 'src/app/models/UserInterface';
 import { AuthServiceService } from 'src/app/servicios/auth-service.service';
 import { FirebaseServiceService } from 'src/app/servicios/firebase-service.service';
@@ -59,16 +59,14 @@ export class LoginComponent implements OnInit {
         this.afs.getWithFilter('users', 'email', this.loginForm.value.email).subscribe(user => {
           if(user){
             let userInterface = user[0] as UserInterface;
-            console.info(userInterface);
             this.auth.refreshData(userInterface);
-            this.router.navigateByUrl("");
           }
         })
       }
     }).catch(e => {
       this.errorMsj.next(e.message);
       this.error = true;
-      this.cargando = false;
+      // this.cargando = false;
       console.info("ERROR ->", e);
     });
   }

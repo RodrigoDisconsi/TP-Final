@@ -1,12 +1,15 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { Observable } from 'rxjs';
 import { UserInterface } from '../models/UserInterface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseServiceService {
-  constructor(private afs: AngularFirestore){
+
+  constructor(private afs: AngularFirestore, private storage: AngularFireStorage){
   }
 
   getAll(entidad:string){
@@ -34,6 +37,19 @@ export class FirebaseServiceService {
     return this.afs.collection('users').doc(user.email).update({
       habilitado: status
     });
+  }
+
+  async test(email:string, img:any){
+    try{
+      let storageRef = this.storage.ref("/users/" + email);
+      let resp = await storageRef.putString(img, "data_url");
+      
+      return await resp.ref.getDownloadURL();
+    }
+    catch(err){
+      console.error(err);
+      return null;
+    }
   }
   
 }

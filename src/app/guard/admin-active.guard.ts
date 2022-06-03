@@ -19,7 +19,7 @@ export class AdminActiveGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       this.user$.subscribe(data => {
-        if(!data){
+        if(data == null || data == undefined){
           this.router.navigateByUrl('Login');
         }
         else if(data.rol != "administrador"){

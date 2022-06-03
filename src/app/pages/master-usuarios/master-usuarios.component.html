@@ -4,7 +4,7 @@
             <div class="card-header">Active Users
                 <div class="btn-actions-pane-right">
                     <div role="group" class="btn-group-sm btn-group">
-                        <button class="btn btn-accent">Nuevo</button>
+                        <button class="btn btn-accent" (click)="onClick()">Nuevo</button>
                     </div>
                 </div>
             </div>
@@ -12,7 +12,7 @@
         </div>
     </div>
     
-    <div class="col mb-3">
+    <div class="col mb-3" *ngIf="nuevoUsuario">
         <app-crear-usuario></app-crear-usuario>
     </div>
 </div>

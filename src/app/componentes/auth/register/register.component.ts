@@ -28,6 +28,7 @@ export class RegisterComponent implements OnInit {
     rol: ['paciente', [Validators.required]]
   });
   public archivoMsj:string = "No file chosen...";
+  public archivo:any;
 
   constructor(
     private router: Router,
@@ -76,7 +77,13 @@ export class RegisterComponent implements OnInit {
   }
 
   onChangeFile(){
-    this.archivoMsj = this.file.nativeElement.files[0].name;
+    let file = this.file.nativeElement.files[0];
+    this.archivoMsj = file.name;
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onloadend = () => {
+      this.archivo = reader.result;
+    };
   }
 
   onChangeSelect(){
@@ -94,14 +101,26 @@ export class RegisterComponent implements OnInit {
 
   onRegister(){
     let user  = this.regisForm.value as UserInterface;
+    this.cargando = true;
     this.auth.register(user.email, user.password).then((resp)=>{
       if(resp){
-        user.habilitado = true;
-        this.afs.setObj('users', user, user.email).then(x => {
-          this.auth.refreshData(user);
-          this.router.navigate(['']);
-          this.cargando = false;
-        });
+        if(this.archivo){
+          this.afs.test(user.email, this.archivo).then(img =>{
+              user.habilitado = true;
+              if(img)
+                user.pathImg = img;
+              this.afs.setObj('users', user, user.email).then(x => {
+                this.auth.refreshData(user); 
+                this.router.navigate(['']);
+                this.regisForm.reset();
+                this.cargando = false;
+              });
+          }).catch(e =>{
+            this.errorMsj = e.message;
+            this.error = true;
+            this.cargando = false;            
+          });
+        }
       }
     })
     .catch(e => {

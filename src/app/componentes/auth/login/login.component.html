@@ -1,8 +1,8 @@
+<app-loading *ngIf="cargando"></app-loading>
 <div class="form-header">
     <h1>Account Login</h1>
 </div>
 <div class="form-content">
-    <app-loading *ngIf="cargando"></app-loading>
     <form [formGroup]="loginForm">
         <div class="form-group">
             <label for="email">Username</label>
@@ -20,7 +20,7 @@
         </div>
         <!-- <div class="form-group"><label class="form-remember"><input type="checkbox" />Remember Me</label><a class="form-recovery" href="#">Forgot Password?</a></div> -->
         <div class="form-group">
-            <label class="form-remember">{{(errorMsj | async)}}</label>
+            <label class="invalid-feedback">{{(errorMsj | async)}}</label>
         </div>
         <div class="form-group"><button [disabled]="loginForm.invalid" type="submit" (click)="onLogin()">Log In</button></div>
     </form>

@@ -10,6 +10,7 @@ import { FirebaseServiceService } from 'src/app/servicios/firebase-service.servi
 export class MasterUsuariosComponent implements OnInit {
 
   public users!:UserInterface[];
+  public nuevoUsuario:boolean = false;
   constructor(private afs:FirebaseServiceService) { }
 
   ngOnInit(): void {
@@ -17,6 +18,10 @@ export class MasterUsuariosComponent implements OnInit {
       this.users = resp as UserInterface[];
       console.info(this.users);
     })
+  }
+
+  onClick(){
+    this.nuevoUsuario = true;
   }
 
 }

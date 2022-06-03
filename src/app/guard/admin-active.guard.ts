@@ -7,19 +7,16 @@ import { AuthServiceService } from '../servicios/auth-service.service';
 @Injectable({
   providedIn: 'root'
 })
-export class AdminActiveGuard implements CanActivate {
-
-  user$: Observable<UserInterface>; 
+export class AdminActiveGuard implements CanActivate { 
 
   constructor(private authService: AuthServiceService, private router: Router) {
-    this.user$ = this.authService.userObs;
   }
 
   canActivate(
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-      this.user$.subscribe(data => {
-        if(data == null || data == undefined){
+      this.authService.userObs.subscribe(data => {
+        if(data == null){
           this.router.navigateByUrl('Login');
         }
         else if(data.rol != "administrador"){

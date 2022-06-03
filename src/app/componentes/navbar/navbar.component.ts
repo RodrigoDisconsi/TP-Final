@@ -9,7 +9,7 @@ import { AuthServiceService } from 'src/app/servicios/auth-service.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
-  $user!:Observable<UserInterface>;
+  $user!:Observable<UserInterface | null>;
 
   constructor(private auth: AuthServiceService) { }
 

@@ -10,7 +10,7 @@ import { AuthServiceService } from 'src/app/servicios/auth-service.service';
 })
 export class SidebarComponent implements OnInit {
 
-  $user!:Observable<UserInterface>;
+  $user!:Observable<UserInterface | null>;
 
   constructor(private auth: AuthServiceService) { }
 

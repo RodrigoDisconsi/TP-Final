@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { Subject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 import { UserInterface } from '../models/UserInterface';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthServiceService {
-  public userObs = new Subject<UserInterface>(); 
+  public userObs = new BehaviorSubject<UserInterface | null>(null); 
 
   
   constructor(private fauth:AngularFireAuth) { 

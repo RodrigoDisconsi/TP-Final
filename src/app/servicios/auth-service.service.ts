@@ -30,7 +30,7 @@ export class AuthServiceService {
     return this.fauth.signInWithEmailAndPassword(email,password);
   }
 
-  refreshData(userParam:UserInterface){
+  refreshData(userParam:UserInterface | null){
     this.userObs.next(userParam);
   }
 }

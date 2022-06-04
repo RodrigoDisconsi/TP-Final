@@ -83,6 +83,7 @@ header {
     background: $accent;
     font-size: 20px;
     font-weight: 700;
+    border-radius: 4px;
     color: $white;
 }
 
@@ -91,6 +92,7 @@ header {
     align-items: center;
     justify-content: space-between;
     width: 100%;
+    margin-bottom: 1rem;
 }
 
 .socialbx {
@@ -99,9 +101,9 @@ header {
 }
 
 .iconbx {
-    padding: 10px;
-    background: #292929;
-    width: 20px;
+    padding: 5px;
+    background: $accent;
+    width: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -112,6 +114,11 @@ header {
     font-weight: 600;
     text-align: right;
 }
+
+i{
+    font-size: x-large;
+}
+
 /* TABLET */
 @media only screen and (max-width: 1200px) {
     .right:before {

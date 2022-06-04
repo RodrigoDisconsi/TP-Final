@@ -62,7 +62,7 @@ export class RegisterComponent implements OnInit {
       retorno = "Lo siento, dudamos que tenga esa edad.";
     }
     else if(this.f[field].getError('pattern')){
-      retorno = "SÓLO NÚMEROS.";
+      retorno = "Sólo valores númericos.";
     }
     return retorno;
   }
@@ -84,6 +84,10 @@ export class RegisterComponent implements OnInit {
     reader.onloadend = () => {
       this.archivo = reader.result;
     };
+  }
+
+  setRol(rol:string){
+    this.f["rol"].setValue(rol);
   }
 
   onChangeSelect(){

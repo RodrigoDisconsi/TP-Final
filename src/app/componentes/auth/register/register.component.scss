@@ -24,6 +24,32 @@ $accent: #4285F4;
   transition: 0.3s ease;
 }
 
+.btn-paciente{
+  background-image:url('../../../../assets/paciente.webp');
+  background-repeat:no-repeat;
+  height:100px;
+  width:100px;
+  background-size: cover;
+  border-radius: 10px;
+  background-position:center;
+}
+
+.btn-active {
+  transform: scale(0.98);
+  background-color: #dbdbdb;
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.5);
+}
+
+.btn-especialista{
+  background-image:url('../../../../assets/doctor.png');
+  background-repeat:no-repeat;
+  height:100px;
+  width:100px;
+  background-size: cover;
+  border-radius: 10px;
+  background-position:center;
+}
+
 input{
   outline: none;
   display: block;

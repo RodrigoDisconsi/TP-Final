@@ -13,10 +13,10 @@ import { FirebaseServiceService } from 'src/app/servicios/firebase-service.servi
 })
 export class LoginComponent implements OnInit {
   
-  public errorMsj = new Subject<string>();
-  public error: boolean = false;
-  public cargando: boolean = false;
-  public loginForm = this.formBuilder.group({
+  errorMsj = new Subject<string>();
+  error: boolean = false;
+  cargando: boolean = false;
+  loginForm = this.formBuilder.group({
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
   });
@@ -56,20 +56,21 @@ export class LoginComponent implements OnInit {
     this.error = false;
     this.auth.login(this.loginForm.value.email, this.loginForm.value.password).then((resp) => {
       if (resp) {
-        this.afs.getUsers(this.loginForm.value.email).subscribe(user => {
+        let suscr = this.afs.getUsers(this.loginForm.value.email).subscribe(user => {
             if(user){
+              console.info(user);
               let userInterface = user[0] as UserInterface;
               this.auth.refreshData(userInterface);
-              setTimeout(() => {
-                this.router.navigateByUrl('');
-              }, 100)
+              this.loginForm.reset();
+              suscr.unsubscribe();
+              this.router.navigateByUrl('');
             }
           });
       }
     }).catch(e => {
-      this.errorMsj.next(e.message);
+      this.errorMsj.next(e.message.toLowerCase().replace("firebase: ", ""));
       this.error = true;
-      // this.cargando = false;
+      this.cargando = false;
       console.info("ERROR ->", e);
     });
   }

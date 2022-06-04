@@ -44,15 +44,17 @@
                 </div>
             </div>
         <div class="form-group">
-            <label for="rol">Tipo de usuario</label>
-            <select formControlName="rol" class="input" id="inputGroupSelect01" (change)="onChangeSelect()" [ngClass]="{'is-invalid': isNotValidField('rol'), 'is-valid': !isNotValidField('rol') && this.f['rol'].touched}" required>
-              <option class="input test" value="paciente">Paciente</option>
-              <option class="input test" value="especialista">Especialista</option>
-            </select>
-            <div class="invalid-feedback">
-                {{getErrorMessage('rol')}}
+            <div class="d-flex justify-content-around">
+                <div>
+                    <label class="text-center">Paciente</label> 
+                    <button class="btn-paciente" [class.btn-active]="this.f['rol'].value == 'paciente'" (click)="setRol('paciente')"></button>
+                </div>
+                <div>
+                    <label class="text-center">Profesional</label>
+                    <button class="btn-especialista" [class.btn-active]="this.f['rol'].value == 'especialista'" (click)="setRol('especialista')"></button>
+                </div>
             </div>
-          </div>
+        </div>
         <div class="form-group" *ngIf="this.f['rol'].value == 'paciente'">
             <label for="obraSocial">Obra social</label>
             <input type="text" formControlName="obraSocial" id="obraSocial" name="obraSocial" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('obraSocial'), 'is-valid': !isNotValidField('obraSocial') && this.f['obraSocial'].touched}" required/>
@@ -61,13 +63,23 @@
             </div>
         </div>
         <div class="form-group" *ngIf="this.f['rol'].value == 'especialista'">
-            <label for="especilidad">Especialidad</label>
-            <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
-                <option class="input test" value="paciente">Médico clínico</option>
-                <option class="input test" value="especialista">Traumatólogo</option>
-            </select>
-            <div class="invalid-feedback">
-                {{getErrorMessage('especialidad')}}
+            <div class="row">
+                <div class="col-12 mb-3">
+                    <label for="especilidad">Especialidad</label>
+                    <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
+                        <option class="input test" value="paciente">Médico clínico</option>
+                        <option class="input test" value="especialista">Traumatólogo</option>
+                    </select>
+                    <div class="invalid-feedback">
+                        {{getErrorMessage('especialidad')}}
+                    </div>
+                </div>
+                <div class="col-6">
+                    <button style="font-size: small;">Nueva especialidad</button>
+                </div>
+                <div class="col-8">
+
+                </div>
             </div>
         </div>
         <div class="form-group">
@@ -95,17 +107,12 @@
             <div class="file-upload-select">
                 <div class="file-select-button" >Foto</div>
                 <div class="file-select-name" (click)="uploadFile()">{{archivoMsj}}</div> 
-                <input type="file" name="file-upload-input" id="file-upload-input" (change)="onChangeFile()">
+                <input type="file" id="file-upload-input-paciente" (change)="onChangeFile()">
             </div>
         </div>
         <div class="form-group">
             <label class="form-remember">{{(errorMsj | async)}}</label>
         </div>
-        <!-- <div class="form-group"><label for="username">Username</label><input type="text" name="username" required="required" /></div>
-        <div class="form-group"><label for="password">Password</label><input type="password" id="password" name="password" required="required" /></div>
-        <div class="form-group"><label for="cpassword">Confirm Password</label><input type="password" id="cpassword" name="cpassword" required="required" /></div>
-        <div class="form-group"><label for="email">Email Address</label><input type="email" name="email" required="required" /></div>
-        <div class="form-group"><button type="submit">Register</button></div> -->
         <button [disabled]="regisForm.invalid" type="submit" (click)="onRegister()">Register</button>
     </form>
 </div>

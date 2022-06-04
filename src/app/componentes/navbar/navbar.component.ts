@@ -17,4 +17,9 @@ export class NavbarComponent implements OnInit {
     this.$user = this.auth.userObs;
   }
 
+  onLogout(){
+    this.auth.logout().then(() => {
+      this.auth.refreshData(null);
+    })
+  }
 }

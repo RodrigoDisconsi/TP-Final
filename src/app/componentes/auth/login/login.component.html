@@ -20,7 +20,7 @@
         </div>
         <!-- <div class="form-group"><label class="form-remember"><input type="checkbox" />Remember Me</label><a class="form-recovery" href="#">Forgot Password?</a></div> -->
         <div class="form-group">
-            <label class="invalid-feedback">{{(errorMsj | async)}}</label>
+            <label class="error-text">{{(errorMsj | async)}}</label>
         </div>
         <div class="form-group"><button [disabled]="loginForm.invalid" type="submit" (click)="onLogin()">Log In</button></div>
     </form>

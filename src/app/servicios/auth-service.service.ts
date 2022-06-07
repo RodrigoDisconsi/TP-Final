@@ -13,10 +13,6 @@ export class AuthServiceService {
   constructor(private fauth:AngularFireAuth) { 
     
   }
-  
-  // get isLoggedIn() {
-  //   return this.userObs.asObservable(); 
-  // }
 
   logout(): Promise<void>{
     return this.fauth.signOut();

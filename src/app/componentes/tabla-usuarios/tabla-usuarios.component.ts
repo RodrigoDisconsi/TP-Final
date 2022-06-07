@@ -20,7 +20,6 @@ export class TablaUsuariosComponent implements OnInit {
     if(listToUpdate){
       listToUpdate.forEach(element => {
         this.afs.updateUser(element, estado).then(x => {
-          console.info("OK");
         });
       });
     }

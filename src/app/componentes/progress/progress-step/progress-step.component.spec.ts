@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SolicitarTurnoComponent } from './solicitar-turno.component';
+import { ProgressStepComponent } from './progress-step.component';
 
-describe('SolicitarTurnoComponent', () => {
-  let component: SolicitarTurnoComponent;
-  let fixture: ComponentFixture<SolicitarTurnoComponent>;
+describe('ProgressStepComponent', () => {
+  let component: ProgressStepComponent;
+  let fixture: ComponentFixture<ProgressStepComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SolicitarTurnoComponent ]
+      declarations: [ ProgressStepComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SolicitarTurnoComponent);
+    fixture = TestBed.createComponent(ProgressStepComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

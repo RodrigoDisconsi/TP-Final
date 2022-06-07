@@ -21,8 +21,10 @@ import { LoadingComponent } from './componentes/loading/loading.component';
 import { TablaUsuariosComponent } from './componentes/tabla-usuarios/tabla-usuarios.component';
 import { MasterUsuariosComponent } from './pages/master-usuarios/master-usuarios.component';
 import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario.component';
-import { SolicitarTurnoComponent } from './componentes/turnos/solicitar-turno/solicitar-turno.component';
 import { TablaTurnosComponent } from './componentes/turnos/tabla-turnos/tabla-turnos.component';
+import { SolicitarComponent } from './pages/turnos/solicitar/solicitar.component';
+import { ProgressComponent } from './componentes/progress/progress.component';
+import { ProgressStepComponent } from './componentes/progress/progress-step/progress-step.component';
 
 @NgModule({
   declarations: [
@@ -38,8 +40,10 @@ import { TablaTurnosComponent } from './componentes/turnos/tabla-turnos/tabla-tu
     TablaUsuariosComponent,
     MasterUsuariosComponent,
     CrearUsuarioComponent,
-    SolicitarTurnoComponent,
-    TablaTurnosComponent
+    TablaTurnosComponent,
+    SolicitarComponent,
+    ProgressComponent,
+    ProgressStepComponent
   ],
   imports: [
     BrowserModule,

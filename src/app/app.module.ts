@@ -21,6 +21,8 @@ import { LoadingComponent } from './componentes/loading/loading.component';
 import { TablaUsuariosComponent } from './componentes/tabla-usuarios/tabla-usuarios.component';
 import { MasterUsuariosComponent } from './pages/master-usuarios/master-usuarios.component';
 import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario.component';
+import { SolicitarTurnoComponent } from './componentes/turnos/solicitar-turno/solicitar-turno.component';
+import { TablaTurnosComponent } from './componentes/turnos/tabla-turnos/tabla-turnos.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +37,9 @@ import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario
     LoadingComponent,
     TablaUsuariosComponent,
     MasterUsuariosComponent,
-    CrearUsuarioComponent
+    CrearUsuarioComponent,
+    SolicitarTurnoComponent,
+    TablaTurnosComponent
   ],
   imports: [
     BrowserModule,

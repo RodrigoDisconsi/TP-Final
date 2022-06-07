@@ -93,7 +93,7 @@ export class CrearUsuarioComponent implements OnInit {
     this.auth.register(user.email, user.password).then((resp)=>{
       if(resp){
         if(this.archivo){
-          this.afs.test(user.email, this.archivo).then(img =>{
+          this.afs.uploadImage(user.email, this.archivo).then(img =>{
               user.habilitado = true;
               if(img)
                 user.pathImg = img;

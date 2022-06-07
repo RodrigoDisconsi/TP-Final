@@ -39,7 +39,7 @@ export class FirebaseServiceService {
     });
   }
 
-  async test(email:string, img:any){
+  async uploadImage(email:string, img:any){
     try{
       let storageRef = this.storage.ref("/users/" + email);
       let resp = await storageRef.putString(img, "data_url");

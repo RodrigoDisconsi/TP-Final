@@ -78,8 +78,8 @@ export class RegisterComponent implements OnInit {
 
   onChangeFile(){
     let file = this.file.nativeElement.files[0];
-    this.archivoMsj = file.name;
     let reader = new FileReader();
+    this.archivoMsj = file.name;
     reader.readAsDataURL(file);
     reader.onloadend = () => {
       this.archivo = reader.result;
@@ -99,40 +99,42 @@ export class RegisterComponent implements OnInit {
       this.regisForm.addControl("obraSocial", new FormControl('', Validators.required));
       this.regisForm.removeControl("especialidad");
     }
-    let a = 1;
-    
   }
 
   onRegister(){
     let user  = this.regisForm.value as UserInterface;
     this.cargando = true;
-    this.auth.register(user.email, user.password).then((resp)=>{
-      if(resp){
-        if(this.archivo){
-          this.afs.test(user.email, this.archivo).then(img =>{
-              user.habilitado = true;
-              if(img)
-                user.pathImg = img;
-              this.afs.setObj('users', user, user.email).then(x => {
-                this.auth.refreshData(user); 
-                this.router.navigate(['']);
-                this.regisForm.reset();
-                this.cargando = false;
-              });
-          }).catch(e =>{
-            this.errorMsj = e.message;
-            this.error = true;
-            this.cargando = false;            
-          });
+    if(this.archivo){
+      this.auth.register(user.email, user.password).then((resp)=>{
+        if(resp){
+            this.afs.uploadImage(user.email, this.archivo).then(img =>{
+                user.habilitado = true;
+                if(img)
+                  user.pathImg = img;
+                this.afs.setObj('users', user, user.email).then(x => {
+                  this.auth.refreshData(user); 
+                  this.router.navigate(['']);
+                  this.regisForm.reset();
+                  this.cargando = false;
+                });
+            }).catch(e =>{
+              this.errorMsj = e.message;
+              this.error = true;
+              this.cargando = false;            
+            });
         }
-      }
-    })
-    .catch(e => {
-      this.errorMsj = e.message;
+      })
+      .catch(e => {
+        this.errorMsj = e.message;
+        this.error = true;
+        this.cargando = false;
+        console.info("ERROR ->", e);
+      });
+    }
+    else{
       this.error = true;
-      this.cargando = false;
-      console.info("ERROR ->", e);
-    });
-  }
+      this.errorMsj.next("Falta u archivo");
+    }
+}
 
 }

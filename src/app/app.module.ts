@@ -23,6 +23,9 @@ import { MasterUsuariosComponent } from './pages/master-usuarios/master-usuarios
 import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario.component';
 import { SolicitarTurnoComponent } from './componentes/turnos/solicitar-turno/solicitar-turno.component';
 import { TablaTurnosComponent } from './componentes/turnos/tabla-turnos/tabla-turnos.component';
+import { ProgressComponent } from './componentes/progress/progress.component';
+import { ProgressStepComponent } from './componentes/progress/progress-step/progress-step.component';
+import { ProgressStepDirective } from './directives/progress-step.directive';
 
 @NgModule({
   declarations: [
@@ -39,7 +42,10 @@ import { TablaTurnosComponent } from './componentes/turnos/tabla-turnos/tabla-tu
     MasterUsuariosComponent,
     CrearUsuarioComponent,
     SolicitarTurnoComponent,
-    TablaTurnosComponent
+    TablaTurnosComponent,
+    ProgressComponent,
+    ProgressStepComponent,
+    ProgressStepDirective
   ],
   imports: [
     BrowserModule,

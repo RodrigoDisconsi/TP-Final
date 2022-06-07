@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ProgressComponent } from '../../progress/progress.component';
 
 @Component({
   selector: 'app-tabla-turnos',
@@ -6,10 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabla-turnos.component.scss']
 })
 export class TablaTurnosComponent implements OnInit {
+  ngOnInit() {}
 
-  constructor() { }
-
-  ngOnInit(): void {
+  goNext(progress: ProgressComponent) {
+    progress.next();
   }
+
+  onStateChange(event:any) {
+    console.log(event);
+  }
+
+  ngAfterViewInit() {}
 
 }

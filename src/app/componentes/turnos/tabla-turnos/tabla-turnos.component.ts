@@ -6,10 +6,5 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./tabla-turnos.component.scss']
 })
 export class TablaTurnosComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  ngOnInit() {}
 }

@@ -1,0 +1,247 @@
+$semibold: 500;
+$bold: 700;
+// Colors
+$black: #000000;
+$gray: rgba($black, 0.6);
+$white: #FFFFFF;
+$accent: #4285F4;
+
+.input{
+  outline: none;
+  background: rgba($black, 0.1);
+  width: 100%;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: $gray;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $semibold;
+  line-height: inherit;
+  transition: 0.3s ease;
+}
+
+input{
+  outline: none;
+  display: block;
+  background: rgba($black, 0.1);
+  width: 100%;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: $gray;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $semibold;
+  line-height: inherit;
+  transition: 0.3s ease;
+}
+
+  button {
+    outline: none;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 20px;
+    background: $white;
+    color: $accent;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: $semibold;
+    line-height: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+
+  }
+
+  label {
+    display: block;
+    margin: 0 0 10px;
+    color: $accent;
+    font-size: 12px;
+    font-weight: $semibold;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+
+  }
+
+  h1 {
+    padding: 4px 0;
+    position: relative;
+    z-index: 40;
+    color: $accent;
+    font-size: 24px;
+    font-weight: $bold;
+    text-transform: uppercase;
+
+  }
+
+  .file-upload .file-upload-select {
+    display: block;
+    color: #dbdbdb;
+    cursor: pointer;
+    text-align: left;
+    background: rgba($black, 0.1);
+    overflow: hidden;
+    position: relative;
+    border-radius: 6px;
+  }
+  .file-upload .file-upload-select .file-select-button {
+    background: rgba($black, 0.1);
+    padding: 10px;
+    display: inline-block;
+  }
+  .file-upload .file-upload-select .file-select-name {
+    display: inline-block;
+    padding: 10px;
+  }
+  .file-upload .file-upload-select:hover{
+    background: $white;
+    color: $gray;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+
+  .file-upload .file-upload-select:hover .file-select-button {
+    background: rgba($accent, 0.5);
+    color: #ffffff;
+    transition: all 0.2s ease-in-out;
+    -moz-transition: all 0.2s ease-in-out;
+    -webkit-transition: all 0.2s ease-in-out;
+    -o-transition: all 0.2s ease-in-out;
+  }
+  .file-upload .file-upload-select input[type="file"] {
+    display: none;
+  }
+  
+  .is-invalid{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
+  }
+
+  .test{
+    background: rgba($accent, 0.5);
+  }
+  
+.list {
+  min-width: 425px;
+  overflow: auto;
+  height: 450px;
+  box-shadow: 0 35px 50px rgba(0, 0, 0, 0.1);
+  background: #00bcd4;
+  overflow-x: hidden;
+}
+
+.list::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: calc(100% - 75px);
+  height: 100%;
+  background: #fff;
+}
+
+.list h3 {
+  position: relative;
+  color: #333;
+  font-size: 1.5rem;
+  margin-bottom: 20px;
+  padding-left: 70px;
+}
+
+.list .list-item {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 10px;
+  margin: 10px 0;
+  cursor: pointer;
+}
+
+.list .list-item::before {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #00bcd4;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s;
+}
+
+.list .list-item:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+  transition: transform 0.5s;
+}
+
+.list .list-item .image-box {
+  position: relative;
+  min-width: 70px;
+  height: 70px;
+  background: #fff;
+  overflow: hidden;
+  border: 6px solid #fff;
+  box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
+  margin-right: 20px;
+  margin-left: 10px;
+}
+
+.list .list-item .image-box img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.list .list-item .content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 100%;
+  color: #333;
+}
+
+.list .list-item .content .rank {
+  position: absolute;
+  right: 0;
+  font-size: 2rem;
+  color: #fff;
+  transform: scale(0);
+  transition: 0.5s;
+}
+
+.list .list-item .content .rank small {
+  font-weight: 500;
+  opacity: 0.5;
+}
+
+.list .list-item:hover .content .rank {
+  transform: scale(1);
+}
+
+.list .list-item .content h4 {
+  font-weight: 600;
+  line-height: 1.2rem;
+  text-transform: uppercase;
+  transition: 0.5s;
+}
+
+.list .list-item .content p {
+  opacity: 0.8;
+  transition: 0.5s;
+}
+
+.list .list-item:hover .content h4,
+.list .list-item:hover .content p {
+  color: #fff;
+}

@@ -25,6 +25,7 @@ import { TablaTurnosComponent } from './componentes/turnos/tabla-turnos/tabla-tu
 import { SolicitarComponent } from './pages/turnos/solicitar/solicitar.component';
 import { ProgressComponent } from './componentes/progress/progress.component';
 import { ProgressStepComponent } from './componentes/progress/progress-step/progress-step.component';
+import { ProgressStepDirective } from './directives/progress-step.directive';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { ProgressStepComponent } from './componentes/progress/progress-step/prog
     TablaTurnosComponent,
     SolicitarComponent,
     ProgressComponent,
-    ProgressStepComponent
+    ProgressStepComponent,
+    ProgressStepDirective
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, HostBinding, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-progress-step',
@@ -7,9 +7,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProgressStepComponent implements OnInit {
 
-  constructor() { }
+  public stepIndex!: number;
+
+  @HostBinding('class.activeStep')
+  public isActive = false;
+
+  @Input() public set activeState(step:any) {
+    this.isActive = step === this;
+  }
+
+  constructor() {
+  }
 
   ngOnInit(): void {
   }
-
 }

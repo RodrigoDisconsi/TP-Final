@@ -88,9 +88,6 @@ export class RegisterComponent implements OnInit {
 
   setRol(rol:string){
     this.f["rol"].setValue(rol);
-  }
-
-  onChangeSelect(){
     if(this.f["rol"].value == "especialista"){
       this.regisForm.addControl("especialidad", new FormControl('', Validators.required));
       this.regisForm.removeControl("obraSocial");

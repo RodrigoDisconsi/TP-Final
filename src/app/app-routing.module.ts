@@ -9,7 +9,8 @@ import { SolicitarComponent } from './pages/turnos/solicitar/solicitar.component
 const routes: Routes = [
   {path: '' , component: HomeComponent},
   {path: 'Login' , component: AuthComponent},
-  {path: 'Usuarios' , component: MasterUsuariosComponent, canActivate:[AdminActiveGuard]},
+  // {path: 'Usuarios' , component: MasterUsuariosComponent, canActivate:[AdminActiveGuard]},
+  {path: 'Usuarios' , component: MasterUsuariosComponent},
   {path: 'Turno' , component: SolicitarComponent}
 ];
 

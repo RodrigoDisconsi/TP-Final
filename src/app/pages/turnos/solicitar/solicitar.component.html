@@ -1,152 +1,59 @@
 
-<app-progress #progress (stateChange)="onStateChange($event)">
-    <app-progress-step>
-      <div class="text-center mb-4">
-        <h1>Primer paso</h1>        
-      </div>
-      <div class="d-flex justify-content-center mb-1">
-        <div class="col-9 mb-3">
-           <label>Seleccione una especialidad...</label>
-           <select class="input">
-               <option class="input test" value="paciente">Médico clínico</option>
-               <option class="input test" value="especialista">Traumatólogo</option>
-           </select>
-       </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="col-9">
-            <button (click)="goNext(progress)">
-              next
-            </button>
-        </div>
-      </div>
-    </app-progress-step>
-    <app-progress-step>
-
-      <div class="text-center mb-4">
-        <h1>Profesionales</h1>        
-      </div>
-      <div class="d-flex justify-content-center mb-1">
-        <div class="col-10 mb-3">
-          <div class="cont">
-            <div class="list">
-              <h3>Teammates List</h3>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=59" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>1</h2>
-                  <h4>Ronald Raiman</h4>
-                  <p>Digital Artist</p>
-                </div>
+  <form [formGroup]="turnoForm">
+    <app-progress #progress (stateChange)="onStateChange($event)">
+        <app-progress-step>
+          <div class="text-center mb-4">
+            <h1>Empecemos</h1>        
+          </div>
+          <div class="d-flex justify-content-center mb-1">
+            <div class="col-9 mb-3">
+              <label>Seleccione una especialidad...</label>
+              <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
+                <option class="input test" value="paciente">Médico clínico</option>
+                <option class="input test" value="especialista">Traumatólogo</option>
+              </select>
+              <div class="invalid-feedback">
+                  {{getErrorMessage('especialidad')}}
               </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=49" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>2</h2>
-                  <h4>Sarah Noah</h4>
-                  <p>Digital Marketing</p>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=36" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>3</h2>
-                  <h4>Elizabeth Brown</h4>
-                  <p>Front-end Developer</p>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=13" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>4</h2>
-                  <h4>Jack Json</h4>
-                  <p>Back-end Developer</p>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=1" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>5</h2>
-                  <h4>Jennifer Lopez</h4>
-                  <p>UI/UX Designer</p>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=1" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>5</h2>
-                  <h4>Jennifer Lopez</h4>
-                  <p>UI/UX Designer</p>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=1" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>5</h2>
-                  <h4>Jennifer Lopez</h4>
-                  <p>UI/UX Designer</p>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=1" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>5</h2>
-                  <h4>Jennifer Lopez</h4>
-                  <p>UI/UX Designer</p>
-                </div>
-              </div>
-              <div class="list-item">
-                <div class="image-box">
-                  <img src="https://i.pravatar.cc/100?img=1" alt="avatar">
-                </div>
-                <div class="content">
-                  <h2 class="rank"><small>#</small>5</h2>
-                  <h4>Jennifer Lopez</h4>
-                  <p>UI/UX Designer</p>
-                </div>
-              </div>
+           </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="col-9">
+                <button [disabled]="f['especialidad'].invalid" (click)="goNext(progress)">
+                  next
+                </button>
             </div>
           </div>
-       </div>
-      </div>
-      <div class="d-flex justify-content-center">
-        <div class="col-5">
-          <button progressStepPrev>prev</button>
-        </div>
-        <div class="col-5">
-          <button progressStepNext>next</button>
-        </div>
-      </div>
-    </app-progress-step>
-    <app-progress-step>
-      <h1>step 3</h1>
-      <app-calendar></app-calendar>
-      <button progressStepPrev mat-raised-button color="accent">prev</button>
-      <button progressStepNext mat-raised-button color="primary">next</button>
-    </app-progress-step>
-    <app-progress-step>
-      <h1>step 4</h1>
-      <p>
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda sint
-        consectetur est quos voluptatem eveniet sed maxime exercitationem officia.
-      </p>
-      <button progressStepPrev mat-raised-button color="accent">prev</button>
-      <button progressStepNext mat-raised-button color="primary">next</button>
-    </app-progress-step>
-  </app-progress>
+        </app-progress-step>
+        <app-progress-step>
+    
+          <div class="text-center mb-4">
+            <h1>Profesionales</h1>        
+          </div>
+          <app-tabla-users-turno></app-tabla-users-turno>
+          <div class="d-flex justify-content-center">
+            <div class="col-5">
+              <button progressStepPrev>prev</button>
+            </div>
+            <div class="col-5">
+              <button progressStepNext>next</button>
+            </div>
+          </div>
+        </app-progress-step>
+        <app-progress-step>
+          <h1>step 3</h1>
+          <app-calendar></app-calendar>
+          <button progressStepPrev mat-raised-button color="accent">prev</button>
+          <button progressStepNext mat-raised-button color="primary">next</button>
+        </app-progress-step>
+        <app-progress-step>
+          <h1>step 4</h1>
+          <p>
+            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda sint
+            consectetur est quos voluptatem eveniet sed maxime exercitationem officia.
+          </p>
+          <button progressStepPrev mat-raised-button color="accent">prev</button>
+          <button progressStepNext mat-raised-button color="primary">next</button>
+        </app-progress-step>
+      </app-progress>
+  </form>

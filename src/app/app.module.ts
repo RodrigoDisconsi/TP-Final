@@ -31,6 +31,7 @@ import { ProgressStepDirective } from './directives/progress-step.directive';
 
 import {CalendarModule} from 'primeng/calendar';
 import { CalendarComponent } from './componentes/calendar/calendar.component';
+import { TablaUsersTurnoComponent } from './componentes/tabla-users-turno/tabla-users-turno.component';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,8 @@ import { CalendarComponent } from './componentes/calendar/calendar.component';
     ProgressComponent,
     ProgressStepComponent,
     ProgressStepDirective,
-    CalendarComponent
+    CalendarComponent,
+    TablaUsersTurnoComponent
   ],
   imports: [
     BrowserModule,

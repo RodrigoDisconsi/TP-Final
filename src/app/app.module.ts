@@ -11,6 +11,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { AuthComponent } from './pages/auth/auth.component';
 import { LoginComponent } from './componentes/auth/login/login.component';
 import { RegisterComponent } from './componentes/auth/register/register.component';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 //firebase
 import { AngularFireModule } from '@angular/fire/compat';
@@ -26,6 +27,10 @@ import { SolicitarComponent } from './pages/turnos/solicitar/solicitar.component
 import { ProgressComponent } from './componentes/progress/progress.component';
 import { ProgressStepComponent } from './componentes/progress/progress-step/progress-step.component';
 import { ProgressStepDirective } from './directives/progress-step.directive';
+
+
+import {CalendarModule} from 'primeng/calendar';
+import { CalendarComponent } from './componentes/calendar/calendar.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +50,8 @@ import { ProgressStepDirective } from './directives/progress-step.directive';
     SolicitarComponent,
     ProgressComponent,
     ProgressStepComponent,
-    ProgressStepDirective
+    ProgressStepDirective,
+    CalendarComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +60,9 @@ import { ProgressStepDirective } from './directives/progress-step.directive';
     AngularFireAuthModule,
     AngularFirestoreModule,
     FormsModule,
-    ReactiveFormsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule,
+    CalendarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

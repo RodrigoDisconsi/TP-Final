@@ -1,0 +1,5 @@
+<p-calendar [(ngModel)]="dateValue"  [disabledDays]="[0]" dateFormat="dd/mm/yy" [minDate]="dateValue" [maxDate]="maxDateValue"  [readonlyInput]="true"></p-calendar>
+<!-- <p-calendar [(ngModel)]="value" [showTime]="true" [hourFormat]="'12'"></p-calendar> -->
+<p-calendar [(ngModel)]="value" [showTime]="true" [timeOnly]="true" [minDate]="minDateTest" [readonlyInput]="true" [defaultDate]="minDateTest" ></p-calendar>
+
+<button (click)="onClick()">asda</button>

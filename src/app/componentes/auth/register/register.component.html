@@ -67,8 +67,8 @@
                 <div class="col-12 mb-3">
                     <label for="especilidad">Especialidad</label>
                     <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
-                        <option class="input test" value="paciente">Médico clínico</option>
-                        <option class="input test" value="especialista">Traumatólogo</option>
+                        <option class="input test" value="clinico">Médico clínico</option>
+                        <option class="input test" value="traumatologo">Traumatólogo</option>
                     </select>
                     <div class="invalid-feedback">
                         {{getErrorMessage('especialidad')}}

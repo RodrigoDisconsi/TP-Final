@@ -56,15 +56,15 @@ export class LoginComponent implements OnInit {
     this.error = false;
     this.auth.login(this.loginForm.value.email, this.loginForm.value.password).then((resp) => {
       if (resp) {
-        let suscr = this.afs.getUsers(this.loginForm.value.email).subscribe(user => {
+        let suscr = this.afs.getUsersWithFilter("email", this.loginForm.value.email).subscribe(user => {
             if(user){
               console.info(user);
               let userInterface = user[0] as UserInterface;
               this.auth.refreshData(userInterface);
               this.loginForm.reset();
-              suscr.unsubscribe();
               this.router.navigateByUrl('');
             }
+            suscr.unsubscribe();
           });
       }
     }).catch(e => {

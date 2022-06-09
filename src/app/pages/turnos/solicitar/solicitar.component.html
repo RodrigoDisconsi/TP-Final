@@ -8,21 +8,14 @@
           <div class="d-flex justify-content-center mb-1">
             <div class="col-9 mb-3">
               <label>Seleccione una especialidad...</label>
-              <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
-                <option class="input test" value="paciente">Médico clínico</option>
-                <option class="input test" value="especialista">Traumatólogo</option>
+              <select (change)="onChangeEsp(progress)" formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
+                <option class="input test" value="clinico">Médico clínico</option>
+                <option class="input test" value="traumatologo">Traumatólogo</option>
               </select>
               <div class="invalid-feedback">
                   {{getErrorMessage('especialidad')}}
               </div>
            </div>
-          </div>
-          <div class="d-flex justify-content-center">
-            <div class="col-9">
-                <button [disabled]="f['especialidad'].invalid" (click)="goNext(progress)">
-                  next
-                </button>
-            </div>
           </div>
         </app-progress-step>
         <app-progress-step>
@@ -30,30 +23,40 @@
           <div class="text-center mb-4">
             <h1>Profesionales</h1>        
           </div>
-          <app-tabla-users-turno></app-tabla-users-turno>
+          <app-tabla-users-turno *ngIf="listEspecialistas" [listEspecialistas]="listEspecialistas" (especialista)="onSelecEspecialista($event, progress)"></app-tabla-users-turno>
           <div class="d-flex justify-content-center">
-            <div class="col-5">
-              <button progressStepPrev>prev</button>
-            </div>
-            <div class="col-5">
-              <button progressStepNext>next</button>
+            <div class="col-8">
+              <button progressStepPrev>Volver</button>
             </div>
           </div>
         </app-progress-step>
         <app-progress-step>
-          <h1>step 3</h1>
-          <app-calendar></app-calendar>
-          <button progressStepPrev mat-raised-button color="accent">prev</button>
-          <button progressStepNext mat-raised-button color="primary">next</button>
+          <div class="text-center mb-4">
+            <h1>Porfavor seleccione una fecha...</h1>        
+          </div>
+          <app-calendar (fechaSeleccionada)="onSelecFecha($event)"></app-calendar>
+          <div class="d-flex justify-content-center">
+            <div class="col-6 mb-3">
+              <button progressStepPrev>Volver</button>
+            </div>
+            <div class="col-6 mb-3">
+              <button progressStepNext>Siguiente</button>
+            </div>
+          </div>
         </app-progress-step>
         <app-progress-step>
-          <h1>step 4</h1>
-          <p>
-            Lorem ipsum dolor sit amet consectetur, adipisicing elit. Assumenda sint
-            consectetur est quos voluptatem eveniet sed maxime exercitationem officia.
-          </p>
-          <button progressStepPrev mat-raised-button color="accent">prev</button>
-          <button progressStepNext mat-raised-button color="primary">next</button>
+          <div *ngIf="(paciente | async) as user">
+            <h1 class="text-center">Confirmar datos</h1>
+            <app-completar-soli-turno *ngIf="turno.fecha" [paciente]="user" [turno]="turno" (turnoEmit)="getTurnoConPaciente($event)"></app-completar-soli-turno>
+            <div class="d-flex justify-content-center">
+              <div class="col-6 mb-3">
+                <button progressStepPrev>Volver</button>
+              </div>
+              <div class="col-6 mb-3">
+                <button progressStepNext (click)="enviarTurno()">Confirmar</button>
+              </div>
+            </div>
+          </div>
         </app-progress-step>
       </app-progress>
   </form>

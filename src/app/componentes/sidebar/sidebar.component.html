@@ -27,6 +27,22 @@
                             <i class="metismenu-icon pe-7s-diamond"></i>
                             Administrar
                         </a>
+                    </li>
+                </div>
+                <div *ngIf="user.rol == 'paciente' || user.rol == 'administrador'">
+                    <li class="app-sidebar__heading">Turnos</li>
+                    <li>
+                        <a [routerLink]="['Turno']" routerLinkActive="mm-active">
+                            <i class="metismenu-icon pe-7s-diamond"></i>
+                            Solicitar turno
+                        </a>
+                    </li>
+                    <li>
+                        <a [routerLink]="['MisTurnos']" routerLinkActive="mm-active">
+                            <i class="metismenu-icon pe-7s-diamond"></i>
+                            Mist turnos
+                        </a>
+                    </li>
                 </div>
             </ul> 
         </div>

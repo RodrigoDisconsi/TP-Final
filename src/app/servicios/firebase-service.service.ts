@@ -25,12 +25,12 @@ export class FirebaseServiceService {
     return this.afs.collection(entidad).doc(obj.id).delete();
   }
 
-  getWithFilter(entidad:string, campo:string, value:string){
+  getWithFilter(entidad:string, campo:string, value:any){
     return this.afs.collection(entidad, ref => ref.where(campo, '==', value)).valueChanges();
   }
 
-  getUsers(email:string){
-    return this.afs.collection('users', ref => ref.where('email', '==', email) && ref.where('habilitado', '==', true)).valueChanges();
+  getUsersWithFilter(campo:string, value:string){
+    return this.afs.collection('users', ref => ref.where(campo, '==', value).where('habilitado', '==', true)).valueChanges();
   }
 
   updateUser(user:UserInterface, status:boolean){

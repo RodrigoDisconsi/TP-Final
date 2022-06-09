@@ -18,13 +18,6 @@
     background: #fff;
   }
   
-  .list h3 {
-    position: relative;
-    color: #333;
-    font-size: 1.5rem;
-    margin-bottom: 20px;
-    padding-left: 70px;
-  }
   
   .list .list-item {
     position: relative;
@@ -39,6 +32,16 @@
     background: #00bcd4;
   }
 
+  p{
+    display: block;
+    margin: 0 0 10px;
+    color: #4285F4;
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+  }
 
   
   .list .list-item::before {
@@ -60,11 +63,9 @@
   
   .list .list-item .image-box {
     position: relative;
-    min-width: 70px;
-    height: 70px;
-    background: #fff;
-    overflow: hidden;
-    border: 6px solid #fff;
+    min-width: 85px;
+    height: 85px;
+    border: 4px solid #fff;
     box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.1);
     margin-right: 20px;
     margin-left: 10px;
@@ -107,10 +108,13 @@
   }
   
   .list .list-item .content h4 {
-    font-weight: 600;
-    line-height: 1.2rem;
+    padding: 4px 0;
+    position: relative;
+    z-index: 40;
+    color: #4285F4;
+    font-size: 24px;
+    font-weight: 700;
     text-transform: uppercase;
-    transition: 0.5s;
   }
   
   .list .list-item .content p {
@@ -123,7 +127,7 @@
     color: #fff;
   }
 
-  .active .content h4,
-  .active .content p {
+  .active h4,
+  .active p {
     color: #fff;
   }

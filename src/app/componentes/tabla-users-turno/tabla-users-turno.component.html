@@ -3,49 +3,13 @@
       <div class="cont">
         <div class="list">
           <!-- <h3>Teammates List</h3> -->
-          <div class="list-item" (click)="test()" [ngClass]="{'active': prueba}">
+          <div *ngFor="let esp of listEspecialistas" class="list-item" (click)="onClick(esp)" [ngClass]="{'active': esp.seleccionado}">
             <div class="image-box">
-              <img src="https://i.pravatar.cc/100?img=59" alt="avatar">
+              <img [src]="esp.pathImg" alt="avatar">
             </div>
             <div class="content">
-              <h4>Ronald Raiman</h4>
-              <p>Digital Artist</p>
-            </div>
-          </div>
-          <div class="list-item">
-            <div class="image-box">
-              <img src="https://i.pravatar.cc/100?img=49" alt="avatar">
-            </div>
-            <div class="content">
-              <h4>Sarah Noah</h4>
-              <p>Digital Marketing</p>
-            </div>
-          </div>
-          <div class="list-item">
-            <div class="image-box">
-              <img src="https://i.pravatar.cc/100?img=36" alt="avatar">
-            </div>
-            <div class="content">
-              <h4>Elizabeth Brown</h4>
-              <p>Front-end Developer</p>
-            </div>
-          </div>
-          <div class="list-item">
-            <div class="image-box">
-              <img src="https://i.pravatar.cc/100?img=13" alt="avatar">
-            </div>
-            <div class="content">
-              <h4>Jack Json</h4>
-              <p>Back-end Developer</p>
-            </div>
-          </div>
-          <div class="list-item">
-            <div class="image-box">
-              <img src="https://i.pravatar.cc/100?img=1" alt="avatar">
-            </div>
-            <div class="content">
-              <h4>Jennifer Lopez</h4>
-              <p>UI/UX Designer</p>
+              <h4>{{esp.nombre}} {{esp.apellido}}</h4>
+              <p>TODO HORARIO</p>
             </div>
           </div>
         </div>

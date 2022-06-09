@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { UserInterface } from 'src/app/models/UserInterface';
 
 @Component({
   selector: 'app-tabla-users-turno',
@@ -7,14 +8,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TablaUsersTurnoComponent implements OnInit {
 
-  prueba:boolean = false;
+  @Input() listEspecialistas!:UserInterface[];
+  @Output() especialista = new EventEmitter<UserInterface | null>();
+
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  test(){
-    this.prueba = !this.prueba;
+  //Directamente va al siguiente paso
+  onClick(esp:UserInterface){
+    let aux = this.listEspecialistas.filter(x => x.seleccionado == true);
+    if(aux.length == 0){
+      esp.seleccionado = true;
+      this.especialista.emit(esp);
+    }
+    else if(aux.length == 1 && esp.seleccionado){
+      esp.seleccionado = false;
+      this.especialista.emit(null);
+    }
   }
 
 }

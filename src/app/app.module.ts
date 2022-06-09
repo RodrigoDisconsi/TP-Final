@@ -22,16 +22,23 @@ import { LoadingComponent } from './componentes/loading/loading.component';
 import { TablaUsuariosComponent } from './componentes/tabla-usuarios/tabla-usuarios.component';
 import { MasterUsuariosComponent } from './pages/master-usuarios/master-usuarios.component';
 import { CrearUsuarioComponent } from './componentes/crear-usuario/crear-usuario.component';
-import { TablaTurnosComponent } from './componentes/turnos/tabla-turnos/tabla-turnos.component';
 import { SolicitarComponent } from './pages/turnos/solicitar/solicitar.component';
 import { ProgressComponent } from './componentes/progress/progress.component';
 import { ProgressStepComponent } from './componentes/progress/progress-step/progress-step.component';
 import { ProgressStepDirective } from './directives/progress-step.directive';
 
 
-import {CalendarModule} from 'primeng/calendar';
+
 import { CalendarComponent } from './componentes/calendar/calendar.component';
 import { TablaUsersTurnoComponent } from './componentes/tabla-users-turno/tabla-users-turno.component';
+
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
+import {CalendarModule} from 'primeng/calendar';
+import { CompletarSoliTurnoComponent } from './componentes/completar-soli-turno/completar-soli-turno.component';
+import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.component';
+import { TablaTurnosComponent } from './componentes/tabla-turnos/tabla-turnos.component';
+
 
 @NgModule({
   declarations: [
@@ -47,13 +54,15 @@ import { TablaUsersTurnoComponent } from './componentes/tabla-users-turno/tabla-
     TablaUsuariosComponent,
     MasterUsuariosComponent,
     CrearUsuarioComponent,
-    TablaTurnosComponent,
     SolicitarComponent,
     ProgressComponent,
     ProgressStepComponent,
     ProgressStepDirective,
     CalendarComponent,
-    TablaUsersTurnoComponent
+    TablaUsersTurnoComponent,
+    CompletarSoliTurnoComponent,
+    MisTurnosComponent,
+    TablaTurnosComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +73,9 @@ import { TablaUsersTurnoComponent } from './componentes/tabla-users-turno/tabla-
     FormsModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    CalendarModule
+    CalendarModule,
+    MessagesModule,
+    MessageModule
   ],
   providers: [],
   bootstrap: [AppComponent]

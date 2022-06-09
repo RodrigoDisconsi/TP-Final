@@ -1,0 +1,18 @@
+$semibold: 500;
+$bold: 700;
+$black: #000000;
+$gray: rgba($black, 0.6);
+$white: #FFFFFF;
+$accent: #4285F4;
+
+label {
+    display: block;
+    margin: 0 0 10px;
+    color: $accent;
+    font-size: 12px;
+    font-weight: $semibold;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: .2em;
+
+  }

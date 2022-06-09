@@ -8,11 +8,13 @@ import { UserInterface } from 'src/app/models/UserInterface';
 import { Observable } from 'rxjs';
 import { TurnoInterface } from 'src/app/models/turno-interface';
 import { Guid } from "guid-typescript";
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-solicitar',
   templateUrl: './solicitar.component.html',
-  styleUrls: ['./solicitar.component.scss']
+  styleUrls: ['./solicitar.component.scss'],
+  providers: [MessageService]
 })
 export class SolicitarComponent implements OnInit {
 
@@ -23,7 +25,7 @@ export class SolicitarComponent implements OnInit {
     especialidad: ['', [Validators.required]],
     especialista: ['', [Validators.required]],
     fecha: ['', [Validators.required]],
-    estado: ['Pendiente']
+    estado: ['pendiente']
   });
 
   turnoAEnviar!:TurnoInterface;
@@ -31,7 +33,8 @@ export class SolicitarComponent implements OnInit {
   constructor(
     private auth:AuthServiceService,
     private afs:FirebaseServiceService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private messageService: MessageService
   ) { }
 
   ngOnInit(): void {
@@ -62,9 +65,11 @@ export class SolicitarComponent implements OnInit {
   ngAfterViewInit() {}
 
   onChangeEsp(progress: ProgressComponent){
+    this.cargando = true;
     this.afs.getWithFilter('users', 'especialidad', this.f['especialidad'].value).subscribe(resp => {
       if(resp){
         this.listEspecialistas = resp as UserInterface[]
+        this.cargando = false;
         progress.next();
       }
     })
@@ -79,7 +84,19 @@ export class SolicitarComponent implements OnInit {
   }
 
   onSelecFecha(fecha:Date){
-    this.f['fecha'].setValue(fecha);
+    let aux = fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getFullYear() + " a las " 
+      + fecha.getHours() + ":";
+    let minutos = fecha.getMinutes();
+    if(minutos == 0){
+      aux += "00";
+    }
+    else if(minutos < 10){
+      aux += "0" + minutos;
+    }
+    else {
+      aux += minutos;
+    }
+    this.f['fecha'].setValue(aux);
     //TODO VALIDAR FECHA CON TURNSO ANTERIORMENTE OBTENIDOS Y FIJARME QUE VOY A HACER CON EL TIPO ADMIN
   }
 
@@ -93,8 +110,12 @@ export class SolicitarComponent implements OnInit {
   }
 
   enviarTurno(){
+    this.cargando = true;
+    console.info(this.turnoAEnviar);
     this.afs.setObj("turnos", this.turnoAEnviar, Guid.create().toString()).then(resp => {
-      console.info(resp);
+      this.messageService.clear();
+      this.messageService.add({severity:'success', summary:'Success', detail:'Su turno se envió correctamente!'},);
+      this.cargando = false;
     })
   }
 }

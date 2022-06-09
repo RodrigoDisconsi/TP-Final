@@ -1,4 +1,4 @@
-
+<app-loading *ngIf="cargando"></app-loading>
   <form [formGroup]="turnoForm">
     <app-progress #progress (stateChange)="onStateChange($event)">
         <app-progress-step>
@@ -55,6 +55,9 @@
               <div class="col-6 mb-3">
                 <button progressStepNext (click)="enviarTurno()">Confirmar</button>
               </div>
+            </div>
+            <div class="col-12 mb-3">
+              <p-messages></p-messages>
             </div>
           </div>
         </app-progress-step>

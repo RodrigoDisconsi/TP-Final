@@ -35,6 +35,8 @@ import { TablaUsersTurnoComponent } from './componentes/tabla-users-turno/tabla-
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import {CalendarModule} from 'primeng/calendar';
+import {CaptchaModule} from 'primeng/captcha';
+
 import { CompletarSoliTurnoComponent } from './componentes/completar-soli-turno/completar-soli-turno.component';
 import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.component';
 import { TablaTurnosComponent } from './componentes/tabla-turnos/tabla-turnos.component';
@@ -75,7 +77,8 @@ import { TablaTurnosComponent } from './componentes/tabla-turnos/tabla-turnos.co
     ReactiveFormsModule,
     CalendarModule,
     MessagesModule,
-    MessageModule
+    MessageModule,
+    CaptchaModule
   ],
   providers: [],
   bootstrap: [AppComponent]

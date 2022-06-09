@@ -1,12 +1,12 @@
 <div class="main-card mb-3 card">
     <div class="card-header">Active Users
         <div class="btn-actions-pane-right">
-            <div class="search-wrapper">
+            <div class="search-wrapper" [ngClass]="{'active': activeSearch}">
                 <div class="input-holder">
-                    <input type="text" class="search-input" placeholder="Type to search">
-                    <button class="search-icon"><span></span></button>
+                    <input type="text" [(ngModel)]="filter" (change)="onFilter()" class="search-input" placeholder="Type to search">
+                    <button class="search-icon" (click)="activeSearch = true"><span></span></button>
                 </div>
-                <button class="close"></button>
+                <button class="close" (click)="activeSearch = false"></button>
             </div>
         </div>
     </div>
@@ -14,47 +14,68 @@
         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
             <thead>
             <tr>
-                <th class="text-center">DNI</th>
-                <th class="text-center">User</th>
-                <th class="text-center">Rol</th>
-                <th class="text-center">Status</th>
+                <th class="text-center">Especialidad</th>
+                <th class="text-center">Especialidad</th>
+                <th class="text-center">Fecha</th>
+                <th class="text-center">Estado</th>
+                <th class="text-center"> - </th>
+                <th class="text-center"> - </th>
                 <th class="text-center"> - </th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let turno of turnos">
-                <td class="text-center text-muted">{{user.dni}}</td>
+                <td class="text-center text-muted">{{turno.especialidad}}</td>
                 <td>
-                    <div class="widget-content p-0 text-center">
-                        <div class="widget-content-wrapper">
-                            <div class="widget-content-left">
-                                <img width="40" class="rounded-circle" [src]="user.pathImg">
-                            </div>
-                            <div class="widget-content-left flex2">
-                                <div class="widget-heading">{{user.nombre}} {{user.apellido}}</div>
-                                <div class="widget-subheading opacity-7">{{user.email}}</div>
+                    <div *ngIf="user.rol == 'paciente' else especialista" >
+                        <div class="widget-content p-0 text-center">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content">
+                                    <img width="40" class="rounded-circle" [src]="turno.especialista.pathImg">
+                                    <div class="widget-heading">{{turno.especialista.nombre}} {{turno.especialista.apellido}}</div>
+                                    <div class="widget-subheading opacity-7">{{turno.especialista.email}}</div>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </td>
-                <td class="text-center">{{user.rol}}</td>
-                <td class="text-center">
-                    <div class="badge badge-success" *ngIf="user.habilitado else deshabilitado">Habilitado</div>
-                    <ng-template #deshabilitado>
-                        <div class="badge badge-danger">Inhabilitado</div>
+                    <ng-template #especialista>
+                        <div class="widget-content p-0 text-center">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left flex2">
+                                    <img width="40" class="rounded-circle" [src]="turno.paciente.pathImg">
+                                    <div class="widget-heading">{{turno.paciente.nombre}} {{turno.paciente.apellido}}</div>
+                                    <div class="widget-subheading opacity-7">{{turno.paciente.email}}</div>
+                                </div>
+                            </div>
+                        </div>
                     </ng-template>
                 </td>
+                <td class="text-center">{{turno.fecha}}</td>
                 <td class="text-center">
-                    <div class="form-check">
-                        <input class="form-check-input" type="checkbox" [(ngModel)]="user.seleccionado">
-                      </div>
+                    <div class="badge badge-info" *ngIf="turno.estado == 'pendiente'">Pendiente</div>
+                    <div class="badge badge-success" *ngIf="turno.estado == 'realizado'">Completado</div>
+                    <div class="badge badge-warning" *ngIf="turno.estado == 'rechazado'">Rechazado</div>
+                    <div class="badge badge-danger" *ngIf="turno.estado == 'cancelado'">Cancelado</div>
+                </td>
+                <td class="text-center">
+                    <div *ngIf="turno.estado != 'rechazado' && turno.estado != 'cancelado'">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>                  
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div *ngIf="turno.comentario">
+                        <td class="text-center">
+                            <button class="mr-2 btn-icon btn-icon-only btn btn-primary">Ver</button>                  
+                        </td>
+                    </div>
+                </td>
+                <td class="text-center">
+                    <div *ngIf="turno.estado == 'realizado'">
+                        <button class="mr-2 btn-icon btn-icon-only btn btn-success">Calificar</button>
+                    </div>
                 </td>
             </tr>
             </tbody>
         </table>
-    </div>
-    <div class="d-block text-center card-footer">
-        <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger">Deshabilitar</button>
-        <button class="btn-wide btn btn-success">Habilitar</button>
     </div>
 </div>

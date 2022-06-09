@@ -13,6 +13,9 @@ export class TablaTurnosComponent implements OnInit {
   @Input() user!:UserInterface;
   turnos!:TurnoInterface[];
   campo!:string;
+  filter!:string;
+  activeSearch:boolean = false;
+  turnosWithoutFilter!:TurnoInterface[];
 
   constructor(
     private afs:FirebaseServiceService
@@ -40,8 +43,15 @@ export class TablaTurnosComponent implements OnInit {
         else{
           this.turnos = aux;
         }
-        console.info(this.turnos);
+        this.turnosWithoutFilter = this.turnos;
       });
     }
   }
+
+  onFilter(){
+    this.turnos = this.turnosWithoutFilter.filter(turno => turno.especialidad.toLowerCase().includes(this.filter.toLowerCase()) || 
+                                       turno.especialista.nombre.toLowerCase().includes(this.filter.toLowerCase()) ||
+                                       turno.especialista.apellido.toLowerCase().includes(this.filter.toLowerCase()))
+  }
+
 }

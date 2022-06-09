@@ -18,15 +18,11 @@ export class CompletarSoliTurnoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    console.info(this.paciente);
+    console.info(this.turno);
     if(this.paciente.rol == "paciente"){
       this.turno.paciente = this.paciente;
       this.turnoEmit.emit(this.turno);
     }
   }
-
-  get fecha():string{
-    return this.turno.fecha.getDay() + "/" + this.turno.fecha.getMonth() + "/" + this.turno.fecha.getFullYear() + " a las " 
-    + this.turno.fecha.getHours() + ":" + this.turno.fecha.getMinutes();
-  }
-
 }

@@ -4,7 +4,7 @@ export interface UserInterface {
     edad:number;
     dni:number;
     obraSocial?:string;
-    especialidad?:string;
+    especialidad?:string[];
     rol:string;
     email:string;
     password:string;

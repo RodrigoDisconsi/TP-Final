@@ -39,6 +39,13 @@ export class SolicitarComponent implements OnInit {
 
   ngOnInit(): void {
     this.paciente = this.auth.userObs;
+    this.cargando = true;
+    this.afs.getWithFilter('users', 'rol', 'especialista').subscribe(resp => {
+      if(resp){
+        this.listEspecialistas = resp as UserInterface[]
+        this.cargando = false;
+      }
+    })
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -58,27 +65,14 @@ export class SolicitarComponent implements OnInit {
       && !this.f[field].valid;
   }
 
-  onStateChange(event:any) {
-    console.log(event);
-  }
-
-  ngAfterViewInit() {}
-
   onChangeEsp(progress: ProgressComponent){
-    this.cargando = true;
-    this.afs.getWithFilter('users', 'especialidad', this.f['especialidad'].value).subscribe(resp => {
-      if(resp){
-        this.listEspecialistas = resp as UserInterface[]
-        this.cargando = false;
-        progress.next();
-      }
-    })
+    console.info(this.turnoForm.value);
+    progress.next();
   }
 
   onSelecEspecialista(esp:UserInterface | null, progress: ProgressComponent){
     if(esp){
       this.f['especialista'].setValue(esp);
-      //TODO TRAER HORARIOS Y TURNOS 
       progress.next();
     }
   }

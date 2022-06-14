@@ -51,7 +51,7 @@
                                     <img *ngIf="user.pathImg" alt="" class="rounded-circle" [src]="user.pathImg" width="42">
                                 </a>
                                 <div role="menu" aria-hidden="true" class="dropdown-menu dropdown-menu-right">
-                                    <button type="button" class="dropdown-item">User Account</button>
+                                    <button [routerLink]="'/Profile'" type="button" class="dropdown-item">User Account</button>
                                     <!-- <button type="button" tabindex="0" class="dropdown-item">Settings</button>
                                     <h6 tabindex="-1" class="dropdown-header">Header</h6>
                                     <button type="button" tabindex="0" class="dropdown-item">Actions</button> -->

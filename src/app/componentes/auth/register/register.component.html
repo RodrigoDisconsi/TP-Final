@@ -4,7 +4,19 @@
 </div>
 <div class="form-content">
     <form [formGroup]="regisForm">
-        
+        <div class="form-group">
+            <div class="d-flex justify-content-around">
+                <div>
+                    <label class="text-center">Paciente</label> 
+                    <button class="btn-paciente" [class.btn-active]="this.f['rol'].value == 'paciente'" (click)="setRol('paciente')"></button>
+                </div>
+                <div>
+                    <label class="text-center">Profesional</label>
+                    <button class="btn-especialista" [class.btn-active]="this.f['rol'].value == 'especialista'" (click)="setRol('especialista')"></button>
+                </div>
+            </div>
+        </div>
+        <div *ngIf="this.f['rol'].value != ''">
             <div class="row">
                 <div class="col-6">
                     <div class="form-group">
@@ -43,76 +55,63 @@
                     </div>
                 </div>
             </div>
-        <div class="form-group">
-            <div class="d-flex justify-content-around">
-                <div>
-                    <label class="text-center">Paciente</label> 
-                    <button class="btn-paciente" [class.btn-active]="this.f['rol'].value == 'paciente'" (click)="setRol('paciente')"></button>
-                </div>
-                <div>
-                    <label class="text-center">Profesional</label>
-                    <button class="btn-especialista" [class.btn-active]="this.f['rol'].value == 'especialista'" (click)="setRol('especialista')"></button>
+            <div class="form-group" *ngIf="this.f['rol'].value == 'paciente'">
+                <label for="obraSocial">Obra social</label>
+                <input type="text" formControlName="obraSocial" id="obraSocial" name="obraSocial" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('obraSocial'), 'is-valid': !isNotValidField('obraSocial') && this.f['obraSocial'].touched}" required/>
+                <div class="invalid-feedback">
+                    {{getErrorMessage('obraSocial')}}
                 </div>
             </div>
-        </div>
-        <div class="form-group" *ngIf="this.f['rol'].value == 'paciente'">
-            <label for="obraSocial">Obra social</label>
-            <input type="text" formControlName="obraSocial" id="obraSocial" name="obraSocial" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('obraSocial'), 'is-valid': !isNotValidField('obraSocial') && this.f['obraSocial'].touched}" required/>
-            <div class="invalid-feedback">
-                {{getErrorMessage('obraSocial')}}
-            </div>
-        </div>
-        <div class="form-group" *ngIf="this.f['rol'].value == 'especialista'">
-            <div class="row">
-                <div class="col-12 mb-3">
-                    <label for="especilidad">Especialidad</label>
-                    <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
-                        <option class="input test" value="clinico">Médico clínico</option>
-                        <option class="input test" value="traumatologo">Traumatólogo</option>
-                    </select>
-                    <div class="invalid-feedback">
-                        {{getErrorMessage('especialidad')}}
+            <div class="form-group" *ngIf="this.f['rol'].value == 'especialista'">
+                <div class="row">
+                    <div class="col-6">
+                        <label for="especilidad">Especialidad</label>
+                        <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
+                            <option *ngFor="let esp of especialidades" class="input test" [value]="esp.value">{{esp.value}}</option>
+                        </select>
+                        <div class="invalid-feedback">
+                            {{getErrorMessage('especialidad')}}
+                        </div>
                     </div>
+                    <div class="col-6">
+                        <label>Crear nueva</label>
+                        <button style="font-size: small;">Agregar</button>
+                    </div>
+                    <!-- <div class="col-7">
+                        <label for="obraSocial">Nueva especialidad</label>
+                        <input type="text" formControlName="especialidad" id="especialidad" name="especialidad" class="form-control form-style"/>
+                    </div> -->
                 </div>
-                <div class="col-6">
-                    <button style="font-size: small;">Nueva especialidad</button>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" name="email" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('email'), 'is-valid': !isNotValidField('email') && this.f['email'].touched}" required/>
+                <div class="invalid-feedback">
+                    {{getErrorMessage('email')}}
                 </div>
-                <div class="col-8">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" name="password" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('password'), 'is-valid': !isNotValidField('password') && this.f['password'].touched}" required/>
+                <div class="invalid-feedback">
+                    {{getErrorMessage('password')}}
+                </div>
+            </div>
+            <div class="file-upload">
+                <div class="file-upload-select">
+                    <div class="file-select-button" >Foto</div>
+                    <div class="file-select-name" (click)="uploadFile()">{{archivoMsj}}</div> 
+                    <input #file type="file" name="file-upload-input" id="file-upload-input" (change)="onChangeFile()">
+                </div>
+            </div>
+            <div class="col-12 offset-2">
+                <p-captcha siteKey="6LeIxAcTAAAAAJcZVRqyHh71UMIEGNQ_MXjiZKhI" (onResponse)="showResponse($event)"></p-captcha>
+            </div>
+            <div class="form-group">
+                <label class="form-remember">{{(errorMsj | async)}}</label>
+            </div>
+            <button [disabled]="regisForm.invalid" type="submit" (click)="onRegister()">Register</button>
 
-                </div>
-            </div>
         </div>
-        <div class="form-group">
-            <label for="email">Email</label>
-            <input type="text" formControlName="email" name="email" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('email'), 'is-valid': !isNotValidField('email') && this.f['email'].touched}" required/>
-            <div class="invalid-feedback">
-                {{getErrorMessage('email')}}
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" formControlName="password" name="password" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('password'), 'is-valid': !isNotValidField('password') && this.f['password'].touched}" required/>
-            <div class="invalid-feedback">
-                {{getErrorMessage('password')}}
-            </div>
-        </div>
-        <div class="file-upload">
-            <div class="file-upload-select">
-                <div class="file-select-button" >Foto</div>
-                <div class="file-select-name" (click)="uploadFile()">{{archivoMsj}}</div> 
-                <input #file type="file" name="file-upload-input" id="file-upload-input" (change)="onChangeFile()">
-            </div>
-        </div>
-        <div [hidden]="this.f['rol'].value != 'paciente'" class="file-upload" style="margin-top: 1rem;">
-            <div class="file-upload-select">
-                <div class="file-select-button" >Foto</div>
-                <div class="file-select-name" (click)="uploadFile()">{{archivoMsj}}</div> 
-                <input type="file" id="file-upload-input-paciente" (change)="onChangeFile()">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="form-remember">{{(errorMsj | async)}}</label>
-        </div>
-        <button [disabled]="regisForm.invalid" type="submit" (click)="onRegister()">Register</button>
     </form>
 </div>

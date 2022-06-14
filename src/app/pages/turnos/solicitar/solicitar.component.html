@@ -1,25 +1,7 @@
 <app-loading *ngIf="cargando"></app-loading>
   <form [formGroup]="turnoForm">
-    <app-progress #progress (stateChange)="onStateChange($event)">
+    <app-progress #progress>
         <app-progress-step>
-          <div class="text-center mb-4">
-            <h1>Empecemos</h1>        
-          </div>
-          <div class="d-flex justify-content-center mb-1">
-            <div class="col-9 mb-3">
-              <label>Seleccione una especialidad...</label>
-              <select (change)="onChangeEsp(progress)" formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
-                <option class="input test" value="clinico">Médico clínico</option>
-                <option class="input test" value="traumatologo">Traumatólogo</option>
-              </select>
-              <div class="invalid-feedback">
-                  {{getErrorMessage('especialidad')}}
-              </div>
-           </div>
-          </div>
-        </app-progress-step>
-        <app-progress-step>
-    
           <div class="text-center mb-4">
             <h1>Profesionales</h1>        
           </div>
@@ -28,6 +10,23 @@
             <div class="col-8">
               <button progressStepPrev>Volver</button>
             </div>
+          </div>
+        </app-progress-step>
+        <app-progress-step>
+
+          <div class="text-center mb-4">
+            <h1>Empecemos</h1>        
+          </div>
+          <div class="d-flex justify-content-center mb-1">
+            <div class="col-9 mb-3" *ngIf="this.f['especialista'].value as especialista">
+              <label>Seleccione una especialidad...</label>
+              <select (change)="onChangeEsp(progress)" formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
+                <option *ngFor="let especialidad of especialista.especialidad" class="input test" [value]="especialidad">{{especialidad}}</option>
+              </select>
+              <div class="invalid-feedback">
+                  {{getErrorMessage('especialidad')}}
+              </div>
+           </div>
           </div>
         </app-progress-step>
         <app-progress-step>

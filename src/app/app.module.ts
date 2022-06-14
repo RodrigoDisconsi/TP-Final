@@ -32,14 +32,18 @@ import { ProgressStepDirective } from './directives/progress-step.directive';
 import { CalendarComponent } from './componentes/calendar/calendar.component';
 import { TablaUsersTurnoComponent } from './componentes/tabla-users-turno/tabla-users-turno.component';
 
-import {MessagesModule} from 'primeng/messages';
-import {MessageModule} from 'primeng/message';
-import {CalendarModule} from 'primeng/calendar';
-import {CaptchaModule} from 'primeng/captcha';
+import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
+import { CalendarModule } from 'primeng/calendar';
+import { CaptchaModule } from 'primeng/captcha';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 import { CompletarSoliTurnoComponent } from './componentes/completar-soli-turno/completar-soli-turno.component';
 import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.component';
 import { TablaTurnosComponent } from './componentes/tabla-turnos/tabla-turnos.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { HorariosComponent } from './componentes/horarios/horarios.component';
 
 
 @NgModule({
@@ -64,7 +68,9 @@ import { TablaTurnosComponent } from './componentes/tabla-turnos/tabla-turnos.co
     TablaUsersTurnoComponent,
     CompletarSoliTurnoComponent,
     MisTurnosComponent,
-    TablaTurnosComponent
+    TablaTurnosComponent,
+    ProfileComponent,
+    HorariosComponent
   ],
   imports: [
     BrowserModule,
@@ -78,7 +84,9 @@ import { TablaTurnosComponent } from './componentes/tabla-turnos/tabla-turnos.co
     CalendarModule,
     MessagesModule,
     MessageModule,
-    CaptchaModule
+    CaptchaModule,
+    DialogModule,
+    ButtonModule
   ],
   providers: [],
   bootstrap: [AppComponent]

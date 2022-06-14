@@ -4,6 +4,6 @@
         <app-login></app-login>
     </div>
     <div class="form-panel two" [ngClass]="{'active': visible}" (click)="onClick(false)">
-        <app-register></app-register>
+        <app-register (test)="onTest($event)"></app-register>
     </div>
 </div>

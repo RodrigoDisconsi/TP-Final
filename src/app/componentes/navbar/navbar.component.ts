@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserInterface } from 'src/app/models/UserInterface';
 import { AuthServiceService } from 'src/app/servicios/auth-service.service';
@@ -11,7 +12,7 @@ import { AuthServiceService } from 'src/app/servicios/auth-service.service';
 export class NavbarComponent implements OnInit {
   $user!:Observable<UserInterface | null>;
 
-  constructor(private auth: AuthServiceService) { }
+  constructor(private auth: AuthServiceService, private router:Router) { }
 
   ngOnInit(): void {
     this.$user = this.auth.userObs;
@@ -20,6 +21,7 @@ export class NavbarComponent implements OnInit {
   onLogout(){
     this.auth.logout().then(() => {
       this.auth.refreshData(null);
+      this.router.navigateByUrl("");
     })
   }
 }

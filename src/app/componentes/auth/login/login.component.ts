@@ -21,6 +21,8 @@ export class LoginComponent implements OnInit {
     password: ['', [Validators.required]],
   });
 
+  users!:UserInterface[];
+
   constructor(
     private router: Router,
     private auth: AuthServiceService,
@@ -29,6 +31,13 @@ export class LoginComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.afs.getAll('users').subscribe(resp =>{
+      let aux = resp as UserInterface[]
+      let text = aux.filter(user => user.rol == "especialista").slice(0, 2);
+      this.users = aux.filter(user => user.rol == "paciente").slice(0, 3);
+      this.users = this.users.concat(aux.filter(user => user.rol == "especialista").slice(0, 2))
+      this.users.push(aux.filter(user => user.rol == "administrador")[0]);
+    });
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -75,7 +84,9 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  showResponse(event:any){
-
+  loginWithUsersDefaults(email:string, password:string){
+    this.f['email'].setValue(email);
+    this.f['password'].setValue(password);
+    this.onLogin();
   }
 }

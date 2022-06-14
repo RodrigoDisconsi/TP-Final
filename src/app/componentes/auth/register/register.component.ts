@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -14,10 +14,12 @@ import { FirebaseServiceService } from 'src/app/servicios/firebase-service.servi
 export class RegisterComponent implements OnInit {
 
   @ViewChild('file')file!:ElementRef;
-  public errorMsj = new Subject<string>();
-  public error: boolean = false;
-  public cargando: boolean = false;
-  public regisForm = this.formBuilder.group({
+  @Output() test = new EventEmitter<boolean>();
+
+  errorMsj = new Subject<string>();
+  error: boolean = false;
+  cargando: boolean = false;
+  regisForm = this.formBuilder.group({
     nombre: ['', [Validators.required]],
     apellido: ['', [Validators.required]],
     dni: ['', [Validators.required, Validators.minLength(8), Validators.maxLength(8), Validators.pattern("^[0-9]*$")]],
@@ -25,10 +27,11 @@ export class RegisterComponent implements OnInit {
     obraSocial: ['', [Validators.required]],
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required]],
-    rol: ['paciente', [Validators.required]]
+    rol: ['', [Validators.required]]
   });
-  public archivoMsj:string = "No file chosen...";
-  public archivo:any;
+  archivoMsj:string = "No file chosen...";
+  archivo:any;
+  especialidades:any;
 
   constructor(
     private router: Router,
@@ -38,6 +41,11 @@ export class RegisterComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.afs.getAll("especialidades").subscribe(resp => {
+      if(resp){
+        this.especialidades = resp;
+      }
+    });
   }
 
   get f(): { [key: string]: AbstractControl } {
@@ -96,6 +104,7 @@ export class RegisterComponent implements OnInit {
       this.regisForm.addControl("obraSocial", new FormControl('', Validators.required));
       this.regisForm.removeControl("especialidad");
     }
+    this.test.emit(true);
   }
 
   onRegister(){
@@ -132,6 +141,10 @@ export class RegisterComponent implements OnInit {
       this.error = true;
       this.errorMsj.next("Falta u archivo");
     }
-}
+  }
+
+  showResponse(event:any){
+
+  }
 
 }

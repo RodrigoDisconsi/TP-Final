@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserInterface } from 'src/app/models/UserInterface';
-import { FirebaseServiceService } from 'src/app/servicios/firebase-service.service';
+import { FirebaseService } from 'src/app/servicios/firebase-service.service';
 
 @Component({
   selector: 'app-master-usuarios',
@@ -11,7 +11,7 @@ export class MasterUsuariosComponent implements OnInit {
 
   public users!:UserInterface[];
   public nuevoUsuario:boolean = false;
-  constructor(private afs:FirebaseServiceService) { }
+  constructor(private afs:FirebaseService) { }
 
   ngOnInit(): void {
     this.afs.getAll('users').subscribe(resp => {

@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { TurnoInterface } from 'src/app/models/turno-interface';
 import { UserInterface } from 'src/app/models/UserInterface';
-import { FirebaseServiceService } from 'src/app/servicios/firebase-service.service';
+import { FirebaseService } from 'src/app/servicios/firebase-service.service';
 
 @Component({
   selector: 'app-tabla-turnos',
@@ -18,7 +18,7 @@ export class TablaTurnosComponent implements OnInit {
   turnosWithoutFilter!:TurnoInterface[];
 
   constructor(
-    private afs:FirebaseServiceService
+    private afs:FirebaseService
   ) { }
 
   ngOnInit(): void {

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { UserInterface } from 'src/app/models/UserInterface';
-import { AuthServiceService } from 'src/app/servicios/auth-service.service';
+import { AuthService } from 'src/app/servicios/auth-service.service';
 
 @Component({
   selector: 'app-mis-turnos',
@@ -13,7 +13,7 @@ export class MisTurnosComponent implements OnInit {
   $currentUser!:Observable<UserInterface | null>
 
   constructor(
-    private auth:AuthServiceService
+    private auth:AuthService
   ) { }
 
   ngOnInit(): void {

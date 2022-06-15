@@ -7,7 +7,7 @@ import { UserInterface } from '../models/UserInterface';
 @Injectable({
   providedIn: 'root'
 })
-export class FirebaseServiceService {
+export class FirebaseService {
 
   constructor(private afs: AngularFirestore, private storage: AngularFireStorage){
   }

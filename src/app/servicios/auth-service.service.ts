@@ -6,7 +6,7 @@ import { UserInterface } from '../models/UserInterface';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthServiceService {
+export class AuthService {
   public userObs = new BehaviorSubject<UserInterface | null>(null); 
 
   

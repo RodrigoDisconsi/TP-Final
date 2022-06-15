@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { AuthServiceService } from 'src/app/servicios/auth-service.service';
-import { FirebaseServiceService } from 'src/app/servicios/firebase-service.service';
+import { AuthService } from 'src/app/servicios/auth-service.service';
+import { FirebaseService } from 'src/app/servicios/firebase-service.service';
 import { ProgressComponent } from 'src/app/componentes/progress/progress.component';
 import { UserInterface } from 'src/app/models/UserInterface';
 import { Observable } from 'rxjs';
@@ -31,8 +31,8 @@ export class SolicitarComponent implements OnInit {
   turnoAEnviar!:TurnoInterface;
 
   constructor(
-    private auth:AuthServiceService,
-    private afs:FirebaseServiceService,
+    private auth:AuthService,
+    private afs:FirebaseService,
     private formBuilder: FormBuilder,
     private messageService: MessageService
   ) { }

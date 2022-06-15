@@ -3,8 +3,8 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { UserInterface } from 'src/app/models/UserInterface';
-import { AuthServiceService } from 'src/app/servicios/auth-service.service';
-import { FirebaseServiceService } from 'src/app/servicios/firebase-service.service';
+import { AuthService } from 'src/app/servicios/auth-service.service';
+import { FirebaseService } from 'src/app/servicios/firebase-service.service';
 
 @Component({
   selector: 'app-login',
@@ -25,8 +25,8 @@ export class LoginComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private auth: AuthServiceService,
-    private afs:FirebaseServiceService,
+    private auth: AuthService,
+    private afs:FirebaseService,
     private formBuilder: FormBuilder
   ) { }
 

@@ -38,6 +38,10 @@ import { CalendarModule } from 'primeng/calendar';
 import { CaptchaModule } from 'primeng/captcha';
 import { DialogModule } from 'primeng/dialog';
 import { ButtonModule } from 'primeng/button';
+import { MultiSelectModule } from 'primeng/multiselect';
+import { ToastModule } from 'primeng/toast';
+import { DropdownModule } from 'primeng/dropdown';
+
 
 import { CompletarSoliTurnoComponent } from './componentes/completar-soli-turno/completar-soli-turno.component';
 import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.component';
@@ -86,7 +90,10 @@ import { HorariosComponent } from './componentes/horarios/horarios.component';
     MessageModule,
     CaptchaModule,
     DialogModule,
-    ButtonModule
+    ButtonModule,
+    MultiSelectModule,
+    ToastModule,
+    DropdownModule
   ],
   providers: [],
   bootstrap: [AppComponent]

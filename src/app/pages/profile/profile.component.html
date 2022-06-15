@@ -1,3 +1,4 @@
+<p-toast position="bottom-center"></p-toast>
 <div *ngIf="$user | async as user" class="container-fluid">
     <div class="row justify-content-center">
         <div class="col-6 align-items-center">
@@ -171,7 +172,7 @@
   </div> -->
 
   <section class="my-app__body">
-      <div class="row">
+      <div class="row" *ngIf="user.rol == 'especialista'">
         <!-- <div class="col-4">
           <h3 class="primary-colors section-head">
             <i class="fas fa-business-time"></i> Experience
@@ -218,14 +219,14 @@
             </div>
             </div>
             <ul class="my-list list-group list-group-flush">
-              <li class="my-list-item list-group-item">
+              <li class="my-list-item list-group-item" *ngFor="let horario of user.horarios">
                 <div class="my-list-item__date">
-                  <span class="my-list-item__date-day">09:00 am</span>
-                  <span class="my-list-item__date-day">12:00 am</span>
+                  <span class="my-list-item__date-day">{{horario.desde}}</span>
+                  <span class="my-list-item__date-day">{{horario.hasta}}</span>
                 </div>
                 <div class="my-list-item__text">
-                  <h4 class="my-list-item__text-title">Médico clínico</h4>
-                  <p class="my-list-item__text-description">Lunes, martes, miércoles y viernes</p>
+                  <h4 class="my-list-item__text-title">{{horario.esp}}</h4>
+                  <p class="my-list-item__text-description">{{horario.dias}}</p>
                 </div>
                 <div class="my-list-item__fee">
                   <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
@@ -235,15 +236,16 @@
           </div>
           <!-- End Pending card -->
         </div>
+
+        <p-dialog header="NUEVA FECHA" [(visible)]="displayModal" [modal]="true" [style]="{width: '500px', height: '450px'}"
+        [draggable]="false" [resizable]="false" styleClass="p-fluid">
+            <ng-template pTemplate="content">
+              <app-horarios (horarioEvent)="enviarHorario($event, user)" [especialidades]="user.especialidad"></app-horarios>
+            </ng-template>
+            <!-- <ng-template pTemplate="footer">
+              <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
+            </ng-template> -->
+      </p-dialog>
       </div>
     </section>
-    <p-dialog header="Header" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}"
-    [draggable]="false" [resizable]="false">
-        <p class="m-0">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-          laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-          Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <ng-template pTemplate="footer">
-          <p-button icon="pi pi-check" (click)="displayModal=false" label="Ok" styleClass="p-button-text"></p-button>
-        </ng-template>
-  </p-dialog>
 </div>

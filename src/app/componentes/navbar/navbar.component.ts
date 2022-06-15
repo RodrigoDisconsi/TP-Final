@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserInterface } from 'src/app/models/UserInterface';
-import { AuthServiceService } from 'src/app/servicios/auth-service.service';
+import { AuthService } from 'src/app/servicios/auth-service.service';
 
 @Component({
   selector: 'app-navbar',
@@ -12,7 +12,7 @@ import { AuthServiceService } from 'src/app/servicios/auth-service.service';
 export class NavbarComponent implements OnInit {
   $user!:Observable<UserInterface | null>;
 
-  constructor(private auth: AuthServiceService, private router:Router) { }
+  constructor(private auth: AuthService, private router:Router) { }
 
   ngOnInit(): void {
     this.$user = this.auth.userObs;

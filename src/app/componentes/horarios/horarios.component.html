@@ -1,1 +1,22 @@
-<p>horarios works!</p>
+<div class="container">
+    <div class="row">
+        <div class="col-12 mb-3">
+            <h5>Días</h5>
+            <p-multiSelect [filter]="false" [options]="days" [(ngModel)]="selectedDay" defaultLabel="Selecciona un día" optionLabel="name" selectedItemsLabel="{0} días seleccionados"></p-multiSelect>
+        </div>
+        <div class="col-12 mb-3">
+            <p-dropdown [options]="especialidadesDisplay" [(ngModel)]="selectedEsp" optionLabel="name" optionValue="name"></p-dropdown>
+        </div>
+        <div class="col mb-3">
+            <h5>Desde</h5>
+            <p-calendar (onSelect)="onSelectTime(true)" [(ngModel)]="timeDesdeValue" [showTime]="true" [timeOnly]="true" [minDate]="minTime" [maxDate]="maxTime" [readonlyInput]="true" [defaultDate]="minTime" ></p-calendar>
+        </div>
+        <div class="col mb-3">
+            <h5>Hasta</h5>
+            <p-calendar (onSelect)="onSelectTime(false)" [(ngModel)]="timeHastaValue" [showTime]="true" [timeOnly]="true" [minDate]="minTime" [maxDate]="maxTime" [readonlyInput]="true" [defaultDate]="minTime" ></p-calendar>
+        </div>
+        <div class="col-12 mt-5">
+            <button pButton pRipple type="button" label="Guardar" class="p-button-raised p-button-success" (click)="onClickSave()"></button>
+        </div>
+    </div>
+</div>

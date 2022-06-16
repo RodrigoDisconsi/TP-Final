@@ -37,7 +37,6 @@ export class CalendarComponent implements OnInit {
 
   onSelectDate(){
     this.timeToReturn = this.dateValue;
-    console.info(this.timeToReturn);
     if(this.timeValue){
       this.timeToReturn.setTime(this.timeValue.getTime());
       //emit

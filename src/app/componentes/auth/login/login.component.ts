@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
+import { Subject } from 'rxjs';
 import { UserInterface } from 'src/app/models/UserInterface';
 import { AuthService } from 'src/app/servicios/auth-service.service';
 import { FirebaseService } from 'src/app/servicios/firebase-service.service';
@@ -33,7 +33,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {
     this.afs.getAll('users').subscribe(resp =>{
       let aux = resp as UserInterface[]
-      let text = aux.filter(user => user.rol == "especialista").slice(0, 2);
       this.users = aux.filter(user => user.rol == "paciente").slice(0, 3);
       this.users = this.users.concat(aux.filter(user => user.rol == "especialista").slice(0, 2))
       this.users.push(aux.filter(user => user.rol == "administrador")[0]);
@@ -67,7 +66,6 @@ export class LoginComponent implements OnInit {
       if (resp) {
         let suscr = this.afs.getUsersWithFilter("email", this.loginForm.value.email).subscribe(user => {
             if(user){
-              console.info(user);
               let userInterface = user[0] as UserInterface;
               this.auth.refreshData(userInterface);
               this.loginForm.reset();
@@ -80,7 +78,6 @@ export class LoginComponent implements OnInit {
       this.errorMsj.next(e.message.toLowerCase().replace("firebase: ", ""));
       this.error = true;
       this.cargando = false;
-      console.info("ERROR ->", e);
     });
   }
 

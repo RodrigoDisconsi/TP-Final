@@ -12,10 +12,10 @@ import { SolicitarComponent } from './pages/turnos/solicitar/solicitar.component
 
 const routes: Routes = [
   {path: '' , component: HomeComponent},
-  {path: 'Login' , component: AuthComponent},
+  {path: 'Login' , component: AuthComponent, loadChildren: () => import('../app/pages/auth/auth.module').then(m => m.AuthModule)},
   {path: 'Usuarios' , component: MasterUsuariosComponent, canActivate:[AdminActiveGuard]},
-  {path: 'MisTurnos' , component: MisTurnosComponent, canActivate:[UserActiveGuard]},
-  {path: 'Turno' , component: SolicitarComponent, canActivate:[UserActiveGuard]},
+  {path: 'MisTurnos' , component: MisTurnosComponent, canActivate:[UserActiveGuard], loadChildren: () => import('../app/pages/turnos/turnos.module').then(m => m.TurnosModule)},
+  {path: 'Turno' , component: SolicitarComponent, canActivate:[UserActiveGuard], loadChildren: () => import('../app/pages/turnos/turnos.module').then(m => m.TurnosModule)},
   {path: 'Profile' , component: ProfileComponent, canActivate:[UserActiveGuard]}
 ];
 

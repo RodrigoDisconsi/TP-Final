@@ -134,7 +134,6 @@ export class RegisterComponent implements OnInit {
         this.errorMsj = e.message;
         this.error = true;
         this.cargando = false;
-        console.info("ERROR ->", e);
       });
     }
     else{

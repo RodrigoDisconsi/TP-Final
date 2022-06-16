@@ -18,8 +18,6 @@ export class CompletarSoliTurnoComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.info(this.paciente);
-    console.info(this.turno);
     if(this.paciente.rol == "paciente"){
       this.turno.paciente = this.paciente;
       this.turnoEmit.emit(this.turno);

@@ -16,7 +16,6 @@ export class MasterUsuariosComponent implements OnInit {
   ngOnInit(): void {
     this.afs.getAll('users').subscribe(resp => {
       this.users = resp as UserInterface[];
-      console.info(this.users);
     })
   }
 

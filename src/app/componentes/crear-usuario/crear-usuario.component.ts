@@ -114,7 +114,6 @@ export class CrearUsuarioComponent implements OnInit {
       this.errorMsj.next(e.message);
       this.error = true;
       this.cargando = false;
-      console.info("ERROR ->", e);
     });
   }
 

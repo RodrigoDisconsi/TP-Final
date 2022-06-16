@@ -66,7 +66,6 @@ export class SolicitarComponent implements OnInit {
   }
 
   onChangeEsp(progress: ProgressComponent){
-    console.info(this.turnoForm.value);
     progress.next();
   }
 
@@ -96,7 +95,6 @@ export class SolicitarComponent implements OnInit {
 
   getTurnoConPaciente(turno:TurnoInterface){
     this.turnoAEnviar = turno;
-    console.info(this.turnoAEnviar);
   }
 
   get turno():TurnoInterface{
@@ -105,7 +103,6 @@ export class SolicitarComponent implements OnInit {
 
   enviarTurno(){
     this.cargando = true;
-    console.info(this.turnoAEnviar);
     this.afs.setObj("turnos", this.turnoAEnviar, Guid.create().toString()).then(resp => {
       this.messageService.clear();
       this.messageService.add({severity:'success', summary:'Success', detail:'Su turno se envió correctamente!'},);

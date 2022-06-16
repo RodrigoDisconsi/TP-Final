@@ -6,11 +6,6 @@
             <h1>Profesionales</h1>        
           </div>
           <app-tabla-users-turno *ngIf="listEspecialistas" [listEspecialistas]="listEspecialistas" (especialista)="onSelecEspecialista($event, progress)"></app-tabla-users-turno>
-          <div class="d-flex justify-content-center">
-            <div class="col-8">
-              <button progressStepPrev>Volver</button>
-            </div>
-          </div>
         </app-progress-step>
         <app-progress-step>
 

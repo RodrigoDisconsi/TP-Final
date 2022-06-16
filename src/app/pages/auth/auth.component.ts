@@ -36,7 +36,7 @@ export class AuthComponent implements OnInit {
 
   onTest(bool:boolean){
     if(bool){
-      this.heightPanelTwo = 830;
+      this.heightPanelTwo = 780;
     }
   }
 }

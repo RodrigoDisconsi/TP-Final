@@ -38,19 +38,6 @@ export class TablaTurnosComponent implements OnInit {
           this.turnosWithoutFilter = this.turnos;
         });
       }
-      // this.afs.getAll("turnos").subscribe(resp => {
-      //   let aux = resp as TurnoInterface[];
-      //   if(this.user.rol == "paciente"){
-      //     this.turnos = aux.filter(turno => turno.paciente.email == this.user.email);
-      //   }
-      //   else if(this.user.rol == "especialista"){
-      //     this.turnos = aux.filter(turno => turno.especialista.email == this.user.email);
-      //   }
-      //   else{
-      //     this.turnos = aux;
-      //   }
-      //   this.turnosWithoutFilter = this.turnos;
-      // });
     }
   }
 

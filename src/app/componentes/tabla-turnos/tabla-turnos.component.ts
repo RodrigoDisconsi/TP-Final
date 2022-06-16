@@ -27,24 +27,30 @@ export class TablaTurnosComponent implements OnInit {
     }
     else{
       if(this.user.rol == "paciente"){
-        this.campo = "paciente";  
+        this.afs.getTurnoByPaciente(this.user.email).subscribe(resp =>{
+          this.turnos = resp as TurnoInterface[];
+          this.turnosWithoutFilter = this.turnos;
+        });
       }
       else{
-        this.campo = "especialista";
+        this.afs.getTurnoByEspecialista(this.user.email).subscribe(resp =>{
+          this.turnos = resp as TurnoInterface[];
+          this.turnosWithoutFilter = this.turnos;
+        });
       }
-      this.afs.getAll("turnos").subscribe(resp => {
-        let aux = resp as TurnoInterface[];
-        if(this.user.rol == "paciente"){
-          this.turnos = aux.filter(turno => turno.paciente.email == this.user.email);
-        }
-        else if(this.user.rol == "especialista"){
-          this.turnos = aux.filter(turno => turno.especialista.email == this.user.email);
-        }
-        else{
-          this.turnos = aux;
-        }
-        this.turnosWithoutFilter = this.turnos;
-      });
+      // this.afs.getAll("turnos").subscribe(resp => {
+      //   let aux = resp as TurnoInterface[];
+      //   if(this.user.rol == "paciente"){
+      //     this.turnos = aux.filter(turno => turno.paciente.email == this.user.email);
+      //   }
+      //   else if(this.user.rol == "especialista"){
+      //     this.turnos = aux.filter(turno => turno.especialista.email == this.user.email);
+      //   }
+      //   else{
+      //     this.turnos = aux;
+      //   }
+      //   this.turnosWithoutFilter = this.turnos;
+      // });
     }
   }
 

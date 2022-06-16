@@ -29,6 +29,14 @@ export class FirebaseService {
     return this.afs.collection(entidad, ref => ref.where(campo, '==', value)).valueChanges();
   }
 
+  getTurnoByPaciente(value:string){
+    return this.afs.collection("turnos", ref => ref.where("paciente.email", '==', value)).valueChanges();
+  }
+
+  getTurnoByEspecialista(value:string){
+    return this.afs.collection("turnos", ref => ref.where("especialista.email", '==', value)).valueChanges();
+  }
+
   getUsersWithFilter(campo:string, value:string){
     return this.afs.collection('users', ref => ref.where(campo, '==', value).where('habilitado', '==', true)).valueChanges();
   }

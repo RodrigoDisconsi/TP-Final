@@ -11,12 +11,12 @@ import { MisTurnosComponent } from './pages/turnos/mis-turnos/mis-turnos.compone
 import { SolicitarComponent } from './pages/turnos/solicitar/solicitar.component';
 
 const routes: Routes = [
-  {path: '' , component: HomeComponent},
-  {path: 'Login' , component: AuthComponent, loadChildren: () => import('../app/pages/auth/auth.module').then(m => m.AuthModule)},
+  {path: '' , component: HomeComponent, data: {animation: 'homePage'}},
+  {path: 'Login' , component: AuthComponent, loadChildren: () => import('../app/pages/auth/auth.module').then(m => m.AuthModule), data: {animation: 'fadePage'}},
   {path: 'Usuarios' , component: MasterUsuariosComponent, canActivate:[AdminActiveGuard]},
   {path: 'MisTurnos' , component: MisTurnosComponent, canActivate:[UserActiveGuard], loadChildren: () => import('../app/pages/turnos/turnos.module').then(m => m.TurnosModule)},
   {path: 'Turno' , component: SolicitarComponent, canActivate:[UserActiveGuard], loadChildren: () => import('../app/pages/turnos/turnos.module').then(m => m.TurnosModule)},
-  {path: 'Profile' , component: ProfileComponent, canActivate:[UserActiveGuard]}
+  {path: 'Profile' , component: ProfileComponent, canActivate:[UserActiveGuard], data: {animation: 'fadePage'}}
 ];
 
 @NgModule({

@@ -3,7 +3,7 @@
       <div class="app-main">
           <app-sidebar></app-sidebar>
               <div class="app-main__outer">
-                  <div class="app-main__inner">          
+                  <div class="app-main__inner" [@routeAnimations]="getRouteAnimationData()">          
                       <router-outlet></router-outlet>
                   </div>
                   <!-- <div class="app-wrapper-footer">

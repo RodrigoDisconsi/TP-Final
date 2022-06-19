@@ -102,7 +102,8 @@ export class SolicitarComponent implements OnInit {
 
   enviarTurno(){
     this.cargando = true;
-    this.afs.setObj("turnos", this.turnoAEnviar, Guid.create().toString()).then(resp => {
+    this.turnoAEnviar.id = Guid.create().toString();
+    this.afs.setObj("turnos", this.turnoAEnviar, this.turnoAEnviar.id).then(resp => {
       this.messageService.clear();
       this.messageService.add({severity:'success', summary:'Success', detail:'Su turno se envió correctamente!'},);
       this.cargando = false;

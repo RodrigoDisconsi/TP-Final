@@ -14,6 +14,7 @@ import { TablaTurnosComponent } from '../../componentes/tabla-turnos/tabla-turno
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
 import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { LoadingModule } from 'src/app/componentes/loading/loading.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
@@ -38,7 +39,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     ButtonModule,
     LoadingModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    DropdownModule
   ]
 })
 export class TurnosModule { }

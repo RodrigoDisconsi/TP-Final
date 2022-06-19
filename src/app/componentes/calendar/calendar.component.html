@@ -1,11 +1,13 @@
 <div class="d-flex justify-content-center p-fluid mb-1">
     <div class="col-6 mb-3">
         <label for="dni">Fecha</label>
-        <p-calendar (onSelect)="onSelectDate()" [(ngModel)]="dateValue"  [disabledDays]="[0]" dateFormat="dd/mm/yy" [minDate]="minDateValue" [maxDate]="maxDateValue"  [readonlyInput]="true" [defaultDate]="minDateValue"></p-calendar>
+        <!-- <p-calendar (onSelect)="onSelectDate()" [(ngModel)]="dateValue"  [disabledDays]="[0]" dateFormat="dd/mm/yy" [minDate]="minDateValue" [maxDate]="maxDateValue"  [readonlyInput]="true" [defaultDate]="minDateValue"></p-calendar> -->
+        <!-- <p-dropdown></p-dropdown> -->
+        <p-dropdown (onChange)="onSelectDate($event)" placeholder="Selccione una..." [options]="dias"></p-dropdown>
     </div>
     <div class="col-6 mb-3">
         <label for="dni">Hora</label>
-        <p-calendar (onSelect)="onSelectTime()" [(ngModel)]="timeValue" [showTime]="true" [timeOnly]="true" [minDate]="minTime" [maxDate]="maxTime" [readonlyInput]="true" [defaultDate]="minTime" ></p-calendar>
+        <p-dropdown (onChange)="onSelectTime($event)" placeholder="Selccione una..." [options]="horas"></p-dropdown>
     </div>
 </div>
 <div class="col-12 mb-3">

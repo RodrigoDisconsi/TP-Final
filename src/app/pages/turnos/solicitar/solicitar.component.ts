@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { TurnoInterface } from 'src/app/models/turno-interface';
 import { Guid } from "guid-typescript";
 import { MessageService } from 'primeng/api';
+import { HorariosInterface } from 'src/app/models/horarios-interface';
 
 @Component({
   selector: 'app-solicitar',
@@ -21,6 +22,8 @@ export class SolicitarComponent implements OnInit {
   cargando: boolean = false;
   listEspecialistas!:UserInterface[];
   paciente!:Observable<UserInterface | null>;
+  horarios!:HorariosInterface[] | null;
+  especialidades!:string[] | null;
   turnoForm = this.formBuilder.group({
     especialidad: ['', [Validators.required]],
     especialista: ['', [Validators.required]],
@@ -42,7 +45,8 @@ export class SolicitarComponent implements OnInit {
     this.cargando = true;
     this.afs.getWithFilter('users', 'rol', 'especialista').subscribe(resp => {
       if(resp){
-        this.listEspecialistas = resp as UserInterface[]
+        this.listEspecialistas = resp as UserInterface[];
+        this.listEspecialistas = this.listEspecialistas.filter(especialista => Array.isArray(especialista.horarios) && especialista.horarios.length > 0);
         this.cargando = false;
       }
     })
@@ -65,32 +69,27 @@ export class SolicitarComponent implements OnInit {
       && !this.f[field].valid;
   }
 
-  onChangeEsp(progress: ProgressComponent){
-    progress.next();
-  }
-
   onSelecEspecialista(esp:UserInterface | null, progress: ProgressComponent){
     if(esp){
       this.f['especialista'].setValue(esp);
+      if(esp.especialidad){
+        this.especialidades = esp.especialidad;
+      }
       progress.next();
     }
   }
 
-  onSelecFecha(fecha:Date){
-    let aux = fecha.getDay() + "/" + fecha.getMonth() + "/" + fecha.getFullYear() + " a las " 
-      + fecha.getHours() + ":";
-    let minutos = fecha.getMinutes();
-    if(minutos == 0){
-      aux += "00";
+  onChangeEsp(progress:ProgressComponent){
+    let espSelec = this.f['especialista'].value as UserInterface;
+    let especialidadSelec = this.f['especialidad'].value;
+    if(espSelec.horarios){
+      this.horarios = espSelec.horarios.filter(horario => horario.esp == especialidadSelec);
+      progress.next();
     }
-    else if(minutos < 10){
-      aux += "0" + minutos;
-    }
-    else {
-      aux += minutos;
-    }
-    this.f['fecha'].setValue(aux);
-    //TODO VALIDAR FECHA CON TURNSO ANTERIORMENTE OBTENIDOS Y FIJARME QUE VOY A HACER CON EL TIPO ADMIN
+  }
+
+  onSelecFecha(fecha:string){
+    this.f['fecha'].setValue(fecha);
   }
 
   getTurnoConPaciente(turno:TurnoInterface){

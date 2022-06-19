@@ -35,7 +35,7 @@ export class HorariosComponent implements OnInit {
     this.days = [
       {name: 'Lunes'},
       {name: 'Martes'},
-      {name: 'Miércoles'},
+      {name: 'Miercoles'},
       {name: 'Jueves'},
       {name: 'Viernes'},
       {name: 'Sabados'}

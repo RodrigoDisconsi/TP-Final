@@ -12,26 +12,26 @@
           <div class="text-center mb-4">
             <h1>Empecemos</h1>        
           </div>
-          <div class="d-flex justify-content-center mb-1">
-            <div class="col-9 mb-3" *ngIf="this.f['especialista'].value as especialista">
+          <div class="d-flex justify-content-center">
+            <div class="col-12 mb-3" *ngIf="especialidades != null">
               <label>Seleccione una especialidad...</label>
-              <select (change)="onChangeEsp(progress)" formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
-                <option *ngFor="let especialidad of especialista.especialidad" class="input test" [value]="especialidad">{{especialidad}}</option>
-              </select>
-              <div class="invalid-feedback">
-                  {{getErrorMessage('especialidad')}}
-              </div>
+              <p-dropdown (onChange)="onChangeEsp(progress)" placeholder="Selccione una..." [options]="especialidades" formControlName="especialidad" [style]="{'width':'100%'}"></p-dropdown>
            </div>
+          </div>
+          <div class="d-flex justify-content-center">
+            <div class="col-12 mb-3">
+              <button (click)="this.especialidades = null" progressStepPrev>Volver</button>
+            </div>
           </div>
         </app-progress-step>
         <app-progress-step>
           <div class="text-center mb-4">
             <h1>Porfavor seleccione una fecha...</h1>        
           </div>
-          <app-calendar (fechaSeleccionada)="onSelecFecha($event)"></app-calendar>
+          <app-calendar *ngIf="horarios != null" [horarios]="horarios" (fechaSeleccionada)="onSelecFecha($event)"></app-calendar>
           <div class="d-flex justify-content-center">
             <div class="col-6 mb-3">
-              <button progressStepPrev>Volver</button>
+              <button (click)="this.horarios = null" progressStepPrev>Volver</button>
             </div>
             <div class="col-6 mb-3">
               <button progressStepNext>Siguiente</button>

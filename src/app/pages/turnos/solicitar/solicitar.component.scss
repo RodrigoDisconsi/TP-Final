@@ -6,39 +6,6 @@ $gray: rgba($black, 0.6);
 $white: #FFFFFF;
 $accent: #4285F4;
 
-.input{
-  outline: none;
-  background: rgba($black, 0.1);
-  width: 100%;
-  border: 0;
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 12px 20px;
-  color: $gray;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: $semibold;
-  line-height: inherit;
-  transition: 0.3s ease;
-}
-
-input{
-  outline: none;
-  display: block;
-  background: rgba($black, 0.1);
-  width: 100%;
-  border: 0;
-  border-radius: 4px;
-  box-sizing: border-box;
-  padding: 12px 20px;
-  color: $gray;
-  font-family: inherit;
-  font-size: inherit;
-  font-weight: $semibold;
-  line-height: inherit;
-  transition: 0.3s ease;
-}
-
   button {
     outline: none;
     width: 100%;
@@ -79,51 +46,4 @@ input{
 
   }
 
-  .file-upload .file-upload-select {
-    display: block;
-    color: #dbdbdb;
-    cursor: pointer;
-    text-align: left;
-    background: rgba($black, 0.1);
-    overflow: hidden;
-    position: relative;
-    border-radius: 6px;
-  }
-  .file-upload .file-upload-select .file-select-button {
-    background: rgba($black, 0.1);
-    padding: 10px;
-    display: inline-block;
-  }
-  .file-upload .file-upload-select .file-select-name {
-    display: inline-block;
-    padding: 10px;
-  }
-  .file-upload .file-upload-select:hover{
-    background: $white;
-    color: $gray;
-    transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-  }
-
-  .file-upload .file-upload-select:hover .file-select-button {
-    background: rgba($accent, 0.5);
-    color: #ffffff;
-    transition: all 0.2s ease-in-out;
-    -moz-transition: all 0.2s ease-in-out;
-    -webkit-transition: all 0.2s ease-in-out;
-    -o-transition: all 0.2s ease-in-out;
-  }
-  .file-upload .file-upload-select input[type="file"] {
-    display: none;
-  }
   
-  .is-invalid{
-    border-color: #dc3545;
-    box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
-  }
-
-  .test{
-    background: rgba($accent, 0.5);
-  }

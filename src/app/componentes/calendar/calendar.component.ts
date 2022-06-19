@@ -1,62 +1,83 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import {Message,MessageService} from 'primeng/api';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { HorariosInterface } from 'src/app/models/horarios-interface';
+import { decodedTextSpanIntersectsWith } from 'typescript';
+
+export enum EDays{
+  "Lunes" = 1,
+  "Martes" = 2,
+  "Miercoles" = 3,
+  "Jueves" = 4,
+  "Viernes" = 5,
+  "Sabado" = 6
+}
 
 @Component({
   selector: 'app-calendar',
   templateUrl: './calendar.component.html',
-  styleUrls: ['./calendar.component.scss'],
-  providers: [MessageService]
+  styleUrls: ['./calendar.component.scss']
 })
 export class CalendarComponent implements OnInit {
 
-  @Output() fechaSeleccionada = new EventEmitter<Date>();
+  @Output() fechaSeleccionada = new EventEmitter<string>();
+  @Input() horarios!: HorariosInterface[];
+  fechaSelec:string = "";
+  horaSelec:string = "";
+  dias:string[];
+  horas!:string[];
 
-  msgs1!: Message[];
-
-  dateValue!:Date;
-  minDateValue:Date = new Date();
-  maxDateValue:Date = new Date();
-  minTime:Date = new Date();;
-  maxTime:Date = new Date();
-  timeValue!:Date;
-  
-  timeToReturn!:Date;
-
-  constructor(private messageService: MessageService) {
-   }
+  constructor() {
+    this.dias = [];
+  }
 
   ngOnInit(): void {
-    this.maxDateValue.setDate(this.minDateValue.getDate() + 15);
-    this.minTime.setHours(8);
-    this.minTime.setMinutes(0);
-
-    this.maxTime.setHours(17);
-    this.maxTime.setMinutes(30);
-
+    this.horarios.forEach(horario => {
+      this.setHours(horario);
+      this.setDays(horario);
+    })
   }
 
-  onSelectDate(){
-    this.timeToReturn = this.dateValue;
-    if(this.timeValue){
-      this.timeToReturn.setTime(this.timeValue.getTime());
-      //emit
-      this.fechaSeleccionada.emit(this.timeToReturn);
+  setDays(horario:HorariosInterface){
+    let dateNow = new Date();
+    let currentDay:number;
+    for (let day = 1; day <= 15; day++) {
+      currentDay = dateNow.getDay();
+      if(horario.dias.find(dia => dia == EDays[currentDay])){
+        this.dias.push(dateNow.getDate() + "/" + (dateNow.getMonth() + 1) + "/" + dateNow.getFullYear());
+      }
+
+      dateNow.setDate(dateNow.getDate() + 1);
     }
   }
 
-  onSelectTime(){
-    if(this.timeValue.getMinutes() <= 15 || this.timeValue.getMinutes() > 45){
-      this.timeValue.setMinutes(0);
-    }
-    else if(this.timeValue.getMinutes() <= 45){
-      this.timeValue.setMinutes(30);
-    }
+  setHours(horario:HorariosInterface){
+      let desde = Number.parseInt(horario.desde);
+      let hasta = Number.parseInt(horario.hasta); 
+      let stringToAdd = "";
+      this.horas = [horario.desde];
+      for (let currentNumber = desde + 1; currentNumber < hasta; currentNumber++) {
+  
+        if(currentNumber >= 10)
+          stringToAdd = currentNumber.toString() + ":" + "00";
+        else
+          stringToAdd = "0" + currentNumber.toString() + ":" + "00";
+        this.horas.push(stringToAdd);
+      }
+      this.horas.push(horario.hasta);
+  }
 
-    if(this.timeToReturn){
-      this.timeToReturn.setTime(this.timeValue.getTime());
-      this.fechaSeleccionada.emit(this.timeToReturn);
+  onSelectDate(date:any){
+    this.fechaSelec = date.value;
+    if(this.horaSelec != ""){
+      this.fechaSelec = this.fechaSelec + " - " + this.horaSelec;
+      this.fechaSeleccionada.emit(this.fechaSelec);
     }
-    // this.messageService.clear();
-    // this.messageService.add({severity:'error', summary:'Error', detail:'Message Content'});
+  }
+
+  onSelectTime(time:any){
+    this.horaSelec = time.value;
+    if(this.fechaSelec != ""){
+      this.fechaSelec = this.fechaSelec + " - " + this.horaSelec;
+      this.fechaSeleccionada.emit(this.fechaSelec);
+    }
   }
 }

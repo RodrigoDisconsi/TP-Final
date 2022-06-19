@@ -4,7 +4,7 @@ export interface TurnoInterface {
     especialidad:string;
     especialista:UserInterface;
     paciente:UserInterface;
-    fecha:any;
+    fecha:string;
     estado:string;
     comentario:string;
     comentarioAtencion:string;

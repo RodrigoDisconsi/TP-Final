@@ -1,0 +1,81 @@
+$semibold: 500;
+$bold: 700;
+// Colors
+$black: #000000;
+$gray: rgba($black, 0.6);
+$white: #FFFFFF;
+$accent: #4285F4;
+
+.input{
+  outline: none;
+  display: block;
+  background: rgba($black, 0.1);
+  width: 100%;
+  border: 0;
+  border-radius: 4px;
+  box-sizing: border-box;
+  padding: 12px 20px;
+  color: $gray;
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: $semibold;
+  line-height: inherit;
+  transition: 0.3s ease;
+}
+
+.form-control:focus {
+    color: #212529;
+    background-color: #fff;
+    border-color: #86b7fe;
+    outline: 0;
+    box-shadow: 0 0 0 0.25rem rgba(13 110 253 / 25%);
+  }
+
+  button {
+    outline: none;
+    width: 100%;
+    border: 0;
+    border-radius: 4px;
+    padding: 12px 20px;
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: $semibold;
+    line-height: inherit;
+    text-transform: uppercase;
+    cursor: pointer;
+
+  }
+
+  .btn{
+    background: $accent;
+    color: $white;
+  }
+
+  label {
+    display: block;
+    margin: 0 0 10px;
+    color: $accent;
+    font-size: 12px;
+    font-weight: $semibold;
+    line-height: 1;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+
+  }
+
+  h1 {
+    padding: 4px 0;
+    position: relative;
+    z-index: 40;
+    color: $accent;
+    font-size: 24px;
+    font-weight: $bold;
+    text-transform: uppercase;
+
+  }
+
+  
+  .is-invalid{
+    border-color: #dc3545;
+    box-shadow: 0 0 0 0.25rem rgb(220 53 69 / 25%);
+  }

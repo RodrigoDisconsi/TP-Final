@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="offset-3 col-6 mb-5">
+        <h1>Completar Turno</h1>
+    </div>
+    <form [formGroup]="evaluacionForm">
+        <div class="row">
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Comentario</label>
+                    <textarea formControlName="comentario" class="form-control form-style input"></textarea>
+                </div>
+            </div>
+            <div class="col-12">
+                <div class="form-group">
+                    <label>Diagnostico</label>
+                    <input formControlName="diagnostico" type="text" class="form-control form-style input"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="col-12">
+        <h1>Historia Clínica</h1>
+    </div>
+    <form [formGroup]="historiaClinicaForm">
+        <div class="row">
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Altura</label>
+                    <input formControlName="altura" type="text" class="form-control form-style input"/>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Peso</label>
+                    <input formControlName="peso" type="text" class="form-control form-style input"/>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Temperatura</label>
+                    <input formControlName="temperatura" type="text" class="form-control form-style input"/>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label>Presión</label>
+                    <input formControlName="presion" type="text" class="form-control form-style input"/>
+                </div>
+            </div>
+        </div>
+    </form>
+    <div class="col-12">
+        <button [disabled]="historiaClinicaForm.invalid || evaluacionForm.invalid" class="btn btn-accent">Finalizar</button>
+    </div>
+</div>

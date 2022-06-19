@@ -1,0 +1,20 @@
+<div class="row justify-content-center">
+    <div class="col-6 mb-5">
+        <h1>{{title}} turno</h1>
+    </div>
+    <div class="col-12 mb-5">
+        <form [formGroup]="comentarioForm">
+            <label for="dni">Commentario</label>
+            <textarea formControlName="comentario" class="form-control form-style input" [ngClass]="{'is-invalid': isNotValidField('comentario')}" required></textarea>
+            <div class="invalid-feedback">
+                {{getErrorMessage('comentario')}}
+            </div>
+        </form>
+    </div>
+    <div class="col-6">
+        <button [disabled]="comentarioForm.invalid" class="btn btn-accent" (click)="onFinish()">Finalizar</button>
+    </div>
+    <div class="col-6">
+        <button (click)="onCancel()">Cancelar</button>
+    </div>
+</div>

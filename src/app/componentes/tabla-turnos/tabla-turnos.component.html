@@ -1,3 +1,4 @@
+<app-loading *ngIf="loading"></app-loading>
 <div class="main-card mb-3 card">
     <div class="card-header">MIS TURNOS
         <div class="btn-actions-pane-right">
@@ -14,8 +15,8 @@
         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
             <thead>
             <tr>
+                <th class="text-center">{{headerColumn}}</th>
                 <th class="text-center">Especialidad</th>
-                <th class="text-center">Especialista</th>
                 <th class="text-center">Fecha</th>
                 <th class="text-center">Estado</th>
                 <th class="text-center"> - </th>
@@ -50,30 +51,53 @@
                 <td class="text-center text-muted">{{turno.especialidad}}</td>
                 <td class="text-center">{{turno.fecha}}</td>
                 <td class="text-center">
-                    <div class="badge badge-info" *ngIf="turno.estado == 'pendiente'">Pendiente</div>
+                    <div class="badge badge-warning" *ngIf="turno.estado == 'pendiente'">Pendiente</div>
                     <div class="badge badge-success" *ngIf="turno.estado == 'realizado'">Completado</div>
-                    <div class="badge badge-warning" *ngIf="turno.estado == 'rechazado'">Rechazado</div>
+                    <div class="badge badge-info" *ngIf="turno.estado == 'aceptado'">Aceptado</div>
+                    <div class="badge badge-danger" *ngIf="turno.estado == 'rechazado'">Rechazado</div>
                     <div class="badge badge-danger" *ngIf="turno.estado == 'cancelado'">Cancelado</div>
                 </td>
                 <td class="text-center">
-                    <div *ngIf="turno.estado != 'rechazado' && turno.estado != 'cancelado'">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>                  
+                    <div *ngIf="turno.estado == 'pendiente'">
+                        <div *ngIf="user.rol == 'especialista'">
+                            <button (click)="confirmTurno(turno)" class="btn-icon btn-icon-only btn btn-outline-success">Aceptar</button>
+                            <button (click)="openDialogComment(turno, 'rechazado', 'Rechazar')" class="btn-icon btn-icon-only btn btn-outline-danger">Rechazar</button>
+                        </div>
+                        <div *ngIf="user.rol == 'paciente'">
+                            <button (click)="openDialogComment(turno, 'cancelado', 'Cancelar')" class="btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>    
+                        </div>
                     </div>
-                </td>
-                <td class="text-center">
+                    <div *ngIf="turno.estado == 'aceptado'">
+                        <div *ngIf="user.rol == 'especialista'">
+                            <button (click)="finalizarTurno()" class="btn-icon btn-icon-only btn btn-outline-success">Realizar</button>
+                        </div>
+                        <button (click)="openDialogComment(turno, 'cancelado', 'Cancelar')" class="btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>
+                    </div>
                     <div *ngIf="turno.comentario">
-                        <td class="text-center">
-                            <button class="mr-2 btn-icon btn-icon-only btn btn-primary">Ver</button>                  
-                        </td>
-                    </div>
-                </td>
-                <td class="text-center">
-                    <div *ngIf="turno.estado == 'realizado'">
-                        <button class="mr-2 btn-icon btn-icon-only btn btn-success">Calificar</button>
+                        <button (click)="openDialogViewComment(turno)" class="bi bi-journal-minus btn btn-info"></button>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
+</div>
+
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{width: '28vw', height: '24vw'}"
+[draggable]="false" [resizable]="false" styleClass="p-fluid">
+        <div *ngIf="!viewComent">
+            <app-comment-dialog-turno [title]="titleDialog" (comentarioEvent)="sendComment($event)"></app-comment-dialog-turno>
+        </div>
+        <div *ngIf="viewComent">
+            <label>Commentario</label>
+            <textarea [value]="turnoSelecc.comentario" class="form-control form-style input" style="height: 250px;" readonly></textarea>
+        </div>
+</p-dialog>
+
+
+<div *ngIf="user.rol == 'especialista'">
+    <p-dialog [(visible)]="displayModalAtender" [modal]="true" [style]="{width: '50vw', height: '40vw'}"
+    [draggable]="false" [resizable]="false" styleClass="p-fluid">
+        <app-atender-paciente></app-atender-paciente>
+    </p-dialog>
 </div>

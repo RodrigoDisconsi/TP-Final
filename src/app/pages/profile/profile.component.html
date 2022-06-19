@@ -237,7 +237,7 @@
           <!-- End Pending card -->
         </div>
 
-        <p-dialog header="NUEVA FECHA" [(visible)]="displayModal" [modal]="true" [style]="{width: '500px', height: '450px'}"
+        <p-dialog header="NUEVA FECHA" [(visible)]="displayModal" [modal]="true" [style]="{width: '35vw', height: '25vw'}"
         [draggable]="false" [resizable]="false" styleClass="p-fluid">
             <ng-template pTemplate="content">
               <app-horarios (horarioEvent)="enviarHorario($event, user)" [especialidades]="user.especialidad"></app-horarios>

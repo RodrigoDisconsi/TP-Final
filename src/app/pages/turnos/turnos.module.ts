@@ -10,6 +10,7 @@ import { ProgressStepDirective } from '../../directives/progress-step.directive'
 import { CalendarComponent } from '../../componentes/calendar/calendar.component';
 import { TablaUsersTurnoComponent } from '../../componentes/tabla-users-turno/tabla-users-turno.component';
 import { TablaTurnosComponent } from '../../componentes/tabla-turnos/tabla-turnos.component';
+import { CommentDialogTurnoComponent } from '../../componentes/comment-dialog-turno/comment-dialog-turno.component';
 
 import { MessagesModule } from 'primeng/messages';
 import { MessageModule } from 'primeng/message';
@@ -18,6 +19,8 @@ import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
 import { LoadingModule } from 'src/app/componentes/loading/loading.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
+import { DialogModule } from 'primeng/dialog';
+import { AtenderPacienteComponent } from 'src/app/componentes/atender-paciente/atender-paciente.component';
 
 @NgModule({
   declarations: [
@@ -29,7 +32,9 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     ProgressStepDirective,
     CalendarComponent,
     TablaUsersTurnoComponent,
-    TablaTurnosComponent
+    TablaTurnosComponent,
+    CommentDialogTurnoComponent,
+    AtenderPacienteComponent
   ],
   imports: [
     CommonModule,
@@ -40,7 +45,8 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
     LoadingModule,
     FormsModule,
     ReactiveFormsModule,
-    DropdownModule
+    DropdownModule,
+    DialogModule
   ]
 })
 export class TurnosModule { }

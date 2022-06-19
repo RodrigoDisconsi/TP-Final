@@ -29,10 +29,10 @@
                         </a>
                     </li>
                 </div>
-                <div *ngIf="user.rol == 'paciente' || user.rol == 'administrador'">
+                <div>
                     <li class="app-sidebar__heading">Turnos</li>
                     <li>
-                        <a [routerLink]="['Turno']" routerLinkActive="mm-active">
+                        <a [routerLink]="['Turno']" routerLinkActive="mm-active" *ngIf="user.rol == 'paciente' || user.rol == 'administrador'">
                             <i class="metismenu-icon bi bi-clipboard-pulse"></i>
                             Solicitar turno
                         </a>

@@ -17,7 +17,7 @@ export class FirebaseService {
   }
 
 
-  setObj(entidad:string, obj:any, id:string){
+  setObj(entidad:string, obj:any, id:string = obj.id){
     return this.afs.collection(entidad).doc(id).set(obj, {merge: true});
   }
 

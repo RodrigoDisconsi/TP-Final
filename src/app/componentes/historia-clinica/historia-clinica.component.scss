@@ -3,65 +3,7 @@
     background: #4285F4;
   }
   
-  .secondary-colors {
-    color: #fff;
-    background: #4d8ff8;
-    border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
-  }
-  
-  
-  #header {
-    display: flex;
-    align-items: center;
-    position: relative;
-    border-top-left-radius: 10px;
-    border-top-right-radius: 10px;
-  }
-  
-  #header .profile-summary {
-    padding: 16px;
-    flex: 1;
-  }
-  
-  #header .profile-pic {
-    width: 150px;
-    height: 150px;
-    background-size: cover;
-    background-position: 50% 50%;
-    margin: 8px;
-    border: 4px solid #fff;
-    border-radius: 50%;
-    align-self: center;
-    box-shadow: inset -4px -4px 16px rgba(0, 0, 0, 0.7);
-  }
-  
-  #header .profile-summary h1 {
-    margin: 0;
-  }
-  
-  #contacts {
-    display: flex;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
-  }
-  
-  #contacts a {
-    flex: 1;
-    padding: 12px 8px;
-    text-align: center;
-    color: inherit;
-    text-decoration: none;
-  }
-  
-  #contacts a:hover {
-    background: rgba(255, 255, 255, 0.2);
-  }
-  
-  i.fas {
-    margin-right: 8px;
-  }
-  
-  
+    
   .section-head {
     padding: 12px 16px;
     border-radius: 50px;

@@ -6,14 +6,14 @@
         <div class="row">
             <div class="col-12">
                 <div class="form-group">
-                    <label>Comentario</label>
-                    <textarea formControlName="comentario" class="form-control form-style input"></textarea>
+                    <label>Diagnostico</label>
+                    <input formControlName="diagnostico" type="text" class="form-control form-style input"/>
                 </div>
             </div>
             <div class="col-12">
                 <div class="form-group">
-                    <label>Diagnostico</label>
-                    <input formControlName="diagnostico" type="text" class="form-control form-style input"/>
+                    <label>Comentario</label>
+                    <textarea formControlName="comentario" class="form-control form-style input"></textarea>
                 </div>
             </div>
         </div>
@@ -49,7 +49,29 @@
             </div>
         </div>
     </form>
+    <div *ngFor="let campoDin of camposDinamicos; let i = index" [attr.data-index]="i">
+        <div class="row mb-4">
+            <div class="col-4">
+                <label>Campo</label>
+                <input [(ngModel)]="campoDin.clave" placeholder="Nombre del nuevo campo..." type="text" class="form-control form-style input"/>
+            </div>
+            <div class="col-4">
+                <label>Valor</label>
+                <input [(ngModel)]="campoDin.valor" placeholder="Valor del nuevo campo..." type="text" class="form-control form-style input"/>
+            </div>
+            <div class="col-4 mt-3" *ngIf="i == 0">
+                <div class="row">
+                    <div class="col-6">
+                        <button (click)="agregarCampoDinamico()" class="bi bi-plus-lg btn btn-light"></button>
+                    </div>
+                    <div class="col-6">
+                        <button (click)="quitarCampoDinamico()" class="bi bi-dash-lg btn btn-light"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
     <div class="col-12">
-        <button [disabled]="historiaClinicaForm.invalid || evaluacionForm.invalid" class="btn btn-accent">Finalizar</button>
+        <button [disabled]="historiaClinicaForm.invalid || evaluacionForm.invalid" class="btn btn-accent" (click)="finalizarTurno()">Finalizar</button>
     </div>
 </div>

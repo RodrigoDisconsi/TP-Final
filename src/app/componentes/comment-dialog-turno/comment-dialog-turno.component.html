@@ -4,7 +4,7 @@
     </div>
     <div class="col-12 mb-5">
         <form [formGroup]="comentarioForm">
-            <label for="dni">Commentario</label>
+            <label for="dni">Comentario</label>
             <textarea formControlName="comentario" class="form-control form-style input" [ngClass]="{'is-invalid': isNotValidField('comentario')}" required></textarea>
             <div class="invalid-feedback">
                 {{getErrorMessage('comentario')}}

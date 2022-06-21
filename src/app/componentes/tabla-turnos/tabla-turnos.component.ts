@@ -132,8 +132,32 @@ export class TablaTurnosComponent implements OnInit {
   }
 
 
-  finalizarTurno(){
+  atenderTurno(turno:TurnoInterface){
+    this.turnoSelecc = turno;
     this.displayModalAtender = true;
+  }
+
+  finalizarTurno(turno:TurnoInterface){
+    turno.estado = "realizado";
+    this.loading = true;
+    this.afs.setObj("turnos", turno).then(resp =>{
+      Swal.fire({
+        title: 'Correc!',
+        icon: 'success',
+        timer: 1000
+      });
+      this.displayModalAtender = false;
+      this.loading = false;
+    })
+    .catch(e => {
+      Swal.fire({
+        title: 'Ups!',
+        icon: 'error',
+        timer: 1000
+      });
+      this.loading = false;
+      this.displayModal = false;
+    });
   }
 
 }

@@ -69,7 +69,7 @@
                     </div>
                     <div *ngIf="turno.estado == 'aceptado'">
                         <div *ngIf="user.rol == 'especialista'">
-                            <button (click)="finalizarTurno()" class="btn-icon btn-icon-only btn btn-outline-success">Realizar</button>
+                            <button (click)="atenderTurno(turno)" class="btn-icon btn-icon-only btn btn-outline-success">Realizar</button>
                         </div>
                         <button (click)="openDialogComment(turno, 'cancelado', 'Cancelar')" class="btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>
                     </div>
@@ -89,15 +89,19 @@
             <app-comment-dialog-turno [title]="titleDialog" (comentarioEvent)="sendComment($event)"></app-comment-dialog-turno>
         </div>
         <div *ngIf="viewComent">
-            <label>Commentario</label>
+            <div class="mb-3" *ngIf="turnoSelecc.diagnostico">
+                <label>Diagnostico</label>
+                <input [value]="turnoSelecc.diagnostico" class="form-control form-style input" readonly/>    
+            </div>
+            <label>Comentario</label>
             <textarea [value]="turnoSelecc.comentario" class="form-control form-style input" style="height: 250px;" readonly></textarea>
         </div>
 </p-dialog>
 
 
-<div *ngIf="user.rol == 'especialista'">
+<div *ngIf="user.rol == 'especialista' &&  displayModalAtender">
     <p-dialog [(visible)]="displayModalAtender" [modal]="true" [style]="{width: '50vw', height: '40vw'}"
     [draggable]="false" [resizable]="false" styleClass="p-fluid">
-        <app-atender-paciente></app-atender-paciente>
+        <app-atender-paciente [turno]="turnoSelecc" (turnoWithHistoriaClin)="finalizarTurno($event)"></app-atender-paciente>
     </p-dialog>
 </div>

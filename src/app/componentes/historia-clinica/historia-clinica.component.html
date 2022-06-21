@@ -1,0 +1,85 @@
+<div class="row">
+    <div class="col-5">
+        <div class="offset-3 col-6">
+            <h3 class="primary-colors section-head" style="cursor:default;">
+              <i class="fas fa-business-time"></i> Turnos
+            </h3>
+        </div>
+        <div class="my-card card">
+          <div class="my-card__header card-header">
+            <h3 class="my-card__header-title card-title"> Información del Turno</h3>
+          </div>
+        </div>
+      </div>
+    <div class="col-7">
+        <div class="offset-3 col-6">
+            <h3 class="primary-colors section-head" style="cursor:default;">
+              <i class="fas fa-business-time"></i> Historia Clinica
+            </h3>
+        </div>
+        <div class="my-card card">
+          <div class="my-card__header card-header">
+            <h3 class="my-card__header-title card-title">Información del paciente</h3>
+          </div>
+        </div>
+      </div>
+</div>
+
+<div class="row" *ngFor="let hist of historiaClinica">
+    <div class="col-5">
+        <div class="my-list list-group list-group-flush">
+            <div class="my-list-item list-group-item">
+                <div class="my-list-item__date">
+                    <span class="my-list-item__date-day">{{hist.fecha.split(" - ")[0].toString()}}</span>
+                    <span class="my-list-item__date-day text-center">{{hist.fecha.split(" - ")[1].toString()}}</span>
+                </div>
+                <div class="my-list-item__text">
+                    <h4 class="my-list-item__text-title">Diagnostico</h4>
+                    <p class="my-list-item__text-description">{{hist.diagnostico}}</p>
+                  </div>
+                  <div class="my-list-item__text">
+                    <h4 class="my-list-item__text-title">Atendido por</h4>
+                    <p class="my-list-item__text-description">{{hist.especialista.nombre}} {{hist.especialista.apellido}}</p>
+                  </div>
+                  <div class="my-list-item__text">
+                    <h4 class="my-list-item__text-title">Especialidad</h4>
+                    <p class="my-list-item__text-description">{{hist.especialidad}}</p>
+                  </div>
+            </div>
+          </div>
+    </div>
+    <div class="col-7">
+        <div class="my-list list-group list-group-flush">
+            <div class="my-list-item list-group-item">
+              <div class="my-list-item__text">
+                <h4 class="my-list-item__text-title">Altura</h4>
+                <p class="my-list-item__text-description">{{hist.historiaClinica.altura}}</p>
+              </div>
+              <div class="my-list-item__text">
+                <h4 class="my-list-item__text-title">Peso</h4>
+                <p class="my-list-item__text-description">{{hist.historiaClinica.peso}}</p>
+              </div>
+              <div class="my-list-item__text">
+                <h4 class="my-list-item__text-title">Presión</h4>
+                <p class="my-list-item__text-description">{{hist.historiaClinica.presion}}</p>
+              </div>
+              <div class="my-list-item__text">
+                <h4 class="my-list-item__text-title">Temperatura</h4>
+                <p class="my-list-item__text-description">{{hist.historiaClinica.temperatura}}</p>
+              </div>
+              <div class="my-list-item__text">
+                <h4 class="my-list-item__text-title">Temperatura</h4>
+                <p class="my-list-item__text-description">{{hist.historiaClinica.temperatura}}</p>
+              </div>
+              <div class="my-list-item__text">
+                <h4 class="my-list-item__text-title">Temperatura</h4>
+                <p class="my-list-item__text-description">{{hist.historiaClinica.temperatura}}</p>
+              </div>
+              <div class="my-list-item__text" *ngFor="let campos of hist.historiaClinica.camposDinamicos">
+                  <h4 class="my-list-item__text-title">{{campos.clave}}</h4>
+                  <p class="my-list-item__text-description">{{campos.valor}}</p>
+              </div>
+            </div>
+          </div>
+    </div>
+</div>

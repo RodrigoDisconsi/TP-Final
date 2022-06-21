@@ -29,6 +29,7 @@ import { HorariosComponent } from './componentes/horarios/horarios.component';
 import { LoadingModule } from './componentes/loading/loading.module';
 
 import { CalendarModule } from 'primeng/calendar';
+import { HistoriaClinicaComponent } from './componentes/historia-clinica/historia-clinica.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CalendarModule } from 'primeng/calendar';
     MasterUsuariosComponent,
     CrearUsuarioComponent,
     ProfileComponent,
-    HorariosComponent
+    HorariosComponent,
+    HistoriaClinicaComponent
   ],
   imports: [
     BrowserModule,

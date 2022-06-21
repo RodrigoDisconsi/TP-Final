@@ -1,3 +1,4 @@
+import { HistoriaClinicaInterface } from "./historia-clinica-interface";
 import { UserInterface } from "./UserInterface";
 
 export interface TurnoInterface {
@@ -8,5 +9,6 @@ export interface TurnoInterface {
     fecha:string;
     estado:string;
     comentario:string;
-    comentarioAtencion:string;
+    diagnostico:string;
+    historiaClinica:HistoriaClinicaInterface;
 }

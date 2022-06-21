@@ -21,10 +21,6 @@ export class FirebaseService {
     return this.afs.collection(entidad).doc(id).set(obj, {merge: true});
   }
 
-  removeObj(entidad:string, obj:any){
-    return this.afs.collection(entidad).doc(obj.id).delete();
-  }
-
   getWithFilter(entidad:string, campo:string, value:any){
     return this.afs.collection(entidad, ref => ref.where(campo, '==', value)).valueChanges();
   }
@@ -35,6 +31,10 @@ export class FirebaseService {
 
   getTurnoByEspecialista(value:string){
     return this.afs.collection("turnos", ref => ref.where("especialista.email", '==', value)).valueChanges();
+  }
+
+  getTurnoRealizado(campo:string, email:string){
+    return this.afs.collection("turnos", ref => ref.where(campo, '==', email).where('estado', '==', 'realizado')).valueChanges();
   }
 
   getUsersWithFilter(campo:string, value:string){

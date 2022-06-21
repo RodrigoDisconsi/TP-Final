@@ -3,6 +3,7 @@ import { Guid } from 'guid-typescript';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { HorariosInterface } from 'src/app/models/horarios-interface';
+import { TurnoInterface } from 'src/app/models/turno-interface';
 import { UserInterface } from 'src/app/models/UserInterface';
 import { AuthService } from 'src/app/servicios/auth-service.service';
 import { FirebaseService } from 'src/app/servicios/firebase-service.service';

@@ -25,7 +25,7 @@ import { ChildrenOutletContexts } from '@angular/router';
         group([
           query(':leave', [
             animate('300ms ease-out', style({ bottom: '100%' }))
-          ]),
+          ], { optional: true }),
           query(':enter', [
             animate('300ms ease-out', style({ bottom: '0%' }))
           ]),

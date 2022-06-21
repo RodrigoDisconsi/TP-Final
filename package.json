@@ -30,6 +30,7 @@
     "firebase": "^9.8.2",
     "guid-typescript": "^1.0.9",
     "jquery": "^3.6.0",
+    "jspdf": "^2.5.1",
     "path": "^0.12.7",
     "popper.js": "^1.16.1",
     "primeicons": "^5.0.0",

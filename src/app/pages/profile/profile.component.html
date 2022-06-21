@@ -1,73 +1,75 @@
 <p-toast position="bottom-center"></p-toast>
 <div *ngIf="$user | async as user" class="container-fluid">
+  <button class="btn-icon btn-icon-only btn btn-outline-danger" (click)="SavePDF()"><i class="bi bi-filetype-pdf"></i></button>
+  <div id="profile">
     <div class="row justify-content-center">
-        <div class="col-6 align-items-center">
-            <div id="header" class="primary-colors col-12">
-                <div class="profile-pic" [ngStyle]="{ 'background-image': 'url(' + user.pathImg + ')'}">
-                </div>
-                <div class="profile-summary ml-4">
-                  <h1>{{ user.nombre }} {{user.apellido}}</h1>
-                </div>
-          </div>
-        
-          <div id="contacts" class="secondary-colors">
-            <a>
-              <i class="fas fa-address-card"></i>{{user.dni}}
+      <div class="col-6 align-items-center">
+          <div id="header" class="primary-colors col-12">
+              <div class="profile-pic" [ngStyle]="{ 'background-image': 'url(' + user.pathImg + ')'}">
+              </div>
+              <div class="profile-summary ml-4">
+                <h1>{{ user.nombre }} {{user.apellido}}</h1>
+              </div>
+        </div>
+      
+        <div id="contacts" class="secondary-colors">
+          <a>
+            <i class="fas fa-address-card"></i>{{user.dni}}
+          </a>
+          <a>
+            <i class="fas fa-envelope"></i>{{user.email}}
             </a>
-            <a>
-              <i class="fas fa-envelope"></i>{{user.email}}
-              </a>
-            <a>
-                <i class="fas fa-calendar-day"></i>{{user.edad}} años
-              </a>
-          </div>
+          <a>
+              <i class="fas fa-calendar-day"></i>{{user.edad}} años
+            </a>
         </div>
+      </div>
+  </div>
+
+<section class="my-app__body">
+    <div class="row" *ngIf="user.rol == 'especialista'">
+      <div class="col-8 offset-2">
+        <!-- Begin Pending card -->
+        <div class="offset-3 col-6">
+            <h3 class="primary-colors section-head" style="cursor:default;">
+              <i class="fas fa-business-time"></i> Días y Horarios
+            </h3>
+        </div>
+        <div class="my-card card">
+          <div class="my-card__header card-header">
+            <h3 class="my-card__header-title card-title">Tus Horarios</h3>
+            <div class="btn-actions-pane-right">
+                <button class="btn-wide btn btn-success" (click)="showModalDialog()">Nuevo</button>
+          </div>
+          </div>
+          <ul class="my-list list-group list-group-flush">
+            <li class="my-list-item list-group-item" *ngFor="let horario of user.horarios">
+              <div class="my-list-item__date">
+                <span class="my-list-item__date-day">{{horario.desde}}</span>
+                <span class="my-list-item__date-day">{{horario.hasta}}</span>
+              </div>
+              <div class="my-list-item__text">
+                <h4 class="my-list-item__text-title">{{horario.esp}}</h4>
+                <p class="my-list-item__text-description">{{horario.dias}}</p>
+              </div>
+              <div class="my-list-item__fee">
+                <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p-dialog header="NUEVA FECHA" [(visible)]="displayModal" [modal]="true" [style]="{width: '35vw', height: '25vw'}"
+      [draggable]="false" [resizable]="false" styleClass="p-fluid">
+          <ng-template pTemplate="content">
+            <app-horarios (horarioEvent)="enviarHorario($event, user)" [especialidades]="user.especialidad"></app-horarios>
+          </ng-template>
+    </p-dialog>
     </div>
-
-  <section class="my-app__body">
-      <div class="row" *ngIf="user.rol == 'especialista'">
-
-        <div class="col-8 offset-2">
-          <!-- Begin Pending card -->
-          <div class="offset-3 col-6">
-              <h3 class="primary-colors section-head" style="cursor:default;">
-                <i class="fas fa-business-time"></i> Días y Horarios
-              </h3>
-          </div>
-          <div class="my-card card">
-            <div class="my-card__header card-header">
-              <h3 class="my-card__header-title card-title">Tus Horarios</h3>
-              <div class="btn-actions-pane-right">
-                  <button class="btn-wide btn btn-success" (click)="showModalDialog()">Nuevo</button>
-            </div>
-            </div>
-            <ul class="my-list list-group list-group-flush">
-              <li class="my-list-item list-group-item" *ngFor="let horario of user.horarios">
-                <div class="my-list-item__date">
-                  <span class="my-list-item__date-day">{{horario.desde}}</span>
-                  <span class="my-list-item__date-day">{{horario.hasta}}</span>
-                </div>
-                <div class="my-list-item__text">
-                  <h4 class="my-list-item__text-title">{{horario.esp}}</h4>
-                  <p class="my-list-item__text-description">{{horario.dias}}</p>
-                </div>
-                <div class="my-list-item__fee">
-                  <button class="mr-2 btn-icon btn-icon-only btn btn-outline-danger"><i class="pe-7s-trash btn-icon-wrapper"> </i></button>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-
-        <p-dialog header="NUEVA FECHA" [(visible)]="displayModal" [modal]="true" [style]="{width: '35vw', height: '25vw'}"
-        [draggable]="false" [resizable]="false" styleClass="p-fluid">
-            <ng-template pTemplate="content">
-              <app-horarios (horarioEvent)="enviarHorario($event, user)" [especialidades]="user.especialidad"></app-horarios>
-            </ng-template>
-      </p-dialog>
-      </div>
-      <div *ngIf="user.rol == 'paciente'">
-        <app-historia-clinica [paciente]="user"></app-historia-clinica>
-      </div>
-    </section>
+    <div *ngIf="user.rol == 'paciente'">
+      <app-historia-clinica [paciente]="user"></app-historia-clinica>
+    </div>
+  </section>
+  </div>
 </div>

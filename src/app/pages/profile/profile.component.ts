@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { Guid } from 'guid-typescript';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { HorariosInterface } from 'src/app/models/horarios-interface';
-import { TurnoInterface } from 'src/app/models/turno-interface';
 import { UserInterface } from 'src/app/models/UserInterface';
 import { AuthService } from 'src/app/servicios/auth-service.service';
 import { FirebaseService } from 'src/app/servicios/firebase-service.service';
+import jsPDF from 'jspdf';
+import html2canvas from 'html2canvas';
 
 @Component({
   selector: 'app-profile',
@@ -14,7 +14,7 @@ import { FirebaseService } from 'src/app/servicios/firebase-service.service';
   styleUrls: ['./profile.component.scss'],
   providers: [MessageService]
 })
-export class ProfileComponent implements OnInit {
+export class ProfileComponent implements OnInit { 
 
   $user!:Observable<UserInterface | null>;
   displayModal: boolean = false;
@@ -39,4 +39,23 @@ export class ProfileComponent implements OnInit {
       this.messageService.add({severity:'success', summary: 'Success', detail: 'Horario agregado!'});
     });
   }
+
+  SavePDF(): void {  
+    let DATA:any = document.getElementById('profile');
+    let logo = new Image()
+    logo.src = '../../../assets/logo.png'; 
+
+    let date = new Date();
+    let fecha = date.getDate() + "/" + date.getMonth() + "/" + date.getFullYear();
+    html2canvas(DATA).then((canvas) => {
+      let fileWidth = 208;
+      let fileHeight = (canvas.height * fileWidth) / canvas.width;
+      const FILEURI = canvas.toDataURL('image/png');
+      let PDF = new jsPDF('p', 'mm', 'a4');
+      PDF.text("Fecha Emisión: " + fecha, 100, 10);
+      PDF.addImage(logo, 'PNG', 0, 0, 50, 20)
+      PDF.addImage(FILEURI, 'PNG', 0, 20, fileWidth, fileHeight);
+      PDF.save('historia-clinica.pdf');
+    });
+  }  
 }

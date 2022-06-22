@@ -21,8 +21,8 @@
 </div>
 
 <div *ngIf="displayDialogHistClin">
-    <p-dialog [(visible)]="displayDialogHistClin" [modal]="true" [style]="{width: '55vw', height: '45vw'}"
+    <p-dialog [(visible)]="displayDialogHistClin" [modal]="true" [style]="{width: '60vw', height: '40vw'}"
     [draggable]="false" [resizable]="false" styleClass="p-fluid">
-        <app-historia-clinica [paciente]="turnoHist.paciente"></app-historia-clinica>
+        <app-historia-clinica [paciente]="turnoHist.paciente" [showHead]="true"></app-historia-clinica>
     </p-dialog>
 </div>

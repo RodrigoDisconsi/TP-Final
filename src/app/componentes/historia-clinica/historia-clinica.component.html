@@ -1,5 +1,5 @@
 <div id="cont-pdf">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" *ngIf="showHead">
     <div class="col-6 align-items-center">
         <div id="header" class="primary-colors col-12">
             <div class="profile-pic" [ngStyle]="{ 'background-image': 'url(' + paciente.pathImg + ')'}">
@@ -22,11 +22,13 @@
       </div>
     </div>
   </div>
-  <!-- <div class="row justify-content-end">
-    <div class="col-2">
-      <button class="btn-icon btn-icon-only btn btn-outline-danger" (click)="SavePDF()"><i class="bi bi-filetype-pdf"></i></button>
+  <div class="search-wrapper" [ngClass]="{'active': activeSearch}">
+    <div class="input-holder">
+        <input type="text" [(ngModel)]="filter" (change)="onFilter()" class="search-input" placeholder="Ingrese una especialidad">
+        <button class="search-icon" (click)="activeSearch = true"><span></span></button>
     </div>
-  </div> -->
+    <button class="close" (click)="activeSearch = false"></button>
+  </div>
   <div class="row">
       <div class="col-5">
           <div class="offset-3 col-6">
@@ -45,9 +47,8 @@
             <div class="row">
               <div class="col-10">
                 <h3 class="primary-colors section-head" style="cursor:default;">
-                  <i class="fas fa-business-time"></i> Historia Clinica
+                  <i class="fas fa-business-time"></i> Historia
                 </h3>
-
               </div>
               <div class="col-2 align-items-center align-self-center mb-2">
                 <button class="btn-icon btn-icon-only btn btn-outline-danger" (click)="SavePDF()"><i class="bi bi-filetype-pdf"></i></button>
@@ -62,7 +63,7 @@
         </div>
   </div>
   
-  <div class="row" *ngFor="let hist of historiaClinica">
+  <div class="row" *ngFor="let hist of filterHistoriaClinica">
       <div class="col-5">
           <div class="my-list list-group list-group-flush">
               <div class="my-list-item list-group-item">
@@ -111,6 +112,7 @@
                 </div>
               </div>
             </div>
+            <hr>
       </div>
   </div>
 </div>

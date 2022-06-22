@@ -65,22 +65,27 @@
             <div class="form-group" *ngIf="this.f['rol'].value == 'especialista'">
                 <div class="row">
                     <div class="col-6">
-                        <label for="especilidad">Especialidad</label>
-                        <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
-                            <option *ngFor="let esp of especialidades" class="input test" [value]="esp.value">{{esp.value}}</option>
-                        </select>
-                        <div class="invalid-feedback">
-                            {{getErrorMessage('especialidad')}}
+                        <div *ngIf="!nuevaEspecialidad else nuevaEsp">
+                            <label for="especilidad">Especialidad</label>
+                            <select formControlName="especialidad" class="input" id="especialidad" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required>
+                                <option *ngFor="let esp of especialidades" class="input test" [value]="esp.value">{{esp.value}}</option>
+                            </select>
+                            <div class="invalid-feedback">
+                                {{getErrorMessage('especialidad')}}
+                            </div>
                         </div>
+                        <ng-template #nuevaEsp>
+                            <label for="nuevaEsp">Nueva especialidad</label>
+                            <input type="text" formControlName="especialidad" id="nuevaEsp" name="nuevaEsp" class="form-control form-style" [ngClass]="{'is-invalid': isNotValidField('especialidad'), 'is-valid': !isNotValidField('especialidad') && this.f['especialidad'].touched}" required/>
+                            <div class="invalid-feedback">
+                                {{getErrorMessage('especialidad')}}
+                            </div>
+                        </ng-template>
                     </div>
                     <div class="col-6">
                         <label>Crear nueva</label>
-                        <button style="font-size: small;">Agregar</button>
+                        <button style="font-size: small;" (click)="onNuevaEsp()">{{msjButton}}</button>
                     </div>
-                    <!-- <div class="col-7">
-                        <label for="obraSocial">Nueva especialidad</label>
-                        <input type="text" formControlName="especialidad" id="especialidad" name="especialidad" class="form-control form-style"/>
-                    </div> -->
                 </div>
             </div>
             <div class="form-group">

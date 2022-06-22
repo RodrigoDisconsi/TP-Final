@@ -1,6 +1,7 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { AbstractControl, FormBuilder, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { Guid } from 'guid-typescript';
 import { Subject } from 'rxjs';
 import { UserInterface } from 'src/app/models/UserInterface';
 import { AuthService } from 'src/app/servicios/auth-service.service';
@@ -15,6 +16,8 @@ export class RegisterComponent implements OnInit {
 
   @ViewChild('file')file!:ElementRef;
   @Output() test = new EventEmitter<boolean>();
+  msjButton:string = "Agregar";
+  nuevaEspecialidad:boolean = false;
 
   errorMsj = new Subject<string>();
   error: boolean = false;
@@ -109,8 +112,8 @@ export class RegisterComponent implements OnInit {
 
   onRegister(){
     let user  = this.regisForm.value as UserInterface;
-    this.cargando = true;
     if(this.archivo){
+      this.cargando = true;
       this.auth.register(user.email, user.password).then((resp)=>{
         if(resp){
             this.afs.uploadImage(user.email, this.archivo).then(img =>{
@@ -118,6 +121,12 @@ export class RegisterComponent implements OnInit {
                 if(img)
                   user.pathImg = img;
                 this.afs.setObj('users', user, user.email).then(x => {
+                  if(this.nuevaEspecialidad){
+                    let nuevaEsp = {
+                      value: user.especialidad
+                    }
+                    this.afs.setObj('especialidades', nuevaEsp, Guid.create().toString());
+                  }
                   this.auth.refreshData(user); 
                   this.router.navigate(['']);
                   this.regisForm.reset();
@@ -142,8 +151,9 @@ export class RegisterComponent implements OnInit {
     }
   }
 
-  showResponse(event:any){
-
+  onNuevaEsp(){
+    this.nuevaEspecialidad = true;
+    this.msjButton = "Volver";
   }
 
 }

@@ -13,20 +13,26 @@ import html2canvas from 'html2canvas';
 export class HistoriaClinicaComponent implements OnInit {
   
   @Input() paciente!:UserInterface;
+  @Input() showHead:boolean = false;
+  filterHistoriaClinica!:TurnoInterface[];
   historiaClinica!:TurnoInterface[];
+  activeSearch:boolean = false;
+  filter!:string;
 
   constructor(private afs:FirebaseService) { }
 
   ngOnInit(): void {
-    this.afs.getTurnoRealizado("paciente.email", this.paciente.email).subscribe(resp => {
-      if(resp){
-        this.historiaClinica = resp as TurnoInterface[];
-      }
-    });
+      this.afs.getTurnoRealizado("paciente.email", this.paciente.email).subscribe(resp => {
+        if(resp){
+          this.historiaClinica = resp as TurnoInterface[];
+          this.filterHistoriaClinica = this.historiaClinica;
+        }
+      });
   }
 
   SavePDF(): void {  
-    let DATA:any = document.getElementById('cont-pdf');
+    let id = this.showHead ? 'cont-pdf' : 'profile';
+    let DATA:any = document.getElementById(id);
     let logo = new Image()
     logo.src = '../../../assets/logo.png'; 
 
@@ -43,5 +49,10 @@ export class HistoriaClinicaComponent implements OnInit {
       PDF.save('historia-clinica.pdf');
     });
   }  
+
+  onFilter(){
+    this.filter = this.filter.toLowerCase();
+    this.filterHistoriaClinica = this.historiaClinica.filter(hist => hist.especialidad.toLowerCase().includes(this.filter));
+  }
 
 }

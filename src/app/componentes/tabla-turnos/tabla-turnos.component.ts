@@ -58,7 +58,6 @@ export class TablaTurnosComponent implements OnInit {
   }
 
   confirmTurno(turno:TurnoInterface){
-    turno.estado = "aceptado";
     Swal.fire({
       title: "Desea aceptar el turno?",
       text: "Esto no se puede revertir!",
@@ -72,6 +71,7 @@ export class TablaTurnosComponent implements OnInit {
     }).then((result:any) => {
       if (result.isConfirmed){
         this.loading = true;
+        turno.estado = "aceptado";
         this.afs.setObj("turnos", turno).then(x => {
           Swal.fire({
             title: 'Turno actualizado',
@@ -85,6 +85,7 @@ export class TablaTurnosComponent implements OnInit {
             icon: 'error',
             timer: 1000
           });
+          turno.estado = "pendiente";
           this.loading = false;
         })
       } 

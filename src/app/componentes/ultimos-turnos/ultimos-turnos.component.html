@@ -1,0 +1,28 @@
+<div class="container-fluid">
+    <div class="row mt-4">
+        <div class="col-4 mb-4" *ngFor="let turno of ultimosTurnos">
+            <div class="card text-center">
+                <div class="card-header" style="justify-content: center;">
+                  {{turno.especialidad}}
+                </div>
+                <img [src]="turno.paciente.pathImg" class="card-img-top">
+                <div class="card-body">
+                  <h5 class="card-title">{{turno.paciente.nombre}} {{turno.paciente.apellido}}</h5>
+                  <h5 class="card-title">Atendido por: {{turno.especialista.nombre}} {{turno.especialista.apellido}}</h5>
+                  <p class="card-text">Diagnostico: {{turno.diagnostico}}</p>
+                  <button class="btn-wide btn btn-success" (click)="onSelectHistClin(turno)">Historia Clinica</button>
+                </div>
+                <div class="card-footer text-muted" style="justify-content: center;">
+                    {{turno.fecha}}
+                </div>
+              </div>
+        </div>
+      </div>
+</div>
+
+<div *ngIf="displayDialogHistClin">
+    <p-dialog [(visible)]="displayDialogHistClin" [modal]="true" [style]="{width: '55vw', height: '45vw'}"
+    [draggable]="false" [resizable]="false" styleClass="p-fluid">
+        <app-historia-clinica [paciente]="turnoHist.paciente"></app-historia-clinica>
+    </p-dialog>
+</div>

@@ -8,11 +8,12 @@ export interface UserInterface {
     obraSocial?:string;
     horarios?:HorariosInterface[];
     especialidad?:string[];
+    ultimoInicioSesion?:string;
+    ultimaVezAtendido?:string;
     rol:string;
     email:string;
     password:string;
     habilitado:boolean;
     seleccionado:boolean;
     pathImg?:string;
-    pathImg2?:string;
 }

@@ -1,19 +1,33 @@
 <div class="row">
     <div class="col-md-12">
         <div class="main-card mb-3 card">
-            <div class="card-header">Active Users
+            <div class="card-header"> Usuarios
                 <div class="btn-actions-pane-right">
                     <div role="group" class="btn-group-sm btn-group">
                         <button class="btn-icon btn-icon-only bi bi-person-plus-fill btn btn-accent" (click)="onClick()"></button>
-                        <button class="btn-icon btn-icon-only bi bi-file-excel btn btn-success ml-2" (click)="exportExcel()"></button>
+                        <button class="btn-icon btn-icon-only bi bi-file-excel btn btn-success ml-2" (click)="exportExcel(users, 'users')"></button>
                     </div>
                 </div>
             </div>
-            <app-tabla-usuarios *ngIf="users" [listUser]="users"></app-tabla-usuarios>
+            <div class="overflow-auto" style="max-height: 430px;">
+                <app-tabla-usuarios *ngIf="users" [listUser]="users" (turnoExport)="exportTurno($event)"></app-tabla-usuarios>
+            </div>
         </div>
     </div>
-    
-    <div class="col mb-3" *ngIf="nuevoUsuario">
-        <app-crear-usuario></app-crear-usuario>
+    <div class="col-md-12">
+        <div class="main-card mb-3 card">
+            <div class="card-header"> 
+                Últimos usuarios atendidos
+            </div>
+            <div *ngIf="ultimosTurnos">
+                <app-ultimos-turnos [ultimosTurnos]="ultimosTurnos"></app-ultimos-turnos>
+            </div>
+        </div>
     </div>
+</div>
+<div *ngIf="displayDialogNewUser">
+    <p-dialog [(visible)]="displayDialogNewUser" [modal]="true" [style]="{width: '50vw', height: '40vw'}"
+    [draggable]="false" [resizable]="false" styleClass="p-fluid">
+        <app-crear-usuario></app-crear-usuario>
+    </p-dialog>
 </div>

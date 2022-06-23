@@ -147,7 +147,7 @@ export class RegisterComponent implements OnInit {
     }
     else{
       this.error = true;
-      this.errorMsj.next("Falta u archivo");
+      this.errorMsj.next("Falta un archivo");
     }
   }
 

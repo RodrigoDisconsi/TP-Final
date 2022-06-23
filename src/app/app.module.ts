@@ -31,6 +31,8 @@ import { LoadingModule } from './componentes/loading/loading.module';
 import { CalendarModule } from 'primeng/calendar';
 import { HistoriaClinicaComponent } from './componentes/historia-clinica/historia-clinica.component';
 import { UltimosTurnosComponent } from './componentes/ultimos-turnos/ultimos-turnos.component';
+import { MisPacientesComponent } from './pages/mis-pacientes/mis-pacientes.component';
+import { TablaPacientesComponent } from './componentes/tabla-pacientes/tabla-pacientes.component';
 
 @NgModule({
   declarations: [
@@ -45,7 +47,9 @@ import { UltimosTurnosComponent } from './componentes/ultimos-turnos/ultimos-tur
     ProfileComponent,
     HorariosComponent,
     HistoriaClinicaComponent,
-    UltimosTurnosComponent
+    UltimosTurnosComponent,
+    MisPacientesComponent,
+    TablaPacientesComponent
   ],
   imports: [
     BrowserModule,

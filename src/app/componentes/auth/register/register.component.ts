@@ -155,5 +155,8 @@ export class RegisterComponent implements OnInit {
     this.nuevaEspecialidad = true;
     this.msjButton = "Volver";
   }
+  
+  showResponse(event:any){
 
+  }
 }

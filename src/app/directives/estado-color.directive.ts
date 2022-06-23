@@ -1,12 +1,16 @@
-import { Directive, ElementRef, Input } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit } from '@angular/core';
 
 @Directive({
   selector: '[appEstadoColor]'
 })
-export class EstadoColorDirective {
+export class EstadoColorDirective implements OnInit {
   
-  @Input('appEstadoColor') appEstadoColor!:string;
-  constructor(private el: ElementRef) { 
+  @Input() appEstadoColor = "";
+  
+  constructor(private el: ElementRef) {     
+  }
+
+  ngOnInit(): void {
     if(this.appEstadoColor == "realizado"){
       this.el.nativeElement.style.backgroundColor = "#3ac47d";
     }

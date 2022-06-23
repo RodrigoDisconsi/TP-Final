@@ -20,7 +20,7 @@ const routes: Routes = [
   {path: 'Pacientes' , component: MisPacientesComponent, canActivate:[UserActiveGuard]},
   {path: 'MisTurnos' , component: MisTurnosComponent, canActivate:[UserActiveGuard], loadChildren: () => import('../app/pages/turnos/turnos.module').then(m => m.TurnosModule)},
   {path: 'Turno' , component: SolicitarComponent, canActivate:[UserActiveGuard], loadChildren: () => import('../app/pages/turnos/turnos.module').then(m => m.TurnosModule)},
-  {path: 'Profile' , component: ProfileComponent, canActivate:[UserActiveGuard], data: {animation: 'fadePage'}}
+  {path: 'Profile' , component: ProfileComponent, canActivate:[UserActiveGuard], data: {animation: 'homePage'}}
 ];
 
 @NgModule({

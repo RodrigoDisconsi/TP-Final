@@ -66,7 +66,9 @@ export class AtenderPacienteComponent implements OnInit {
   }
 
   quitarCampoDinamico(){
-    this.camposDinamicos.pop();
+    if(this.camposDinamicos.length > 1){
+      this.camposDinamicos.pop();
+    }
   }
 
   finalizarTurno(){

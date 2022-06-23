@@ -1,0 +1,34 @@
+<div class="main-card mb-3 card">
+    <div class="card-header">Mis pacientes
+    </div>
+    <div class="table-responsive">
+        <table class="align-middle mb-0 table table-borderless table-striped table-hover">
+            <thead>
+            <tr>
+                <th class="text-center">DNI</th>
+                <th class="text-center">Paciente</th>
+                <th class="text-center">Fecha último acceso</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let paciente of users">
+                <td class="text-center">{{paciente.dni}}</td>
+                <td class="text-center">
+                    <div>
+                        <div class="widget-content p-0">
+                            <div class="widget-content-wrapper">
+                                <div class="widget-content-left flex2">
+                                    <img width="40" class="rounded-circle" [src]="paciente.pathImg">
+                                    <div class="widget-heading">{{paciente.nombre}} {{paciente.apellido}}</div>
+                                    <div class="widget-subheading opacity-7">{{paciente.email}}</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td class="text-center text-muted">{{paciente.ultimoInicioSesion}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

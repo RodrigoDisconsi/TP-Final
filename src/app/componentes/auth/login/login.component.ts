@@ -65,11 +65,15 @@ export class LoginComponent implements OnInit {
     this.auth.login(this.loginForm.value.email, this.loginForm.value.password).then((resp) => {
       if (resp) {
         let suscr = this.afs.getUsersWithFilter("email", this.loginForm.value.email).subscribe(user => {
-            if(user){
-              let userInterface = user[0] as UserInterface;
-              this.auth.refreshData(userInterface);
-              this.loginForm.reset();
-              this.router.navigateByUrl('');
+          if(user){
+            let userInterface = user[0] as UserInterface;
+            let fecha = new Date();
+            let fechaString = fecha.getDate() + "/" + (fecha.getMonth() + 1)  + "/" + fecha.getFullYear();
+            userInterface.ultimoInicioSesion = fechaString;
+            this.afs.setObj("users", userInterface, userInterface.email);
+            this.auth.refreshData(userInterface);
+            this.loginForm.reset();
+            this.router.navigateByUrl('');
             }
             suscr.unsubscribe();
           });

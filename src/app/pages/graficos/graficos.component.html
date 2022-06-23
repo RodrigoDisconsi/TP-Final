@@ -1,1 +1,23 @@
-<p>graficos works!</p>
+<div class="container-fluid" id="exportPdf">
+    <button class="btn-icon btn-icon-only btn btn-outline-danger" (click)="SavePDF()"><i class="bi bi-filetype-pdf"></i></button>
+    <div class="row justify-content-center">
+        <div class="col-12 text-center">
+            <h1 appAccentColor>Turnos por fecha</h1>
+        </div>
+        <div class="6">
+            <p-chart *ngIf="turnos" type="pie" [data]="(turnos | turnosPerField: 'fecha')" [options]="options" [style]="{'width': '200px', 'height': '200px'}"></p-chart>
+        </div>
+    </div>
+    <div class="col-12 text-center">
+        <h1 appAccentColor>Turnos por especialidad</h1>
+    </div>
+    <div class="6">
+        <p-chart *ngIf="turnos" type="doughnut" [data]="(turnos | turnosPerField: 'especialidad')" [options]="options" [style]="{'width': '200px', 'height': '200px'}"></p-chart>
+    </div>
+    <div class="col-12">
+        <h1 appAccentColor>Log inicio de sesión Usuario</h1>
+    </div>
+    <div class="col-12" *ngIf="usersLog">
+        <app-table-log-users [users]="usersLog"></app-table-log-users>
+    </div>
+</div>

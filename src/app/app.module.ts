@@ -35,6 +35,10 @@ import { MisPacientesComponent } from './pages/mis-pacientes/mis-pacientes.compo
 import { TablaPacientesComponent } from './componentes/tabla-pacientes/tabla-pacientes.component';
 import { DistinctPacientPipe } from './pipes/distinct-pacient.pipe';
 import { GraficosComponent } from './pages/graficos/graficos.component';
+import {ChartModule} from 'primeng/chart';
+import { TurnosPerFieldPipe } from './pipes/turnos-per-field.pipe';
+import { TableLogUsersComponent } from './componentes/table-log-users/table-log-users.component';
+import { AccentColorDirective } from './directives/accent-color.directive';
 
 @NgModule({
   declarations: [
@@ -53,7 +57,10 @@ import { GraficosComponent } from './pages/graficos/graficos.component';
     MisPacientesComponent,
     TablaPacientesComponent,
     DistinctPacientPipe,
-    GraficosComponent
+    GraficosComponent,
+    TurnosPerFieldPipe,
+    TableLogUsersComponent,
+    AccentColorDirective
   ],
   imports: [
     BrowserModule,
@@ -69,7 +76,8 @@ import { GraficosComponent } from './pages/graficos/graficos.component';
     ToastModule,
     DropdownModule,
     LoadingModule,
-    CalendarModule
+    CalendarModule,
+    ChartModule
   ],
   providers: [],
   bootstrap: [AppComponent]

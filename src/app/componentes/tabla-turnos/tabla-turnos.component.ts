@@ -32,7 +32,10 @@ export class TablaTurnosComponent implements OnInit {
 
   ngOnInit(): void {
     if(this.user.rol == "administrador" ){
-      //todo 
+      this.afs.getAll("turnos").subscribe(resp => {
+        this.turnos = resp as TurnoInterface[];
+        this.turnosWithoutFilter = this.turnos;
+      });
     }
     else{
       if(this.user.rol == "paciente"){
@@ -42,7 +45,7 @@ export class TablaTurnosComponent implements OnInit {
           this.turnosWithoutFilter = this.turnos;
         });
       }
-      else{
+      else if(this.user.rol == "especialista"){
         this.afs.getTurnoByEspecialista(this.user.email).subscribe(resp =>{
           this.headerColumn = "Paciente";
           this.turnos = resp as TurnoInterface[];

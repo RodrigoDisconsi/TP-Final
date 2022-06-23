@@ -42,7 +42,7 @@
                         </a>
                     </li>
                 </div>
-                <div *ngIf="user.rol == 'paciente' || user.rol == 'especialista'">
+                <div>
                     <li class="app-sidebar__heading">Turnos</li>
                     <li *ngIf="user.rol == 'paciente'">
                         <a [routerLink]="['Turno']" routerLinkActive="mm-active">

@@ -1,13 +1,19 @@
 <div class="row justify-content-center">
-    <div class="col-6 mb-5">
-        <h1>{{title}} turno</h1>
+    <div class="col-6 mb-3">
+        <h1>{{title}}</h1>
+    </div>
+    <div *ngIf="calificar" class="offset-2 col-6 mb-4">
+        <p-rating [(ngModel)]="calificacion" [stars]="5" [cancel]="false"></p-rating>
     </div>
     <div class="col-12 mb-5">
         <form [formGroup]="comentarioForm">
-            <label for="dni">Comentario</label>
-            <textarea formControlName="comentario" class="form-control form-style input" [ngClass]="{'is-invalid': isNotValidField('comentario')}" required></textarea>
-            <div class="invalid-feedback">
-                {{getErrorMessage('comentario')}}
+            <div class="row justify-content-center">
+                
+                <label for="dni">Comentario</label>
+                <textarea formControlName="comentario" class="form-control form-style input" [ngClass]="{'is-invalid': isNotValidField('comentario')}" required></textarea>
+                <div class="invalid-feedback">
+                    {{getErrorMessage('comentario')}}
+                </div>
             </div>
         </form>
     </div>

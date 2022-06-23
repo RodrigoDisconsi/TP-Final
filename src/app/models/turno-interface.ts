@@ -10,5 +10,7 @@ export interface TurnoInterface {
     estado:string;
     comentario:string;
     diagnostico:string;
+    calificacion:number;
+    calificacionCmt:string;
     historiaClinica:HistoriaClinicaInterface;
 }

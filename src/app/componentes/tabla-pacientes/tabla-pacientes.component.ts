@@ -11,19 +11,23 @@ import { FirebaseService } from 'src/app/servicios/firebase-service.service';
   styleUrls: ['./tabla-pacientes.component.scss']
 })
 export class TablaPacientesComponent implements OnInit {
+
   @Input() user!:UserInterface;
+  displayDialogHistClin:boolean = false;
   filter!:string;
   activeSearch:boolean = false;
-  turnosFilter!:TurnoInterface[];
   turnos!:TurnoInterface[];
   loading:boolean = false;
+  pacienteSelec!:UserInterface;
 
   constructor(private afs:FirebaseService) { }
 
   ngOnInit(): void {
     this.afs.getTurnoRealizado("especialista.email", this.user.email).subscribe(resp =>{
-      this.turnos = resp as TurnoInterface[];
-      this.turnos;
+      let turnosAux = resp as TurnoInterface[];
+      this.turnos = turnosAux.filter((turno, index) => {
+        return turnosAux.indexOf(turno) == index;
+      });
     });
   }
 
@@ -33,5 +37,9 @@ export class TablaPacientesComponent implements OnInit {
     //                                    turno.especialista.apellido.toLowerCase().includes(this.filter.toLowerCase()))
   }
 
+  onClickHist(turno:TurnoInterface){
+    this.pacienteSelec = turno.paciente;
+    this.displayDialogHistClin = true;
+  }
 
 }

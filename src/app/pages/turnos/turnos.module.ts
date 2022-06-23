@@ -17,6 +17,8 @@ import { MessageModule } from 'primeng/message';
 import { CalendarModule } from 'primeng/calendar';
 import { DropdownModule } from 'primeng/dropdown';
 import { ButtonModule } from 'primeng/button';
+import {RatingModule} from 'primeng/rating';
+
 import { LoadingModule } from 'src/app/componentes/loading/loading.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
@@ -46,7 +48,8 @@ import { AtenderPacienteComponent } from 'src/app/componentes/atender-paciente/a
     FormsModule,
     ReactiveFormsModule,
     DropdownModule,
-    DialogModule
+    DialogModule,
+    RatingModule
   ]
 })
 export class TurnosModule { }

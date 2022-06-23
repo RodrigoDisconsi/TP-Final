@@ -8,8 +8,10 @@ import { AbstractControl, FormBuilder, Validators } from '@angular/forms';
 })
 export class CommentDialogTurnoComponent implements OnInit {
 
-  @Output() comentarioEvent = new EventEmitter<string>();
+  @Output() comentarioEvent = new EventEmitter<{ cmt:string, rating:number} | null>();
   @Input() title!:string;
+  @Input() calificar:boolean = false;
+  calificacion!:number;
   public comentarioForm = this.formBuilder.group({
     comentario: ['', [Validators.required]]
   });
@@ -37,11 +39,15 @@ export class CommentDialogTurnoComponent implements OnInit {
   }
 
   onCancel(){
-    this.comentarioEvent.emit("");
+    this.comentarioEvent.emit(null);
   }
 
   onFinish(){
-    this.comentarioEvent.emit(this.comentarioForm.value.comentario);
+    let emit = {
+      cmt: this.comentarioForm.value.comentario,
+      rating: this.calificacion ? this.calificacion : -1
+    }
+    this.comentarioEvent.emit(emit);
   }
 
 }

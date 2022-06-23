@@ -1,29 +1,21 @@
 <app-loading *ngIf="loading"></app-loading>
 <div class="main-card mb-3 card">
-    <div class="card-header">MIS TURNOS
-        <div class="btn-actions-pane-right">
-            <div class="search-wrapper" [ngClass]="{'active': activeSearch}">
-                <div class="input-holder">
-                    <input type="text" [(ngModel)]="filter" (change)="onFilter()" class="search-input" placeholder="Type to search">
-                    <button class="search-icon" (click)="activeSearch = true"><span></span></button>
-                </div>
-                <button class="close" (click)="activeSearch = false"></button>
-            </div>
-        </div>
+    <div class="card-header">Mis pacientes
     </div>
     <div class="table-responsive">
         <table class="align-middle mb-0 table table-borderless table-striped table-hover">
             <thead>
             <tr>
+                <th class="text-center">DNI</th>
                 <th class="text-center">Paciente</th>
-                <th class="text-center">Especialidad</th>
-                <th class="text-center">Fecha</th>
-                <th class="text-center">Estado</th>
-                <th class="text-center"> - </th>
+                <th class="text-center">Obra social</th>
+                <th class="text-center">Edad</th>
+                <th class="text-center"> Historia Clinica </th>
             </tr>
             </thead>
             <tbody>
             <tr *ngFor="let turno of turnos">
+                <td class="text-center">{{turno.paciente.dni}}</td>
                 <td class="text-center">
                     <div>
                         <div class="widget-content p-0">
@@ -37,11 +29,10 @@
                         </div>
                     </div>
                 </td>
-                <td class="text-center text-muted">{{turno.especialidad}}</td>
-                <td class="text-center">{{turno.fecha}}</td>
+                <td class="text-center text-muted">{{turno.paciente.obraSocial}}</td>
+                <td class="text-center">{{turno.paciente.edad}}</td>
                 <td class="text-center">
-                </td>
-                <td class="text-center">
+                    <button class="btn btn-primary" (click)="onClickHist(turno)"><i class="bi bi-clipboard-pulse"></i></button>
                 </td>
             </tr>
             </tbody>
@@ -49,10 +40,9 @@
     </div>
 </div>
 
-<!-- 
-<div *ngIf="user.rol == 'especialista' &&  displayModalAtender">
-    <p-dialog [(visible)]="displayModalAtender" [modal]="true" [style]="{width: '50vw', height: '40vw'}"
+<div *ngIf="displayDialogHistClin">
+    <p-dialog [(visible)]="displayDialogHistClin" [modal]="true" [style]="{width: '60vw', height: '40vw'}"
     [draggable]="false" [resizable]="false" styleClass="p-fluid">
-        <app-atender-paciente [turno]="turnoSelecc" (turnoWithHistoriaClin)="finalizarTurno($event)"></app-atender-paciente>
+        <app-historia-clinica [paciente]="pacienteSelec" [showHead]="true"></app-historia-clinica>
     </p-dialog>
-</div> -->
+</div>

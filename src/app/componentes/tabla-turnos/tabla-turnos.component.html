@@ -19,6 +19,15 @@
                 <th class="text-center">Especialidad</th>
                 <th class="text-center">Fecha</th>
                 <th class="text-center">Estado</th>
+                <!-- <div *ngIf="user.rol == 'especialista'">
+                </div> -->
+                <th class="text-center">Peso</th>
+                <th class="text-center">Altura</th>
+                <th class="text-center">Temperatura</th>
+                <th class="text-center">Presion</th>
+                <th class="text-center"> - </th>
+                <th class="text-center"> - </th>
+                <th class="text-center"> - </th>
                 <th class="text-center"> - </th>
             </tr>
             </thead>
@@ -57,24 +66,62 @@
                     <div class="badge badge-danger" *ngIf="turno.estado == 'rechazado'">Rechazado</div>
                     <div class="badge badge-danger" *ngIf="turno.estado == 'cancelado'">Cancelado</div>
                 </td>
+                <ng-template [ngIf]="turno.historiaClinica">
+                    <td class="text-center">{{turno.historiaClinica.peso}}</td>
+                    <td class="text-center">{{turno.historiaClinica.altura}}</td>
+                    <td class="text-center">{{turno.historiaClinica.temperatura}}</td>
+                    <td class="text-center">{{turno.historiaClinica.presion}}</td>
+                    <ng-template [ngIf]="turno.historiaClinica.camposDinamicos">
+                        <td *ngFor="let campoDin of turno.historiaClinica.camposDinamicos">{{campoDin.valor}}</td>
+                        <td class="text-center" *ngIf="turno.historiaClinica.camposDinamicos.length == 2"></td>
+                        <ng-template [ngIf]="turno.historiaClinica.camposDinamicos.length == 1">
+                            <td class="text-center"></td>
+                            <td class="text-center"></td>
+                        </ng-template>
+                    </ng-template>
+                    <ng-template>
+
+                    </ng-template>
+                    <ng-template [ngIf]="!turno.historiaClinica.camposDinamicos">
+                        <td class="text-center"></td>    
+                        <td class="text-center"></td>
+                        <td class="text-center"></td>
+                    </ng-template>
+
+                </ng-template>
+                <ng-template [ngIf]="!turno.historiaClinica">
+                    <td class="text-center"> </td>
+                    <td class="text-center"> </td>
+                    <td class="text-center"> </td>
+                    <td class="text-center"> </td>
+                    <td class="text-center"> </td>
+                    <td class="text-center"> </td>
+                    <td class="text-center"> </td>
+                </ng-template>
+                <!-- <div *ngIf="user.rol == 'especialista'">
+                </div> -->
+
                 <td class="text-center">
                     <div *ngIf="turno.estado == 'pendiente'">
                         <div *ngIf="user.rol == 'especialista'">
                             <button (click)="confirmTurno(turno)" class="btn-icon btn-icon-only btn btn-outline-success">Aceptar</button>
-                            <button (click)="openDialogComment(turno, 'rechazado', 'Rechazar')" class="btn-icon btn-icon-only btn btn-outline-danger">Rechazar</button>
+                            <button (click)="openDialogComment(turno, 'rechazado', 'Rechazar turno')" class="btn-icon btn-icon-only btn btn-outline-danger">Rechazar</button>
                         </div>
                         <div *ngIf="user.rol == 'paciente'">
-                            <button (click)="openDialogComment(turno, 'cancelado', 'Cancelar')" class="btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>    
+                            <button (click)="openDialogComment(turno, 'cancelado', 'Cancelar turno')" class="btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>    
                         </div>
                     </div>
                     <div *ngIf="turno.estado == 'aceptado'">
                         <div *ngIf="user.rol == 'especialista'">
                             <button (click)="atenderTurno(turno)" class="btn-icon btn-icon-only btn btn-outline-success">Realizar</button>
                         </div>
-                        <button (click)="openDialogComment(turno, 'cancelado', 'Cancelar')" class="btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>
+                        <button (click)="openDialogComment(turno, 'cancelado', 'Cancelar turno')" class="btn-icon btn-icon-only btn btn-outline-danger">Cancelar</button>
                     </div>
                     <div *ngIf="turno.comentario">
                         <button (click)="openDialogViewComment(turno)" class="bi bi-journal-minus btn btn-info"></button>
+                    </div>
+                    <div *ngIf="user.rol == 'paciente' && turno.estado == 'realizado'">
+                        <button (click)="openDialogComment(turno, 'realizado', 'Calificar atención')" class="btn btn-primary mt-1">Calificar</button>
                     </div>
                 </td>
             </tr>
@@ -83,11 +130,11 @@
     </div>
 </div>
 
-<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{width: '28vw', height: '24vw'}"
+<p-dialog [(visible)]="displayModal" [modal]="true" [style]="{width: '33vw', height: '24vw'}"
 [draggable]="false" [resizable]="false" styleClass="p-fluid">
         <div *ngIf="!viewComent">
-            <app-comment-dialog-turno [title]="titleDialog" (comentarioEvent)="sendComment($event)"></app-comment-dialog-turno>
-        </div>
+            <app-comment-dialog-turno [title]="titleDialog" [calificar]="califica" (comentarioEvent)="sendComment($event)"></app-comment-dialog-turno>
+        </div> 
         <div *ngIf="viewComent">
             <div class="mb-3" *ngIf="turnoSelecc.diagnostico">
                 <label>Diagnostico</label>

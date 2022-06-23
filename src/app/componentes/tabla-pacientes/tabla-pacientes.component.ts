@@ -24,10 +24,7 @@ export class TablaPacientesComponent implements OnInit {
 
   ngOnInit(): void {
     this.afs.getTurnoRealizado("especialista.email", this.user.email).subscribe(resp =>{
-      let turnosAux = resp as TurnoInterface[];
-      this.turnos = turnosAux.filter((turno, index) => {
-        return turnosAux.indexOf(turno) == index;
-      });
+      this.turnos = resp as TurnoInterface[];
     });
   }
 
@@ -37,8 +34,8 @@ export class TablaPacientesComponent implements OnInit {
     //                                    turno.especialista.apellido.toLowerCase().includes(this.filter.toLowerCase()))
   }
 
-  onClickHist(turno:TurnoInterface){
-    this.pacienteSelec = turno.paciente;
+  onClickHist(paciente:UserInterface){
+    this.pacienteSelec = paciente;
     this.displayDialogHistClin = true;
   }
 

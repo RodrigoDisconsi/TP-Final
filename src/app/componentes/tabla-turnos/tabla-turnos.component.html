@@ -60,11 +60,12 @@
                 <td class="text-center text-muted">{{turno.especialidad}}</td>
                 <td class="text-center">{{turno.fecha}}</td>
                 <td class="text-center">
-                    <div class="badge badge-warning" *ngIf="turno.estado == 'pendiente'">Pendiente</div>
-                    <div class="badge badge-success" *ngIf="turno.estado == 'realizado'">Completado</div>
-                    <div class="badge badge-info" *ngIf="turno.estado == 'aceptado'">Aceptado</div>
-                    <div class="badge badge-danger" *ngIf="turno.estado == 'rechazado'">Rechazado</div>
-                    <div class="badge badge-danger" *ngIf="turno.estado == 'cancelado'">Cancelado</div>
+                    <!-- <div class="badge" [class.badge-warning]="turno.estado == 'pendiente'"
+                    [class.badge-success]="turno.estado == 'realizado'"
+                    [class.badge-info]="turno.estado == 'aceptado'"
+                    [class.badge-danger]="turno.estado == 'rechazado'"
+                    [class.badge-danger]="turno.estado == 'cancelado'">{{turno.estado | turnoStatus}}</div> -->
+                    <div class="badge" [appEstadoColor]="'realizado'" defaultColor="#3ac47d">{{turno.estado | turnoStatus}}</div>
                 </td>
                 <ng-template [ngIf]="turno.historiaClinica">
                     <td class="text-center">{{turno.historiaClinica.peso}}</td>

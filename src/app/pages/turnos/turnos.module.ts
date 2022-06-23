@@ -23,6 +23,8 @@ import { LoadingModule } from 'src/app/componentes/loading/loading.module';
 import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { DialogModule } from 'primeng/dialog';
 import { AtenderPacienteComponent } from 'src/app/componentes/atender-paciente/atender-paciente.component';
+import { TurnoStatusPipe } from '../../pipes/turno-status.pipe';
+import { EstadoColorDirective } from 'src/app/directives/estado-color.directive';
 
 @NgModule({
   declarations: [
@@ -36,17 +38,19 @@ import { AtenderPacienteComponent } from 'src/app/componentes/atender-paciente/a
     TablaUsersTurnoComponent,
     TablaTurnosComponent,
     CommentDialogTurnoComponent,
-    AtenderPacienteComponent
+    AtenderPacienteComponent,
+    TurnoStatusPipe,
+    EstadoColorDirective
   ],
   imports: [
     CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
     CalendarModule,
     MessagesModule,
     MessageModule,
     ButtonModule,
     LoadingModule,
-    FormsModule,
-    ReactiveFormsModule,
     DropdownModule,
     DialogModule,
     RatingModule

@@ -33,6 +33,8 @@ import { HistoriaClinicaComponent } from './componentes/historia-clinica/histori
 import { UltimosTurnosComponent } from './componentes/ultimos-turnos/ultimos-turnos.component';
 import { MisPacientesComponent } from './pages/mis-pacientes/mis-pacientes.component';
 import { TablaPacientesComponent } from './componentes/tabla-pacientes/tabla-pacientes.component';
+import { DistinctPacientPipe } from './pipes/distinct-pacient.pipe';
+import { GraficosComponent } from './pages/graficos/graficos.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { TablaPacientesComponent } from './componentes/tabla-pacientes/tabla-pac
     HistoriaClinicaComponent,
     UltimosTurnosComponent,
     MisPacientesComponent,
-    TablaPacientesComponent
+    TablaPacientesComponent,
+    DistinctPacientPipe,
+    GraficosComponent
   ],
   imports: [
     BrowserModule,

@@ -14,25 +14,25 @@
             </tr>
             </thead>
             <tbody>
-            <tr *ngFor="let turno of turnos">
-                <td class="text-center">{{turno.paciente.dni}}</td>
+            <tr *ngFor="let paciente of (turnos | distinctPacient)">
+                <td class="text-center">{{paciente.dni}}</td>
                 <td class="text-center">
                     <div>
                         <div class="widget-content p-0">
                             <div class="widget-content-wrapper">
                                 <div class="widget-content-left flex2">
-                                    <img width="40" class="rounded-circle" [src]="turno.paciente.pathImg">
-                                    <div class="widget-heading">{{turno.paciente.nombre}} {{turno.paciente.apellido}}</div>
-                                    <div class="widget-subheading opacity-7">{{turno.paciente.email}}</div>
+                                    <img width="40" class="rounded-circle" [src]="paciente.pathImg">
+                                    <div class="widget-heading">{{paciente.nombre}} {{paciente.apellido}}</div>
+                                    <div class="widget-subheading opacity-7">{{paciente.email}}</div>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </td>
-                <td class="text-center text-muted">{{turno.paciente.obraSocial}}</td>
-                <td class="text-center">{{turno.paciente.edad}}</td>
+                <td class="text-center text-muted">{{paciente.obraSocial}}</td>
+                <td class="text-center">{{paciente.edad}}</td>
                 <td class="text-center">
-                    <button class="btn btn-primary" (click)="onClickHist(turno)"><i class="bi bi-clipboard-pulse"></i></button>
+                    <button class="btn btn-primary" (click)="onClickHist(paciente)"><i class="bi bi-clipboard-pulse"></i></button>
                 </td>
             </tr>
             </tbody>
